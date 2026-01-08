@@ -32,16 +32,11 @@ export default [
                     depConstraints: [
                         {
                             sourceTag: "ui",
-                            onlyDependOnLibsWithTags: [
-                                "ui",
-                                "util",
-                                "model",
-                                "api",
-                            ],
+                            notDependOnLibsWithTags: ["server"],
                         },
                         {
-                            sourceTag: "api",
-                            notDependOnLibsWithTags: ["ui"],
+                            sourceTag: "server",
+                            notDependOnLibsWithTags: ["ui", "client"],
                         },
                         {
                             sourceTag: "query",
@@ -54,6 +49,14 @@ export default [
                         {
                             sourceTag: "util",
                             onlyDependOnLibsWithTags: ["util", "model"],
+                        },
+                        {
+                            sourceTag: "domain",
+                            onlyDependOnLibsWithTags: [
+                                "domain",
+                                "model",
+                                "util",
+                            ],
                         },
                         {
                             sourceTag: "*",

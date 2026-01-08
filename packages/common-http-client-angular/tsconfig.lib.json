@@ -6,25 +6,17 @@
         "outDir": "dist",
         "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
         "emitDeclarationOnly": false,
+        "forceConsistentCasingInFileNames": true,
         "types": [
             "node"
         ]
     },
     "include": [
-        "src/**/*.ts",
+        "src/**/*.ts"
     ],
     "references": [
         {
-            "path": "../common-http/tsconfig.lib.json"
-        },
-        {
-            "path": "../common-infrastructure/tsconfig.lib.json"
-        },
-        {
             "path": "../common/tsconfig.lib.json"
-        },
-        {
-            "path": "../restaurant-catalog-contracts/tsconfig.lib.json"
         }
     ],
     "exclude": [

@@ -7,7 +7,7 @@
             "path": "./packages/common"
         },
         {
-            "path": "./packages/restaurant-catalog"
+            "path": "./packages/restaurant-catalog-server-nestjs"
         },
         {
             "path": "./packages/debug"
@@ -34,7 +34,7 @@
             "path": "./packages/common-infrastructure"
         },
         {
-            "path": "./packages/common-http"
+            "path": "./packages/common-http-server-nestjs"
         }
     ]
 }

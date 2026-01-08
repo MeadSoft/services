@@ -24,7 +24,7 @@
     "dependencies": {
         "@meadsoft/common": "workspace:*",
         "@meadsoft/common-infrastructure": "workspace:*",
-        "@meadsoft/restaurant-catalog": "workspace:*",
+        "@meadsoft/restaurant-catalog-server-nestjs": "workspace:*",
         "@meadsoft/restaurant-catalog-contracts": "workspace:*",
         "@nestjs/cli": "^11.0.1",
         "@nestjs/common": "^11.0.1",

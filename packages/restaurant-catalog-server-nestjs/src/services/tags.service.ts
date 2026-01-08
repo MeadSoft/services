@@ -1,11 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ChangeHistoryService, EntityService } from '@meadsoft/common';
 import { QueryService, CommandService } from '@meadsoft/common-application';
-import {
-    INewTag,
-    ITag,
-    TagEntity,
-} from '@meadsoft/restaurant-catalog-contracts';
+import { INewTag, ITag } from '@meadsoft/restaurant-catalog-contracts';
 import { TagsRepository } from '../database/repositories';
 import { UnitOfWorkService } from '@meadsoft/common-infrastructure';
 

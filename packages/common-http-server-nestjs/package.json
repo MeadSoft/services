@@ -1,8 +1,9 @@
 {
-    "name": "@meadsoft/debug",
+    "name": "@meadsoft/common-http-server-nestjs",
     "version": "0.0.0",
     "tags": [
         "util",
+        "model",
         "server"
     ],
     "private": true,
@@ -23,10 +24,17 @@
         }
     },
     "nx": {
-        "name": "debug"
+        "name": "common-http-server-nestjs"
     },
     "dependencies": {
         "@nestjs/common": "^11.0.1",
-        "tslib": "^2.3.0"
+        "@nestjs/swagger": "^11.2.3",
+        "@nestjs/testing": "^11.0.1",
+        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-infrastructure": "workspace:*",
+        "tslib": "^2.3.0",
+        "tsup": "^8.5.1",
+        "nestjs-zod": "^5.0.1",
+        "zod": "^4.1.12"
     }
 }

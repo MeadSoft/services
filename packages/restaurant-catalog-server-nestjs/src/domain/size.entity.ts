@@ -1,7 +1,10 @@
 import { Err, Ok, Result } from 'ts-results';
 import { EMPTY_LENGTH, Entity, EntityService } from '@meadsoft/common';
-import { IMenuItem } from '../menu-item.schema';
-import { INewSize, ISize } from '../sizes.schema';
+import {
+    IMenuItem,
+    INewSize,
+    ISize,
+} from '@meadsoft/restaurant-catalog-contracts';
 
 export class SizeEntity extends Entity implements ISize {
     public name!: string;

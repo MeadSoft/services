@@ -1,6 +1,6 @@
 import { DomainEvent } from '@meadsoft/common-application';
 import { MenuItemEntity } from '../menu-item.entity';
-import { IMenuItem } from '../../menu-item.schema';
+import { IMenuItem } from '@meadsoft/restaurant-catalog-contracts';
 
 export class MenuItemUpdatedEvent extends DomainEvent {
     public readonly menuItem: MenuItemEntity;

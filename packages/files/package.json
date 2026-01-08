@@ -5,7 +5,7 @@
         "query",
         "command",
         "model",
-        "api"
+        "server"
     ],
     "private": true,
     "main": "./dist/index.js",

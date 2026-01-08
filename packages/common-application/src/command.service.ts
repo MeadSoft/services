@@ -5,12 +5,12 @@ import {
     IEntity,
     IFilter,
     IUpdateHistory,
+    NotImplementedException,
 } from '@meadsoft/common';
 import {
     ICrudRepository,
     IUnitOfWorkService,
 } from '@meadsoft/common-infrastructure';
-import { NotImplementedException } from '@nestjs/common';
 import { Err, Ok, Result } from 'ts-results';
 
 export class CommandService<

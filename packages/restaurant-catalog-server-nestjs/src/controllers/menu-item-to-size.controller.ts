@@ -7,13 +7,13 @@ import {
 import {
     createCommandController,
     createQueryController,
-} from '@meadsoft/common-http';
+} from '@meadsoft/common-http-server';
 import { ApiTags } from '@nestjs/swagger';
 import {
     MenuItemToSizeCommandService,
     MenuItemToSizeQueryService,
 } from '../services/menu-item-to-size.service';
-import { RESTAURANT_CATALOG_TAG } from './tags';
+import { RESTAURANT_CATALOG_TAG } from './api-tags';
 
 const menuItemToSizeQueryController =
     createQueryController<IMenuItemToSize>(MenuItemToSize);

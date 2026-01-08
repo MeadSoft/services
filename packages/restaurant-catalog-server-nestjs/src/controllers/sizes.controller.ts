@@ -8,13 +8,13 @@ import {
 import {
     createCommandController,
     createQueryController,
-} from '@meadsoft/common-http';
+} from '@meadsoft/common-http-server';
 import { ApiTags } from '@nestjs/swagger';
 import {
     SizeCommandService,
     SizeQueryService,
 } from '../services/sizes.service';
-import { RESTAURANT_CATALOG_TAG } from './tags';
+import { RESTAURANT_CATALOG_TAG } from './api-tags';
 
 const sizesQueryController = createQueryController<Size>(Size);
 

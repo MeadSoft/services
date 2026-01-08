@@ -1,4 +1,5 @@
-export * from './http-exceptions/index';
+export * from './errors/index';
+export * from './http-errors/index';
 
 export * from './change-history.schema';
 export * from './column.schema';

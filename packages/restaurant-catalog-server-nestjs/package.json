@@ -1,10 +1,11 @@
 {
-    "name": "@meadsoft/common-http",
+    "name": "@meadsoft/restaurant-catalog-server-nestjs",
     "version": "0.0.0",
     "tags": [
-        "util",
-        "model",
-        "api"
+        "query",
+        "command",
+        "server",
+        "restaurant-catalog"
     ],
     "private": true,
     "main": "./dist/index.js",
@@ -24,17 +25,24 @@
         }
     },
     "nx": {
-        "name": "common-http"
+        "name": "restaurant-catalog-server-nestjs"
     },
     "dependencies": {
+        "@meadsoft/restaurant-catalog-contracts": "workspace:*",
+        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-infrastructure": "workspace:*",
+        "@meadsoft/common-http-server-nestjs": "workspace:*",
+        "@meadsoft/common-application": "workspace:*",
         "@nestjs/common": "^11.0.1",
         "@nestjs/swagger": "^11.2.3",
         "@nestjs/testing": "^11.0.1",
-        "@meadsoft/common": "workspace:*",
-        "@meadsoft/common-infrastructure": "workspace:*",
+        "@types/pg": "^8.15.6",
+        "drizzle-orm": "^0.44.7",
+        "nestjs-zod": "^5.0.1",
+        "ts-results": "^3.3.0",
+        "pg": "^8.16.3",
         "tslib": "^2.3.0",
         "tsup": "^8.5.1",
-        "nestjs-zod": "^5.0.1",
         "zod": "^4.1.12"
     }
 }
