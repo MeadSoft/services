@@ -2,6 +2,7 @@ import { EntitySchema } from '@meadsoft/common';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
+export const MenuItemToSizeResourceName = 'menu-item-to-size';
 export const NewMenuItemToSizeSchema = z.object({
     menuItemId: z.uuid(),
     sizeId: z.uuid(),

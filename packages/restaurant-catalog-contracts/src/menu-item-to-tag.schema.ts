@@ -2,6 +2,7 @@ import { EntitySchema } from '@meadsoft/common';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
+export const MenuItemToTagResourceName = 'menu-item-to-tag';
 export const NewMenuItemToTagSchema = z.object({
     menuItemId: z.uuid(),
     tagId: z.uuid(),

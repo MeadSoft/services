@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { QueryClient } from './query.client';
 
-export class CommandClient<
+export class CrudClient<
     TModel extends Entity,
     TNewModel,
 > extends QueryClient<TModel> {
     constructor(
-        public readonly basePath: string,
-        public readonly resourceName: string,
+        protected readonly basePath: string,
+        protected readonly resourceName: string,
         http: HttpClient,
     ) {
         super(basePath, resourceName, http);

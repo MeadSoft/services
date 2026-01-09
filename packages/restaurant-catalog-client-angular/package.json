@@ -1,10 +1,11 @@
 {
-    "name": "@meadsoft/common-http-client-angular",
+    "name": "@meadsoft/restaurant-catalog-client-angular",
     "version": "0.0.0",
     "tags": [
-        "util",
-        "model",
-        "client"
+        "query",
+        "command",
+        "server",
+        "restaurant-catalog"
     ],
     "private": true,
     "main": "./dist/index.js",
@@ -24,15 +25,16 @@
         }
     },
     "nx": {
-        "name": "common-http-client-angular"
+        "name": "restaurant-catalog-client-angular"
     },
     "dependencies": {
+        "@meadsoft/restaurant-catalog-contracts": "workspace:*",
         "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-http-client-angular": "workspace:*",
+        "@nestjs/common": "^11.0.1",
         "@angular/common": "^20.3.10",
         "rxjs": "~7.8.0",
         "tslib": "^2.3.0",
-        "tsup": "^8.5.1",
-        "nestjs-zod": "^5.0.1",
-        "zod": "^4.1.12"
+        "tsup": "^8.5.1"
     }
 }

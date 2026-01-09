@@ -1,7 +1,10 @@
 import { Err, Ok, Result } from 'ts-results';
 import { EMPTY_LENGTH, Entity, EntityService } from '@meadsoft/common';
-import { IMenuItem } from '../menu-item.schema';
-import { ITag, INewTag } from '../tags.schema';
+import {
+    IMenuItem,
+    ITag,
+    INewTag,
+} from '@meadsoft/restaurant-catalog-contracts';
 
 export class TagEntity extends Entity implements ITag {
     public name!: string;

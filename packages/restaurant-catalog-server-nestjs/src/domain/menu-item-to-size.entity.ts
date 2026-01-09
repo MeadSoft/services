@@ -3,7 +3,7 @@ import { Entity, EntityService } from '@meadsoft/common';
 import {
     IMenuItemToSize,
     INewMenuItemToSize,
-} from '../menu-item-to-size.schema';
+} from '@meadsoft/restaurant-catalog-contracts';
 
 export class MenuItemToSizeEntity extends Entity implements IMenuItemToSize {
     menuItemId!: string;

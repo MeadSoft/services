@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import {
     IMenuItemToTag,
     INewMenuItemToTag,
-    MenuItemToTagEntity,
 } from '@meadsoft/restaurant-catalog-contracts';
 import { ChangeHistoryService, EntityService } from '@meadsoft/common';
 import { QueryService, CommandService } from '@meadsoft/common-application';
 import { UnitOfWorkService } from '@meadsoft/common-infrastructure';
 import { MenuItemToTagRepository } from '../database/repositories';
+import { MenuItemToTagEntity } from '../domain/menu-item-to-tag.entity';
 
 @Injectable()
 export class MenuItemToTagQueryService extends QueryService<IMenuItemToTag> {

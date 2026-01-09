@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import {
     IMenuItemToSize,
     INewMenuItemToSize,
-    MenuItemToSizeEntity,
 } from '@meadsoft/restaurant-catalog-contracts';
 import { ChangeHistoryService, EntityService } from '@meadsoft/common';
 import { QueryService, CommandService } from '@meadsoft/common-application';
 import { MenuItemToSizeRepository } from '../database/repositories';
 import { UnitOfWorkService } from '@meadsoft/common-infrastructure';
+import { MenuItemToSizeEntity } from '../domain/menu-item-to-size.entity';
 
 @Injectable()
 export class MenuItemToSizeQueryService extends QueryService<IMenuItemToSize> {

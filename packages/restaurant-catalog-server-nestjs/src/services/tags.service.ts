@@ -4,6 +4,7 @@ import { QueryService, CommandService } from '@meadsoft/common-application';
 import { INewTag, ITag } from '@meadsoft/restaurant-catalog-contracts';
 import { TagsRepository } from '../database/repositories';
 import { UnitOfWorkService } from '@meadsoft/common-infrastructure';
+import { TagEntity } from '../domain/tag.entity';
 
 @Injectable()
 export class TagsQueryService extends QueryService<ITag> {

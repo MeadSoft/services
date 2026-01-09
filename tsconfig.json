@@ -4,10 +4,28 @@
     "files": [],
     "references": [
         {
+            "path": "./apps/frontend"
+        },
+        {
+            "path": "./apps/restaurant-catalog-api"
+        },
+        {
+            "path": "./packages/auth"
+        },
+        {
             "path": "./packages/common"
         },
         {
-            "path": "./packages/restaurant-catalog-server-nestjs"
+            "path": "./packages/common-application"
+        },
+        {
+            "path": "./packages/common-http-server-nestjs"
+        },
+        {
+            "path": "./packages/common-http-client-angular"
+        },
+        {
+            "path": "./packages/common-infrastructure"
         },
         {
             "path": "./packages/debug"
@@ -19,22 +37,13 @@
             "path": "./packages/google"
         },
         {
-            "path": "./packages/auth"
-        },
-        {
-            "path": "./apps/frontend"
-        },
-        {
-            "path": "./apps/restaurant-catalog-api"
-        },
-        {
             "path": "./packages/restaurant-catalog-contracts"
         },
         {
-            "path": "./packages/common-infrastructure"
+            "path": "./packages/restaurant-catalog-server-nestjs"
         },
         {
-            "path": "./packages/common-http-server-nestjs"
-        }
+            "path": "./packages/restaurant-catalog-client-angular"
+        },
     ]
 }

@@ -152,7 +152,7 @@ importers:
         version: 20.3.12(3e7e5aedb15a28a4a6ae75915ab29926)
       '@meadsoft/common-http-client-angular':
         specifier: workspace:*
-        version: link:../../packages/common-http-client
+        version: link:../../packages/common-http-client-angular
       '@meadsoft/restaurant-catalog-contracts':
         specifier: workspace:*
         version: link:../../packages/restaurant-catalog-contracts
@@ -229,12 +229,12 @@ importers:
       '@meadsoft/common-infrastructure':
         specifier: workspace:*
         version: link:../../packages/common-infrastructure
-      '@meadsoft/restaurant-catalog':
-        specifier: workspace:*
-        version: link:../../packages/restaurant-catalog
       '@meadsoft/restaurant-catalog-contracts':
         specifier: workspace:*
         version: file:packages/restaurant-catalog-contracts(@nestjs/common@11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)(@nestjs/platform-express@11.1.9)(@nestjs/swagger@11.2.3(@nestjs/common@11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)(reflect-metadata@0.2.2))(@opentelemetry/api@1.9.0)(@swc/core@1.5.29(@swc/helpers@0.5.17))(jiti@2.6.1)(postcss@8.5.6)(reflect-metadata@0.2.2)(rxjs@7.8.2)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.1)
+      '@meadsoft/restaurant-catalog-server-nestjs':
+        specifier: workspace:*
+        version: link:../../packages/restaurant-catalog-server-nestjs
       '@nestjs/cli':
         specifier: ^11.0.1
         version: 11.0.14(@swc/core@1.5.29(@swc/helpers@0.5.17))(@types/node@22.19.1)(esbuild@0.25.12)
@@ -348,9 +348,6 @@ importers:
       '@meadsoft/common-infrastructure':
         specifier: workspace:*
         version: link:../common-infrastructure
-      '@nestjs/common':
-        specifier: ^11.0.1
-        version: 11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@types/uuid':
         specifier: ^11.0.0
         version: 11.0.0
@@ -367,7 +364,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.13
 
-  packages/common-http-client:
+  packages/common-http-client-angular:
     dependencies:
       '@angular/common':
         specifier: ^20.3.10
@@ -391,7 +388,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.13
 
-  packages/common-http-server:
+  packages/common-http-server-nestjs:
     dependencies:
       '@meadsoft/common':
         specifier: workspace:*
@@ -524,7 +521,61 @@ importers:
         specifier: ^5.0.6
         version: 5.0.6
 
-  packages/restaurant-catalog:
+  packages/restaurant-catalog-client-angular:
+    dependencies:
+      '@angular/common':
+        specifier: ^20.3.10
+        version: 20.3.14(@angular/core@20.3.14(@angular/compiler@20.3.14)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@meadsoft/common':
+        specifier: workspace:*
+        version: link:../common
+      '@meadsoft/common-http-client-angular':
+        specifier: workspace:*
+        version: link:../common-http-client-angular
+      '@meadsoft/restaurant-catalog-contracts':
+        specifier: workspace:*
+        version: link:../restaurant-catalog-contracts
+      '@nestjs/common':
+        specifier: ^11.0.1
+        version: 11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      rxjs:
+        specifier: ~7.8.0
+        version: 7.8.2
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+      tsup:
+        specifier: ^8.5.1
+        version: 8.5.1(@swc/core@1.5.29(@swc/helpers@0.5.17))(jiti@2.6.1)(postcss@8.5.6)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.1)
+
+  packages/restaurant-catalog-contracts:
+    dependencies:
+      '@meadsoft/common':
+        specifier: workspace:*
+        version: link:../common
+      '@meadsoft/common-application':
+        specifier: workspace:*
+        version: file:packages/common-application(@nestjs/core@11.1.9)(@nestjs/platform-express@11.1.9)(@nestjs/swagger@11.2.3(@nestjs/common@11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)(reflect-metadata@0.2.2))(@opentelemetry/api@1.9.0)(@swc/core@1.5.29(@swc/helpers@0.5.17))(jiti@2.6.1)(postcss@8.5.6)(reflect-metadata@0.2.2)(rxjs@7.8.2)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.1)
+      '@types/uuid':
+        specifier: ^11.0.0
+        version: 11.0.0
+      nestjs-zod:
+        specifier: ^5.0.1
+        version: 5.0.1(@nestjs/common@11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/swagger@11.2.3(@nestjs/common@11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)(reflect-metadata@0.2.2))(rxjs@7.8.2)(zod@4.1.13)
+      ts-results:
+        specifier: ^3.3.0
+        version: 3.3.0
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+      uuid:
+        specifier: ^13.0.0
+        version: 13.0.0
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.13
+
+  packages/restaurant-catalog-server-nestjs:
     dependencies:
       '@meadsoft/common':
         specifier: workspace:*
@@ -532,9 +583,9 @@ importers:
       '@meadsoft/common-application':
         specifier: workspace:*
         version: link:../common-application
-      '@meadsoft/common-http-server':
+      '@meadsoft/common-http-server-nestjs':
         specifier: workspace:*
-        version: link:../common-http-server
+        version: link:../common-http-server-nestjs
       '@meadsoft/common-infrastructure':
         specifier: workspace:*
         version: link:../common-infrastructure
@@ -571,33 +622,6 @@ importers:
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(@swc/core@1.5.29(@swc/helpers@0.5.17))(jiti@2.6.1)(postcss@8.5.6)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.1)
-      zod:
-        specifier: ^4.1.12
-        version: 4.1.13
-
-  packages/restaurant-catalog-contracts:
-    dependencies:
-      '@meadsoft/common':
-        specifier: workspace:*
-        version: link:../common
-      '@meadsoft/common-application':
-        specifier: workspace:*
-        version: file:packages/common-application(@nestjs/core@11.1.9)(@nestjs/platform-express@11.1.9)(@nestjs/swagger@11.2.3(@nestjs/common@11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)(reflect-metadata@0.2.2))(@opentelemetry/api@1.9.0)(@swc/core@1.5.29(@swc/helpers@0.5.17))(jiti@2.6.1)(postcss@8.5.6)(reflect-metadata@0.2.2)(rxjs@7.8.2)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.1)
-      '@types/uuid':
-        specifier: ^11.0.0
-        version: 11.0.0
-      nestjs-zod:
-        specifier: ^5.0.1
-        version: 5.0.1(@nestjs/common@11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/swagger@11.2.3(@nestjs/common@11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)(reflect-metadata@0.2.2))(rxjs@7.8.2)(zod@4.1.13)
-      ts-results:
-        specifier: ^3.3.0
-        version: 3.3.0
-      tslib:
-        specifier: ^2.3.0
-        version: 2.8.1
-      uuid:
-        specifier: ^13.0.0
-        version: 13.0.0
       zod:
         specifier: ^4.1.12
         version: 4.1.13
@@ -12590,7 +12614,6 @@ snapshots:
     dependencies:
       '@meadsoft/common': file:packages/common(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@meadsoft/common-infrastructure': file:packages/common-infrastructure(@nestjs/core@11.1.9)(@nestjs/platform-express@11.1.9)(@nestjs/swagger@11.2.3(@nestjs/common@11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)(reflect-metadata@0.2.2))(@opentelemetry/api@1.9.0)(@swc/core@1.5.29(@swc/helpers@0.5.17))(jiti@2.6.1)(postcss@8.5.6)(reflect-metadata@0.2.2)(rxjs@7.8.2)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.1)
-      '@nestjs/common': 11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@types/uuid': 11.0.0
       ts-results: 3.3.0
       tslib: 2.8.1

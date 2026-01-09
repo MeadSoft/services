@@ -1,16 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Err, Result } from 'ts-results';
 import { DomainEventPublisher } from '@meadsoft/common-application';
-import {
-    IMenuItem,
-    MenuItemEntity,
-    NewMenuItem,
-} from '@meadsoft/restaurant-catalog-contracts';
+import { IMenuItem, NewMenuItem } from '@meadsoft/restaurant-catalog-contracts';
 import { EntityService } from '@meadsoft/common';
 import {
     MenuItemCommandService,
     MenuItemQueryService,
 } from './menu-item.service';
+import { MenuItemEntity } from '../domain/menu-item.entity';
 
 @Injectable()
 export class MenuItemDomainService {

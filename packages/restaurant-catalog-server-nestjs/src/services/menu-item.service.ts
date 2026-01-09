@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import {
     IMenuItem,
     INewMenuItem,
-    MenuItemEntity,
 } from '@meadsoft/restaurant-catalog-contracts';
 import { ChangeHistoryService, EntityService } from '@meadsoft/common';
 import { QueryService, CommandService } from '@meadsoft/common-application';
-import { MenuItemRepository } from '../database/repositories/menu-items.repo';
 import { UnitOfWorkService } from '@meadsoft/common-infrastructure';
+import { MenuItemRepository } from '../database/repositories/menu-items.repo';
+import { MenuItemEntity } from '../domain/menu-item.entity';
 
 @Injectable()
 export class MenuItemQueryService extends QueryService<IMenuItem> {

@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 export class QueryClient<TModel extends Entity> {
     constructor(
-        public readonly base_path: string,
-        public readonly resource_name: string,
-        public readonly http: HttpClient,
+        protected readonly base_path: string,
+        protected readonly resource_name: string,
+        protected readonly http: HttpClient,
     ) {}
 
     findById(id: string): Observable<TModel | null> {

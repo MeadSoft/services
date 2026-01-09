@@ -2,12 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { ChangeHistoryService, EntityService } from '@meadsoft/common';
 import { QueryService, CommandService } from '@meadsoft/common-application';
 import { UnitOfWorkService } from '@meadsoft/common-infrastructure';
-import {
-    INewSize,
-    ISize,
-    SizeEntity,
-} from '@meadsoft/restaurant-catalog-contracts';
+import { INewSize, ISize } from '@meadsoft/restaurant-catalog-contracts';
 import { SizesRepository } from '../database/repositories';
+import { SizeEntity } from '../domain/size.entity';
 
 @Injectable()
 export class SizeQueryService extends QueryService<ISize> {

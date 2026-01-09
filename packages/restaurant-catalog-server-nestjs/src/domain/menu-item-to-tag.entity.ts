@@ -1,6 +1,9 @@
 import { Ok, Result } from 'ts-results';
 import { Entity, EntityService } from '@meadsoft/common';
-import { IMenuItemToTag, INewMenuItemToTag } from '../menu-item-to-tag.schema';
+import {
+    IMenuItemToTag,
+    INewMenuItemToTag,
+} from '@meadsoft/restaurant-catalog-contracts';
 
 export class MenuItemToTagEntity extends Entity implements IMenuItemToTag {
     menuItemId!: string;
