@@ -2,7 +2,7 @@
 
 ## Codebase Requirements
 
-- The filtering service must be implemented as a standalone module within the `common-application` package.
+- The code MUST be written in TypeScript and adhere to the coding standards and conventions established in the monorepo.
 
 ## Models
 
@@ -21,15 +21,25 @@
     - The value MAY be a reference to a `query`
     - The value MAY be a raw string expression that is intended to be properly interpreted by the underlying database engine.
 
-## Technical Requirements
+#### Technical Requirements
 
 - Filter objects and interfaces MUST be written in TypeScript.
 - Filter objects and interfaces MUST be properly typed using TypeScript's type system.
 - Filter objects and interfaces MUST contain only properties
 - Filter objects and interfaces MUST NOT contain any methods or functions.
-- There MUST exist a zod schema for each filter object and interface defined in this specification.
+- There MUST exist one interface that represents
+    - A filter to filter operation
+    - A unary filter operation
+    - A binary filter operation
+- There MUST exist a zod schema for each filter interface defined in this specification.
 
-### Unary Operations
+#### Filter Operations
+
+- **Not**: The query should negate the result of the filter condition.
+- **And**: The query should return a value if both conditions are true.
+- **Or**: The query should return a value if either condition is true.
+
+#### Unary Operations
 
 A unary operation is an operation with only one operand. The following unary operations MUST be supported:
 
@@ -37,9 +47,8 @@ A unary operation is an operation with only one operand. The following unary ope
 - **Not Exists**: The query should return a value if it does not exist.
 - **Is Null**: The query should return a value if it is null.
 - **Is Not Null**: The query should return a value if it is not null.
-- **Not**: The query should negate the result of the filter condition.
 
-### Binary Operations
+#### Binary Operations
 
 - **Equals**: The query should return a value equal to the specified value.
 - **Not Equals**: The query should return a value not equal to the specified value.
@@ -55,46 +64,13 @@ A unary operation is an operation with only one operand. The following unary ope
 - **Like Insensitive**: The query should return a value that matches the specified pattern, case-insensitively.
 - **Not Like Insensitive**: The query should return a value that does not match the specified pattern, case-insensitively.
 
-### Supported Filter To Filter Operations
-
-- And
-- Or
-
 ## Look and Feel Requirements
 
-import { IColumn } from './column.schema';
-
-export type FilterOperator =
-// eslint-disable-next-line @typescript-eslint/sort-type-constituents
-| 'eq'
-| 'ne'
-| 'lt'
-| 'lte'
-| 'gt'
-| 'gte'
-| 'in'
-| 'notIn'
-| 'exists'
-| 'notExists'
-| 'isNull'
-| 'isNotNull'
-| 'between'
-| 'notBetween'
-| 'like'
-| 'likeInsensitive'
-| 'notLikeInsensitive'
-| 'not';
-
-/\*\*
-
-- Represents a filter condition for querying data.
--
-- The `value` can either be a direct value or an `IColumn` reference,
-- allowing for comparisons between columns.
-  \*/
-  export interface IFilter<
-  TValue extends IColumn | string = string,
-    > extends IColumn {
-                                                                                                              operator: FilterOperator;
-                                                                                                              value: TValue;
-    }
+- Typescript MUST use ES module importing and exporting
+- Imports MUST use relative paths from the src directory
+- Code MUST be formatted using Prettier
+- Code MUST adhere to the ESLint rules defined in the root of the monorepo
+- Interfaces, types, and zod schemas MUST be placed in a file named similarly to `*.schema.ts`
+    - Each interface, type, and zod schema MUST be exported from the module
+- Services and utility functions related to filters MUST be placed in a file named similarly to `*.service.ts` or `*.util.ts`
+    - Each service and utility function MUST be exported from the module
