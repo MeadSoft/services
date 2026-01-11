@@ -14,8 +14,10 @@
     },
     "private": true,
     "dependencies": {
+        "@meadsoft/common": "workspace:*",
         "@meadsoft/restaurant-catalog-contracts": "workspace:*",
         "@meadsoft/common-http-client-angular": "workspace:*",
+        "@meadsoft/restaurant-catalog-client-angular": "workspace:*",
         "@angular/animations": "^20.3.10",
         "@angular/cdk": "^20.2.12",
         "@angular/common": "^20.3.10",

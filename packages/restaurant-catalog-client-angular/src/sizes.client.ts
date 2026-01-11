@@ -6,8 +6,8 @@ import {
     SizeResourceName,
 } from '@meadsoft/restaurant-catalog-contracts';
 
-export class SizesCommandClient extends CrudClient<ISize, INewSize> {
-    constructor(http: HttpClient) {
-        super('', SizeResourceName, http);
+export class SizesCrudClient extends CrudClient<ISize, INewSize> {
+    constructor(basePath: string, http: HttpClient) {
+        super(basePath, SizeResourceName, http);
     }
 }

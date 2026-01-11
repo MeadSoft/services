@@ -6,11 +6,11 @@ import {
     MenuItemToTagResourceName,
 } from '@meadsoft/restaurant-catalog-contracts';
 
-export class MenuItemToTagCommandClient extends CrudClient<
+export class MenuItemToTagCrudClient extends CrudClient<
     IMenuItemToTag,
     INewMenuItemToTag
 > {
-    constructor(http: HttpClient) {
-        super('', MenuItemToTagResourceName, http);
+    constructor(basePath: string, http: HttpClient) {
+        super(basePath, MenuItemToTagResourceName, http);
     }
 }

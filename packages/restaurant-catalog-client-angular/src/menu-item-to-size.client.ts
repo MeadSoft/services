@@ -6,11 +6,11 @@ import {
 } from '@meadsoft/restaurant-catalog-contracts';
 import { CrudClient } from '@meadsoft/common-http-client-angular';
 
-export class MenuItemToSizeCommandClient extends CrudClient<
+export class MenuItemToSizeCrudClient extends CrudClient<
     IMenuItemToSize,
     INewMenuItemToSize
 > {
-    constructor(http: HttpClient) {
-        super('', MenuItemToSizeResourceName, http);
+    constructor(basePath: string, http: HttpClient) {
+        super(basePath, MenuItemToSizeResourceName, http);
     }
 }

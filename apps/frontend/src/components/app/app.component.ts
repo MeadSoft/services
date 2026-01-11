@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DebugService } from '../services/debug.service';
 import { NavComponent } from '../nav/nav.component';
 
 @Component({
@@ -8,10 +7,4 @@ import { NavComponent } from '../nav/nav.component';
     imports: [RouterOutlet, NavComponent],
     templateUrl: 'app.component.html',
 })
-export class AppComponent implements OnInit {
-    constructor(private debugService: DebugService) {}
-
-    ngOnInit(): void {
-        this.debugService.loadDebuggingTools();
-    }
-}
+export class AppComponent {}

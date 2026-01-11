@@ -1,13 +1,16 @@
 // auth/api-auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
 import { User } from 'src/models/User';
+import { Config } from 'src/configs/config.schema';
 
 @Injectable({ providedIn: 'root' })
 export class ApiAuthService {
-    constructor(private http: HttpClient) {}
+    constructor(
+        private readonly config: Config,
+        private readonly http: HttpClient,
+    ) {}
 
     async exchangeFirebaseToken(idToken: string): Promise<User> {
         const headers = new HttpHeaders().set(
@@ -16,7 +19,7 @@ export class ApiAuthService {
         );
         return await firstValueFrom(
             this.http.post<User>(
-                `${environment.apiBaseUrl}/auth/firebase-login`,
+                `${this.config.apiBaseUrl}/auth/firebase-login`,
                 null,
                 {
                     headers,
@@ -27,13 +30,13 @@ export class ApiAuthService {
 
     async logout(): Promise<void> {
         await firstValueFrom(
-            this.http.post(`${environment.apiBaseUrl}/auth/logout`, null),
+            this.http.post(`${this.config.apiBaseUrl}/auth/logout`, null),
         );
     }
 
     async getCurrentUser(): Promise<User> {
         return await firstValueFrom(
-            this.http.post<User>(`${environment.apiBaseUrl}/auth/me`, null),
+            this.http.post<User>(`${this.config.apiBaseUrl}/auth/me`, null),
         );
     }
 }

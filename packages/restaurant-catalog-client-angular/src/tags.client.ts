@@ -6,8 +6,8 @@ import {
     TagResourceName,
 } from '@meadsoft/restaurant-catalog-contracts';
 
-export class TagsCommandClient extends CrudClient<ITag, INewTag> {
-    constructor(http: HttpClient) {
-        super('', TagResourceName, http);
+export class TagsCrudClient extends CrudClient<ITag, INewTag> {
+    constructor(basePath: string, http: HttpClient) {
+        super(basePath, TagResourceName, http);
     }
 }

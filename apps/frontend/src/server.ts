@@ -7,6 +7,7 @@ import {
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import { join } from 'node:path';
+import { ColorSchemes } from '@meadsoft/common';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -48,7 +49,8 @@ app.use(
  * Handle all other requests by rendering the Angular application.
  */
 app.use((req, res, next) => {
-    const prefersColorScheme = req.cookies['prefers-color-scheme'] || 'light';
+    const cookiePrefersColorScheme = req.cookies['prefers-color-scheme'];
+    const prefersColorScheme = cookiePrefersColorScheme || ColorSchemes.Light;
     angularApp
         .handle(req, {
             providers: [

@@ -14,7 +14,8 @@ import { primeNgThemeProvider } from './theme.config';
 import { HttpCookieCredentialsInterceptor } from './interceptors/http-cookie-credentials.interceptor';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { environment } from './environments/environment';
+import { Config } from './configs/config.schema';
+import { config } from './configs/config';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -23,7 +24,8 @@ export const appConfig: ApplicationConfig = {
         provideClientHydration(withEventReplay()),
         provideZonelessChangeDetection(),
         provideBrowserGlobalErrorListeners(),
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        { provide: Config, useValue: config },
+        provideFirebaseApp(() => initializeApp(config.firebase)),
         provideAuth(() => getAuth()),
         {
             provide: HTTP_INTERCEPTORS,

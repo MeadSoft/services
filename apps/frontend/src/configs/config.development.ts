@@ -1,10 +1,10 @@
-import { Environment } from './environment.model';
+import { IConfig } from './config.schema';
 
-export const environment: Environment = {
+export const config: IConfig = {
     production: false,
     apiBaseUrl: 'http://localhost:3000/api',
     firebase: {
-        apiKey: 'AIzaSyAuyGgJQsNIcQkB-p4OPk3UstmCzOrGlew',
+        apiKey: '',
         authDomain: 'smart-quasar-297403.firebaseapp.com',
         projectId: 'smart-quasar-297403',
         storageBucket: 'smart-quasar-297403.firebasestorage.app',

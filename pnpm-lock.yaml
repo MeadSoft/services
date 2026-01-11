@@ -150,9 +150,15 @@ importers:
       '@angular/ssr':
         specifier: ^20.3.9
         version: 20.3.12(3e7e5aedb15a28a4a6ae75915ab29926)
+      '@meadsoft/common':
+        specifier: workspace:*
+        version: link:../../packages/common
       '@meadsoft/common-http-client-angular':
         specifier: workspace:*
         version: link:../../packages/common-http-client-angular
+      '@meadsoft/restaurant-catalog-client-angular':
+        specifier: workspace:*
+        version: link:../../packages/restaurant-catalog-client-angular
       '@meadsoft/restaurant-catalog-contracts':
         specifier: workspace:*
         version: link:../../packages/restaurant-catalog-contracts

@@ -1,9 +1,12 @@
 // auth/linked-accounts.component.ts
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { AuthProviderService } from 'src/services/auth/auth-provider.service';
 
 @Component({
+    standalone: true,
+    imports: [CommonModule],
     selector: 'app-linked-accounts',
     templateUrl: './linked-accounts.component.html',
     styleUrls: ['./linked-accounts.component.css'],
@@ -12,8 +15,8 @@ export class LinkedAccountsComponent {
     error: string | null = null;
 
     constructor(
-        private auth: Auth,
-        private authProviderService: AuthProviderService,
+        private readonly auth: Auth,
+        private readonly authProviderService: AuthProviderService,
     ) {}
 
     isLinked(providerId: string): boolean {

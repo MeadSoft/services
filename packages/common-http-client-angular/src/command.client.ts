@@ -1,12 +1,17 @@
-import { Entity } from '@meadsoft/common';
+import {
+    Entity,
+    ICrudClient,
+    IFilter,
+    NotImplementedException,
+} from '@meadsoft/common';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { QueryClient } from './query.client';
 
-export class CrudClient<
-    TModel extends Entity,
-    TNewModel,
-> extends QueryClient<TModel> {
+export class CrudClient<TModel extends Entity, TNewModel>
+    extends QueryClient<TModel>
+    implements ICrudClient<TNewModel, TModel>
+{
     constructor(
         protected readonly basePath: string,
         protected readonly resourceName: string,
@@ -15,23 +20,57 @@ export class CrudClient<
         super(basePath, resourceName, http);
     }
 
-    create(item: TNewModel): Observable<TModel> {
-        return this.http.post<TModel>(
-            `${this.basePath}/${this.resourceName}`,
-            item,
+    async createOne(item: TNewModel): Promise<TModel> {
+        return firstValueFrom(
+            this.http.post<TModel>(
+                `${this.basePath}/${this.resourceName}`,
+                item,
+            ),
         );
     }
 
-    update(id: string, updates: TModel): Observable<TModel | undefined> {
-        return this.http.put<TModel>(
-            `${this.basePath}/${this.resourceName}/${id}`,
-            updates,
+    async createMany(...items: TNewModel[]): Promise<TModel[]> {
+        console.log(items);
+        return Promise.reject(new NotImplementedException());
+    }
+
+    async updateOne(id: string, updates: Partial<TModel>): Promise<TModel> {
+        console.log(id, updates);
+        return Promise.reject(new NotImplementedException());
+    }
+
+    async updateMany(
+        updates: Partial<TModel>,
+        ...filters: IFilter[]
+    ): Promise<number> {
+        console.log(updates, filters);
+        return Promise.reject(new NotImplementedException());
+    }
+
+    async deleteOne(id: string): Promise<boolean> {
+        console.log(id);
+        return Promise.reject(new NotImplementedException());
+    }
+
+    async deleteMany(...filters: IFilter[]): Promise<number> {
+        console.log(filters);
+        return Promise.reject(new NotImplementedException());
+    }
+
+    async update(id: string, updates: TModel): Promise<TModel | undefined> {
+        return firstValueFrom(
+            this.http.put<TModel>(
+                `${this.basePath}/${this.resourceName}/${id}`,
+                updates,
+            ),
         );
     }
 
-    delete(id: string): Observable<boolean> {
-        return this.http.delete<boolean>(
-            `${this.basePath}/${this.resourceName}/${id}`,
+    async delete(id: string): Promise<boolean> {
+        return firstValueFrom(
+            this.http.delete<boolean>(
+                `${this.basePath}/${this.resourceName}/${id}`,
+            ),
         );
     }
 }

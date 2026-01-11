@@ -1,4 +1,3 @@
-// auth/jwt.interceptor.ts
 import { Injectable } from '@angular/core';
 import {
     HttpEvent,
@@ -7,18 +6,19 @@ import {
     HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../environments/environment';
+import { Config } from 'src/configs/config.schema';
 
 @Injectable()
 export class HttpCookieCredentialsInterceptor implements HttpInterceptor {
+    constructor(private readonly config: Config) {}
+
     intercept(
         req: HttpRequest<unknown>,
         next: HttpHandler,
     ): Observable<HttpEvent<unknown>> {
-        // Only add withCredentials for requests to your API
-        if (req.url.startsWith(environment.apiBaseUrl)) {
+        if (req.url.startsWith(this.config.apiBaseUrl)) {
             const authReq = req.clone({
-                withCredentials: true, // Sends HTTP-only cookies automatically
+                withCredentials: true,
             });
             return next.handle(authReq);
         }
