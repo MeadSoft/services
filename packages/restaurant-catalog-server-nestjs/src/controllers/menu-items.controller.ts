@@ -9,7 +9,7 @@ import {
 import {
     createCommandController,
     createQueryController,
-} from '@meadsoft/common-http-server';
+} from '@meadsoft/common-http-server-nestjs';
 import { ApiTags } from '@nestjs/swagger';
 import {
     MenuItemCommandService,

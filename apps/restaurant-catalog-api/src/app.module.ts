@@ -6,8 +6,8 @@ import { HttpModule } from './http.module';
 // import { DebugModule } from '@meadsoft/debug';
 // import { AuthModule } from '@meadsoft/auth';
 // import { DevtoolsModule } from '@nestjs/devtools-integration';
-import { RestaurantCatalogModule } from '@meadsoft/restaurant-catalog';
-// import { HaruCafeDrizzlePgModule } from '@meadsoft/restaurant-catalog';
+import { RestaurantCatalogModule } from '@meadsoft/restaurant-catalog-server-nestjs';
+// import { HaruCafeDrizzlePgModule } from '@meadsoft/restaurant-catalog-server-nestjs';
 
 @Module({
     imports: [

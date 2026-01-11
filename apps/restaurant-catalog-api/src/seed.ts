@@ -8,8 +8,8 @@ import {
     SizeQueryService,
     TagsCommandService,
     TagsQueryService,
-} from '@meadsoft/restaurant-catalog';
-import { RestaurantCatalogModule } from '@meadsoft/restaurant-catalog';
+} from '@meadsoft/restaurant-catalog-server-nestjs';
+import { RestaurantCatalogModule } from '@meadsoft/restaurant-catalog-server-nestjs';
 import {
     NewMenuItemSchema,
     NewMenuItemToTagSchema,

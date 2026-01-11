@@ -6,7 +6,7 @@ import {
     RestaurantCatalogModule,
     SizesRepository,
     TagsRepository,
-} from '@meadsoft/restaurant-catalog';
+} from '@meadsoft/restaurant-catalog-server-nestjs';
 import {
     ICrudRepository,
     InfrastructureConfigLoader,

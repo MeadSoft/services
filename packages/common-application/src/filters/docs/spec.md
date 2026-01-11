@@ -1,5 +1,7 @@
 # Query Filtering Model and Service Specification
 
+> UNFINISHED DOCUMENT
+
 ## Codebase Requirements
 
 - The code MUST be written in TypeScript and adhere to the coding standards and conventions established in the monorepo.
@@ -68,7 +70,6 @@ A unary operation is an operation with only one operand. The following unary ope
 
 - Typescript MUST use ES module importing and exporting
 - Imports MUST use relative paths from the src directory
-- Code MUST be formatted using Prettier
 - Code MUST adhere to the ESLint rules defined in the root of the monorepo
 - Interfaces, types, and zod schemas MUST be placed in a file named similarly to `*.schema.ts`
     - Each interface, type, and zod schema MUST be exported from the module

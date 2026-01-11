@@ -1,8 +1,8 @@
-# Coding Standards and Requirements
+# Codebase Standards
 
 ## Toolings
 
-### Code Management
+### Code Standards
 
 - VS Code SHOULD be used as the primary code editor for development.
 - pnpm MUST be used as the package manager for the monorepo.
@@ -23,9 +23,9 @@
 - Zod SHOULD be used for schema validation and type inference.
 - Jest SHOULD be used for unit testing the codebase.
 
-## Codebase Architecture Requirements
+## Architecture Standards
 
-- The codebase MUST follow a modular architecture, with each module encapsulating a specific functionality or feature.
+- The code MUST follow a modular architecture, with each module encapsulating a specific functionality or feature.
     - Each file MUST contain a single responsibility, meaning that each file should only contain code related to a single concept or functionality.
 - Packages MUST have at least one tag defined in their package.json file
 

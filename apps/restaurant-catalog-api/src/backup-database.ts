@@ -7,7 +7,7 @@ import {
     MenuItemToTagRepository,
     MenuItemToSizeRepository,
     RestaurantCatalogModule,
-} from '@meadsoft/restaurant-catalog';
+} from '@meadsoft/restaurant-catalog-server-nestjs';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 
