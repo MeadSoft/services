@@ -1,18 +1,19 @@
 import { Injectable, signal } from '@angular/core';
-import { CATEGORY_GRAPH, ICategoryNode } from 'src/data/category-nodes';
-import { Category } from 'src/models/Categories';
+import { TAG_GRAPH, ITagNode } from 'src/data/category-nodes';
 import { FilterService } from './filter.service';
+
+export const NOT_FOUND_INDEX = -1;
 
 @Injectable({
     providedIn: 'root',
 })
-export class CategoryGraphService {
-    categoryGraph = signal<ICategoryNode[]>(CATEGORY_GRAPH);
+export class TagGraphService {
+    tagGraph = signal<ITagNode[]>(TAG_GRAPH);
 
     constructor(protected filtersService: FilterService) {}
 
-    getRootNode(): ICategoryNode {
-        var node = this.categoryGraph().find((node) => node.category === null);
+    getRootNode(): ITagNode {
+        const node = this.tagGraph().find((node_) => node_.tagId === null);
         if (node === undefined) {
             console.error(`Root node not found in category graph`);
             throw new Error(`Root node not found in category graph`);
@@ -20,14 +21,13 @@ export class CategoryGraphService {
         return node;
     }
 
-    getCategoryNodes(): ICategoryNode[] {
-        var activeCategories = this.filtersService.activeCategories();
-        var root = this.getRootNode();
-        var nodes: ICategoryNode[] = [root];
-        for (let i = 0; i < activeCategories.length; i++) {
-            const category = activeCategories[i];
-            var currentNode = this.categoryGraph().find(
-                (node) => node.category === category,
+    getNodes(): ITagNode[] {
+        const activeCategories = this.filtersService.activeTags();
+        const root = this.getRootNode();
+        const nodes: ITagNode[] = [root];
+        for (const category of activeCategories) {
+            const currentNode = this.tagGraph().find(
+                (node) => node.tagId === category,
             );
             if (currentNode === undefined) {
                 return nodes;
@@ -37,36 +37,37 @@ export class CategoryGraphService {
         return nodes;
     }
 
-    findNodeWithCategory(category: Category) {
-        return this.categoryGraph().find((node) => node.category === category);
+    findNodeWithTag(tagId: string): ITagNode | undefined {
+        return this.tagGraph().find((node) => node.tagId === tagId);
     }
 
-    getDepthOfCategory(
-        root: ICategoryNode,
-        target: Category,
-        depth: number = -1,
+    getDepthOfTag(
+        root: ITagNode,
+        target: string,
+        depth = NOT_FOUND_INDEX,
     ): number {
-        if (root.category === target) {
+        if (root.tagId === target) {
             return depth;
         }
-        for (let i = 0; i < root.childCategories.length; i++) {
-            const childCategory = root.childCategories[i];
+        for (const childCategory of root.childTagIds) {
             if (childCategory === target) {
+                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
                 return depth + 1;
             }
-            var nextNode = this.findNodeWithCategory(childCategory);
+            const nextNode = this.findNodeWithTag(childCategory);
             if (nextNode === undefined) {
                 continue;
             }
-            var newDepth = this.getDepthOfCategory(nextNode, target, depth + 1);
-            if (newDepth !== -1) {
+            // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+            const newDepth = this.getDepthOfTag(nextNode, target, depth + 1);
+            if (newDepth !== NOT_FOUND_INDEX) {
                 return newDepth;
             }
         }
-        return -1;
+        return NOT_FOUND_INDEX;
     }
 
-    isCategorySelected(category: Category) {
-        return this.filtersService.activeCategories().includes(category);
+    isCategorySelected(tagId: string) {
+        return this.filtersService.activeTags().includes(tagId);
     }
 }

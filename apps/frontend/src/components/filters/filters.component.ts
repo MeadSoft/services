@@ -5,10 +5,13 @@ import {
     MatButtonToggleModule,
 } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
-import { Category } from 'src/models/Categories';
 import { FilterService } from 'src/services/filter.service';
-import { ICategoryNode } from 'src/data/category-nodes';
-import { CategoryGraphService } from 'src/services/category-graph.service';
+import { ITagNode } from 'src/data/category-nodes';
+import {
+    NOT_FOUND_INDEX,
+    TagGraphService,
+} from 'src/services/category-graph.service';
+import { FIRST_INDEX } from '@meadsoft/common';
 
 @Component({
     selector: 'haru-filters',
@@ -16,39 +19,36 @@ import { CategoryGraphService } from 'src/services/category-graph.service';
     templateUrl: './filters.component.html',
 })
 export class FiltersComponent {
-    Category = Category;
-    currentOptions: ICategoryNode[];
+    currentOptions: ITagNode[];
 
     constructor(
         protected filtersService: FilterService,
-        protected categoryGraphService: CategoryGraphService,
+        protected tagGraphService: TagGraphService,
     ) {
-        this.currentOptions = [this.categoryGraphService.getRootNode()];
+        this.currentOptions = [this.tagGraphService.getRootNode()];
     }
 
-    getStyle(categoryGroup: ICategoryNode) {
+    getStyle(categoryGroup: ITagNode) {
         return {
-            'grid-template-columns': `repeat(${categoryGroup.childCategories.length}, minmax(0, 1fr))`,
+            'grid-template-columns': `repeat(${categoryGroup.childTagIds.length.toString()}, minmax(0, 1fr))`,
         };
     }
 
     onToggleButtonClicked(event: MatButtonToggleChange) {
-        var category = event.source.value as Category;
-        var activeCategories = this.filtersService.activeCategories();
-        var root = this.categoryGraphService.getRootNode();
-        var depth = this.categoryGraphService.getDepthOfCategory(
-            root,
-            category,
-        );
-        if (depth === -1) {
-            console.error(`Category ${category} not found in category graph`);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+        const tagId = event.source.value as string;
+        let activeTags = this.filtersService.activeTags();
+        const root = this.tagGraphService.getRootNode();
+        const depth = this.tagGraphService.getDepthOfTag(root, tagId);
+        if (depth === NOT_FOUND_INDEX) {
+            console.error(`Tag ${tagId} not found in category graph`);
             return;
         }
-        var isAlreadyActive = activeCategories.includes(category);
-        activeCategories = activeCategories.slice(0, depth);
+        const isAlreadyActive = activeTags.includes(tagId);
+        activeTags = activeTags.slice(FIRST_INDEX, depth);
         if (isAlreadyActive == false) {
-            activeCategories.push(category);
+            activeTags.push(tagId);
         }
-        this.filtersService.activeCategories.set(activeCategories);
+        this.filtersService.activeTags.set(activeTags);
     }
 }

@@ -97,46 +97,58 @@
         SEARCH OUR MENU
     </div>
     <haru-filters></haru-filters>
-    <!-- <div class="flex flex-wrap justify-center lg:gap-8 gap-4 mt-8"> -->
-    <!-- <haru-carousel-legacy
-        [slideCount]="menuItemsService.paginatedMenuItems().length"
-    >
-        @for (pageOfMenuItems of menuItemsService.paginatedMenuItems(); track
-        $index) {
-        <div
-            class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[1em] px-[0.5em] keen-slider__slide"
-        >
-            @for (menuItem of pageOfMenuItems; track $index) {
+    <div class="flex flex-wrap justify-center lg:gap-8 gap-4 mt-8">
+        <!-- <haru-carousel-legacy [slideCount]="pageCount">
+            @for (
+                pageOfMenuItems of menuItemsService.paginatedMenuItems();
+                track $index
+            ) {
+                <div
+                    class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[1em] px-[0.5em] keen-slider__slide"
+                >
+                    @for (menuItem of pageOfMenuItems; track $index) {
+                        <haru-menu-item
+                            #menuItemRef
+                            [ngClass]="{
+                                'transition-all': true,
+                                'row-span-1 h-[6em]':
+                                    !menuItemRef.isDetailShown(),
+                                'row-span-3 lg:h-[22em] h-auto':
+                                    menuItemRef.isDetailShown(),
+                            }"
+                            [menuItem]="menuItem"
+                        ></haru-menu-item>
+                    }
+                    @if (
+                        this.menuItemsService.paginatedMenuItems().length > 1
+                    ) {
+                        @for (
+                            empty of createEmptyArray(
+                                PAGE_SIZE - pageOfMenuItems.length
+                            );
+                            track $index
+                        ) {
+                            <div class="row-span-1 h-[6em]"></div>
+                        }
+                    }
+                </div>
+            }
+        </haru-carousel-legacy> -->
+        @for (menuItem of menuItems; track $index) {
             <haru-menu-item
                 #menuItemRef
                 [ngClass]="{
-          'transition-all': true,
-          'row-span-1 h-[6em]': !menuItemRef.isDetailShown(),
-          'row-span-3 lg:h-[22em] h-auto': menuItemRef.isDetailShown(),
-        }"
+                    'transition-all': true,
+                    'row-span-1 h-[6em]': !menuItemRef.isDetailShown(),
+                    'row-span-2 lg:h-[14em] h-[13em]':
+                        menuItemRef.isDetailShown(),
+                }"
                 [menuItem]="menuItem"
             ></haru-menu-item>
-            } @if (this.menuItemsService.paginatedMenuItems().length > 1) { @for
-            (empty of createEmptyArray(this.menuItemsService.pageSize() -
-            pageOfMenuItems.length); track $index) {
-            <div class="row-span-1 h-[6em]"></div>
-            } }
-        </div>
         }
-    </haru-carousel-legacy> -->
-    <!-- @for (menuItem of menuItemsService.filteredMenuItems(); track $index) {
-  <haru-menu-item
-    #menuItemRef
-    [ngClass]="{
-      'transition-all': true,
-      'row-span-1 h-[6em]': !menuItemRef.isDetailShown(),
-      'row-span-2 lg:h-[14em] h-[13em]': menuItemRef.isDetailShown(),
-    }"
-    [menuItem]="menuItem"></haru-menu-item>
-  } -->
-</div>
+    </div>
 
-<!-- <haru-carousel>
+    <!-- <haru-carousel>
 	<div class="keen-slider__slide number-slide1">1</div>
 	<div class="keen-slider__slide number-slide2">2</div>
 	<div class="keen-slider__slide number-slide3">3</div>
@@ -145,5 +157,6 @@
 	<div class="keen-slider__slide number-slide6">6</div>
 </haru-carousel> -->
 
-<!-- location -->
-<haru-footer class="lg:py-8 py-4" id="location"></haru-footer>
+    <!-- location -->
+    <haru-footer class="lg:py-8 py-4" id="location"></haru-footer>
+</div>

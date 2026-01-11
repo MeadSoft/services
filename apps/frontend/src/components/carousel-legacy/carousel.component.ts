@@ -10,9 +10,10 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
+import { FIRST_INDEX } from '@meadsoft/common';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 
-export type DotsPosition = 'top' | 'bottom' | 'both' | 'none';
+export type DotsPosition = 'both' | 'bottom' | 'none' | 'top';
 
 @Component({
     selector: 'haru-carousel-legacy',
@@ -31,16 +32,18 @@ export class LegacyCarouselComponent {
     //
     _interval: NodeJS.Timeout | null = null;
     sliderRef = viewChild.required<ElementRef<HTMLElement>>('sliderRef');
-    currentSlide = signal<number>(0);
+    currentSlide = signal<number>(FIRST_INDEX);
     dotHelper = computed<number[]>(() => {
         if (this.slideCount() === null) {
             return [...Array(this._dotHelperSize()).keys()];
         }
         return [...Array(this.slideCount()).keys()];
     });
-    private _dotHelperSize = signal<number>(1);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    private readonly _dotHelperSize = signal<number>(1);
     slider = signal<KeenSliderInstance | null>(null);
     onSlideChange = output<number>();
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     lastChildCount = 0;
 
     ngAfterViewInit() {
@@ -50,26 +53,26 @@ export class LegacyCarouselComponent {
     }
 
     private setupSlideIntervalEvents() {
-        var slideInterval = this.slideInterval();
+        const slideInterval = this.slideInterval();
         if (slideInterval === null) {
             return;
         }
-        var sliderRef = this.sliderRef();
+        const sliderRef = this.sliderRef();
         sliderRef.nativeElement.addEventListener(
             'mouseover',
-            this.clearInterval.bind(this)
+            this.clearInterval.bind(this),
         );
         sliderRef.nativeElement.addEventListener(
             'mouseout',
-            this.setupSlideInterval.bind(this)
+            this.setupSlideInterval.bind(this),
         );
         sliderRef.nativeElement.addEventListener(
             'touchstart',
-            this.clearInterval.bind(this)
+            this.clearInterval.bind(this),
         );
         sliderRef.nativeElement.addEventListener(
             'touchend',
-            this.setupSlideInterval.bind(this)
+            this.setupSlideInterval.bind(this),
         );
     }
 
@@ -81,12 +84,12 @@ export class LegacyCarouselComponent {
     }
 
     private setupSlideInterval() {
-        var slideInterval = this.slideInterval();
+        const slideInterval = this.slideInterval();
         if (slideInterval === null || this._interval !== null) {
             return;
         }
         this._interval = setInterval(() => {
-            var slider = this.slider();
+            const slider = this.slider();
             if (slider === null) {
                 return;
             }
@@ -111,9 +114,9 @@ export class LegacyCarouselComponent {
 
     setSlider() {
         this.setNecessarySlideClasses();
-        var sliderRef = this.sliderRef();
+        const sliderRef = this.sliderRef();
         this.lastChildCount = sliderRef.nativeElement.childElementCount;
-        var slider = new KeenSlider(sliderRef.nativeElement, {
+        const slider = new KeenSlider(sliderRef.nativeElement, {
             loop: this.loop(),
             initial: this.currentSlide(),
             slideChanged: (s) => {
@@ -128,7 +131,7 @@ export class LegacyCarouselComponent {
     }
 
     private setNecessarySlideClasses() {
-        var sliderRef = this.sliderRef();
+        const sliderRef = this.sliderRef();
         [...sliderRef.nativeElement.children].forEach((child) => {
             if (child.classList.contains('keen-slider__slide')) {
                 return;
@@ -138,11 +141,11 @@ export class LegacyCarouselComponent {
     }
 
     ngOnDestroy() {
-        if (this.slider) this.slider()?.destroy();
+        this.slider()?.destroy();
     }
 
     hasDots(position: DotsPosition) {
-        var currentPosition = this.dotsPosition();
+        const currentPosition = this.dotsPosition();
         if (currentPosition === 'none') {
             return false;
         }
