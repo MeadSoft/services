@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import {
     MenuItemCommandService,
     MenuItemQueryService,
+    MenuItemToSizeCommandService,
+    MenuItemToSizeQueryService,
     MenuItemToTagCommandService,
     MenuItemToTagQueryService,
     SizeCommandService,
@@ -12,6 +14,7 @@ import {
 import { RestaurantCatalogModule } from '@meadsoft/restaurant-catalog-server-nestjs';
 import {
     NewMenuItemSchema,
+    NewMenuItemToSizeSchema,
     NewMenuItemToTagSchema,
     NewSizeSchema,
     NewTagSchema,
@@ -29,10 +32,29 @@ import { InfrastructureConfigLoader } from '@meadsoft/common-infrastructure';
 
 const configLoader = new InfrastructureConfigLoader();
 const config = configLoader.loadSync();
+const seedDirectory = path.join(__dirname, 'seeds');
 
 if (config.err) {
     throw config.val;
 }
+
+function getSeedJsonPath(filename: string): string {
+    const filePath: string = path.join(seedDirectory, filename);
+    if (!fs.existsSync(filePath)) {
+        console.log(`Seed file does not exist: ${filePath}`);
+    }
+    return filePath;
+}
+
+const menuItemsFile = getSeedJsonPath('haru-cafe-menu-items.json');
+const tagsFile = getSeedJsonPath('haru-cafe-tags.json');
+const sizesFile = getSeedJsonPath('haru-cafe-sizes.json');
+const menuItemsToTagsFile = getSeedJsonPath(
+    'haru-cafe-menu-items-to-tags.json',
+);
+const menuItemsToSizesFile = getSeedJsonPath(
+    'haru-cafe-menu-items-to-sizes.json',
+);
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(
@@ -92,26 +114,16 @@ async function main() {
         menuItemsQueryService,
         menuItemsCommandService,
         NewMenuItemSchema,
-        path.join(__dirname, 'seeds', 'haru-cafe-menu-items.json'),
+        menuItemsFile,
     );
     // Tags
     const tagsCommandService = app.get(TagsCommandService);
     const tagsQueryService = app.get(TagsQueryService);
-    await seed(
-        tagsQueryService,
-        tagsCommandService,
-        NewTagSchema,
-        path.join(__dirname, 'seeds', 'haru-cafe-tags.json'),
-    );
+    await seed(tagsQueryService, tagsCommandService, NewTagSchema, tagsFile);
     // Sizes
     const sizeCommandService = app.get(SizeCommandService);
     const sizeQueryService = app.get(SizeQueryService);
-    await seed(
-        sizeQueryService,
-        sizeCommandService,
-        NewSizeSchema,
-        path.join(__dirname, 'seeds', 'haru-cafe-sizes.json'),
-    );
+    await seed(sizeQueryService, sizeCommandService, NewSizeSchema, sizesFile);
     // Menu Items to Tags
     const menuItemsToTagsCommandService = app.get(MenuItemToTagCommandService);
     const menuItemsToTagsQueryService = app.get(MenuItemToTagQueryService);
@@ -119,7 +131,18 @@ async function main() {
         menuItemsToTagsQueryService,
         menuItemsToTagsCommandService,
         NewMenuItemToTagSchema,
-        path.join(__dirname, 'seeds', 'haru-cafe-menu-items-to-tags.json'),
+        menuItemsToTagsFile,
+    );
+    // Menu Items to Sizes
+    const menuItemsToSizesCommandService = app.get(
+        MenuItemToSizeCommandService,
+    );
+    const menuItemsToSizesQueryService = app.get(MenuItemToSizeQueryService);
+    await seed(
+        menuItemsToSizesQueryService,
+        menuItemsToSizesCommandService,
+        NewMenuItemToSizeSchema,
+        menuItemsToSizesFile,
     );
     await app.close();
 }
