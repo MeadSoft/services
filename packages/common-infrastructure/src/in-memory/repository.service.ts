@@ -1,36 +1,38 @@
-import { and, SQL } from 'drizzle-orm';
-import { PgTable } from 'drizzle-orm/pg-core';
-import { EMPTY_LENGTH, FIRST_INDEX, IFilter, ISchema } from '@meadsoft/common';
+import {
+    EMPTY_LENGTH,
+    FIRST_INDEX,
+    IEntity,
+    IFilter,
+    ISchema,
+} from '@meadsoft/common';
 import {
     IQueryRepository,
     ICrudRepository,
-} from '../../contracts/repository.schema';
-import { PostgresUnitOfWork } from './unit-of-work.service';
-import { QueryResultBase } from 'pg';
-import { IFilterTranslationService } from 'src/contracts/filter-translation.schema';
+} from '../contracts/repository.schema';
+import { InMemoryUnitOfWork } from './unit-of-work.service';
 
-export abstract class DrizzlePgQueryRepository<
-    TModel extends object,
+export abstract class InMemoryQueryRepository<
+    TModel extends IEntity,
     TId = string,
 > implements IQueryRepository<TModel, TId> {
     constructor(
-        public readonly table: PgTable,
+        public readonly table: string,
         protected schema: ISchema<TModel>,
-        protected unitOfWork: PostgresUnitOfWork,
-        protected filterTranslationService: IFilterTranslationService<SQL>,
+        protected unitOfWork: InMemoryUnitOfWork,
     ) {}
 
     async countRows(...filters: IFilter[]): Promise<number> {
-        const sqlFilters = this.filterTranslationService.translate(...filters);
         return await this.unitOfWork
             .getDatabase()
             .select()
             .from(this.table)
-            .where(and(...sqlFilters))
+            .where(and(...filters))
             .then((items) => items.length);
     }
 
-    abstract equals(id: TId): SQL | undefined;
+    equals(item: TModel, id: TId): boolean {
+        return item.id === id;
+    }
 
     protected parseResult(item: unknown): TModel {
         const result = this.schema.parse(item);
@@ -57,12 +59,11 @@ export abstract class DrizzlePgQueryRepository<
     }
 
     async findMany(...filters: IFilter[]): Promise<TModel[]> {
-        const sqlFilters = this.filterTranslationService.translate(...filters);
         const items = await this.unitOfWork
             .getDatabase()
             .select()
             .from(this.table)
-            .where(and(...sqlFilters));
+            .where(and(...filters));
         const results: TModel[] = [];
         for (const item of items) {
             const result = this.schema.parse(item);
@@ -84,11 +85,11 @@ export abstract class DrizzlePgQueryRepository<
     }
 }
 
-export abstract class DrizzlePgCommandRepository<
-    TModel extends object,
+export abstract class InMemoryCommandRepository<
+    TModel extends IEntity,
     TId = string,
 >
-    extends DrizzlePgQueryRepository<TModel, TId>
+    extends InMemoryQueryRepository<TModel, TId>
     implements ICrudRepository<TModel, TId>
 {
     async createOne(item: TModel): Promise<TModel> {
@@ -123,14 +124,13 @@ export abstract class DrizzlePgCommandRepository<
         updates: Partial<TModel>,
         ...filters: IFilter[]
     ): Promise<number> {
-        const sqlFilters = this.filterTranslationService.translate(...filters);
         // TODO: figure out how to type PgTransaction properly in UnitOfWorkService so this statements type is known
         // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
         const updated = (await this.unitOfWork
             .getDatabase()
             .update(this.table)
             .set(updates)
-            .where(and(...sqlFilters))) as QueryResultBase;
+            .where(and(...filters))) as QueryResultBase;
         return updated.rowCount ?? EMPTY_LENGTH;
     }
 
@@ -147,13 +147,12 @@ export abstract class DrizzlePgCommandRepository<
     }
 
     async deleteMany(...filters: IFilter[]): Promise<number> {
-        const sqlFilters = this.filterTranslationService.translate(...filters);
         // TODO: figure out how to type PgTransaction properly in UnitOfWorkService so this statements type is known
         // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
         const result = (await this.unitOfWork
             .getDatabase()
             .delete(this.table)
-            .where(and(...sqlFilters))) as QueryResultBase;
+            .where(and(...filters))) as QueryResultBase;
         return result.rowCount ?? EMPTY_LENGTH;
     }
 }

@@ -1,24 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { NodePgDatabase } from 'drizzle-orm/node-postgres';
-import { PgQueryResultHKT, PgTransaction } from 'drizzle-orm/pg-core';
-import { PostgresDbService } from './postgres-db.service';
-import { UnitOfWorkService } from '../../contracts/unit-of-work.schema';
-
-type DbOrTransaction = NodePgDatabase | PgTransaction<PgQueryResultHKT>;
+import { InMemoryDbService } from './in-memory-db.service';
+import { UnitOfWorkService } from '../contracts/unit-of-work.schema';
+import {
+    InMemoryDatabase,
+    InMemoryTransaction,
+} from './in-memory-database.schema';
 
 @Injectable()
-export class PostgresUnitOfWork extends UnitOfWorkService<
-    NodePgDatabase,
-    DbOrTransaction
+export class InMemoryUnitOfWork extends UnitOfWorkService<
+    InMemoryDatabase,
+    InMemoryTransaction
 > {
-    constructor(databaseService: PostgresDbService) {
+    constructor(databaseService: InMemoryDbService) {
         super(() => databaseService.getDatabase());
     }
 
     /**
      * Get current database connection or transaction
      */
-    override getDatabase(): DbOrTransaction {
+    override getDatabase(): InMemoryDatabase | InMemoryTransaction {
         return this.currentTransaction ?? this.getActualDatabase();
     }
 

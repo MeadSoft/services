@@ -1,6 +1,23 @@
 import { NotImplementedException } from '@nestjs/common';
-import { IUnitOfWorkService } from './unit-of-work.schema';
 
+export interface IUnitOfWorkService<TDb = unknown, TTransaction = unknown> {
+    /**
+     * Get the current database connection or transaction
+     */
+    getDatabase(): TDb | TTransaction;
+    /**
+     * Execute work within a transaction
+     */
+    startTransaction<T>(work: () => Promise<T>): Promise<T>;
+    /**
+     * Check if currently in a transaction
+     */
+    isInTransaction(): boolean;
+}
+
+/**
+ * An unimplemented base class intended to be overridden during dependency injection setup
+ */
 export class UnitOfWorkService<
     TDb = unknown,
     TTransaction = unknown,

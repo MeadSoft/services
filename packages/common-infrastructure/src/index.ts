@@ -1,11 +1,11 @@
-// drizzle
-export * from './drizzle/postgres/index';
-export * from './drizzle/drizzle.module';
-
-// generic
-export type * from './repository.schema';
-export type * from './unit-of-work.schema';
-export { UnitOfWorkService } from './unit-of-work.service';
+export * from './contracts/index';
 
 // config
 export * from './infrastructure.config';
+
+// in-memory
+export * from './in-memory/index';
+
+// drizzle
+export * from './drizzle/postgres/index';
+export * from './drizzle/drizzle.module';
