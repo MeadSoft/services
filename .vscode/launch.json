@@ -40,7 +40,7 @@
             "runtimeExecutable": "nx",
             "runtimeArgs": [
                 "run",
-                "restaurant-catalog-api:temp"
+                "restaurant-catalog-api:db-seed-backup"
             ],
             "port": 9229,
             "console": "integratedTerminal",

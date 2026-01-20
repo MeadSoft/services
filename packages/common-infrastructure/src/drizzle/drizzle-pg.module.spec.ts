@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { PostgresUnitOfWork } from './postgres/unit-of-work.service';
 import { PostgresDbService } from './postgres/postgres-db.service';
 import { InfrastructureConfig } from '../infrastructure.config';
-import { DrizzlePgModule } from './drizzle.module';
+import { DrizzlePgModule } from './drizzle-pg.module';
 
 describe('DrizzlePgModule', () => {
     let module: TestingModule;

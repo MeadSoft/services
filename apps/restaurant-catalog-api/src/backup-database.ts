@@ -1,5 +1,9 @@
 import { NestFactory } from '@nestjs/core';
-import { InfrastructureConfigLoader } from '@meadsoft/common-infrastructure';
+import {
+    IBackup,
+    InfrastructureConfigLoader,
+    ITableBackup,
+} from '@meadsoft/common-infrastructure';
 import {
     MenuItemRepository,
     SizesRepository,
@@ -7,21 +11,15 @@ import {
     MenuItemToTagRepository,
     MenuItemToSizeRepository,
     RestaurantCatalogModule,
+    MENU_ITEMS_TO_SIZES_TABLE_NAME,
+    TAGS_TABLE_NAME,
+    SIZE_TABLE_NAME,
+    MENU_ITEMS_TABLE_NAME,
+    MENU_ITEMS_TO_TAGS_TABLE_NAME,
 } from '@meadsoft/restaurant-catalog-server-nestjs';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
-
-interface IBackup {
-    timestamp: string;
-    appEnv: string;
-    totalRecords: number;
-    tables: ITableBackup[];
-}
-
-interface ITableBackup {
-    tableName: string;
-    data: unknown[];
-}
+import { Environment } from '@meadsoft/common';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(
@@ -49,11 +47,11 @@ async function backupDatabase() {
     const menuItemToSizeRepo = app.get(MenuItemToSizeRepository);
 
     const repositories = [
-        { name: 'menu_items', repo: menuItemRepo },
-        { name: 'sizes', repo: sizesRepo },
-        { name: 'tags', repo: tagsRepo },
-        { name: 'menu_items_to_tags', repo: menuItemToTagRepo },
-        { name: 'menu_items_to_sizes', repo: menuItemToSizeRepo },
+        { name: MENU_ITEMS_TABLE_NAME, repo: menuItemRepo },
+        { name: SIZE_TABLE_NAME, repo: sizesRepo },
+        { name: TAGS_TABLE_NAME, repo: tagsRepo },
+        { name: MENU_ITEMS_TO_TAGS_TABLE_NAME, repo: menuItemToTagRepo },
+        { name: MENU_ITEMS_TO_SIZES_TABLE_NAME, repo: menuItemToSizeRepo },
     ];
     //
 
@@ -75,9 +73,14 @@ async function backupDatabase() {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '.');
     const filename = `backup-${timestamp}.json`;
     const filepath = join(backupsDir, filename);
+    if (!(config.APP_ENV in Environment)) {
+        return;
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+    const appEnv: Environment = config.APP_ENV as Environment;
     const backupData: IBackup = {
         timestamp: new Date().toISOString(),
-        appEnv: config.APP_ENV,
+        appEnv: appEnv,
         totalRecords,
         tables: backups,
     };

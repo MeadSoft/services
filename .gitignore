@@ -1,3 +1,6 @@
+scratch*.*
+**/scratch*.*
+
 # https://github.com/github/gitignore
 
 # ===============================

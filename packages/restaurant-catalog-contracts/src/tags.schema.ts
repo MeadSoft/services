@@ -3,6 +3,7 @@ import { EntitySchema } from '@meadsoft/common';
 import { createZodDto } from 'nestjs-zod';
 
 export const TagResourceName = 'tag';
+
 export const NewTagSchema = z.object({
     name: z.string(),
 });

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {
     DrizzlePgCommandRepository,
+    DrizzlePgFilterTranslationService,
     PostgresUnitOfWork,
 } from '@meadsoft/common-infrastructure';
 import { ZodSchema } from '@meadsoft/common';
@@ -13,11 +14,15 @@ import { menuItemToSizeTable } from '../tables/menu-item-to-size.table';
 
 @Injectable()
 export class MenuItemToSizeRepository extends DrizzlePgCommandRepository<IMenuItemToSize> {
-    constructor(protected override unitOfWork: PostgresUnitOfWork) {
+    constructor(
+        protected override unitOfWork: PostgresUnitOfWork,
+        filterTranslationService: DrizzlePgFilterTranslationService,
+    ) {
         super(
             menuItemToSizeTable,
             new ZodSchema(MenuItemToSizeSchema),
             unitOfWork,
+            filterTranslationService,
         );
     }
 

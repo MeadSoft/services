@@ -1,4 +1,4 @@
-import { and, SQL } from 'drizzle-orm';
+import { SQL } from 'drizzle-orm';
 import { PgTable } from 'drizzle-orm/pg-core';
 import { EMPTY_LENGTH, FIRST_INDEX, IFilter, ISchema } from '@meadsoft/common';
 import {
@@ -26,7 +26,7 @@ export abstract class DrizzlePgQueryRepository<
             .getDatabase()
             .select()
             .from(this.table)
-            .where(and(...sqlFilters))
+            .where(sqlFilters)
             .then((items) => items.length);
     }
 
@@ -62,7 +62,7 @@ export abstract class DrizzlePgQueryRepository<
             .getDatabase()
             .select()
             .from(this.table)
-            .where(and(...sqlFilters));
+            .where(sqlFilters);
         const results: TModel[] = [];
         for (const item of items) {
             const result = this.schema.parse(item);
@@ -130,7 +130,7 @@ export abstract class DrizzlePgCommandRepository<
             .getDatabase()
             .update(this.table)
             .set(updates)
-            .where(and(...sqlFilters))) as QueryResultBase;
+            .where(sqlFilters)) as QueryResultBase;
         return updated.rowCount ?? EMPTY_LENGTH;
     }
 
@@ -153,7 +153,7 @@ export abstract class DrizzlePgCommandRepository<
         const result = (await this.unitOfWork
             .getDatabase()
             .delete(this.table)
-            .where(and(...sqlFilters))) as QueryResultBase;
+            .where(sqlFilters)) as QueryResultBase;
         return result.rowCount ?? EMPTY_LENGTH;
     }
 }

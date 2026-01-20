@@ -3,6 +3,7 @@ import { EntitySchema } from '@meadsoft/common';
 import { createZodDto } from 'nestjs-zod';
 
 export const SizeResourceName = 'size';
+
 export const NewSizeSchema = z.object({
     name: z.string(),
 });

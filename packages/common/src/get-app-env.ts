@@ -2,7 +2,7 @@ import { Err, Ok, Result } from 'ts-results';
 import { Environment } from './contracts/environment.enum';
 
 export const DEFAULT_APP_ENV_KEY = 'APP_ENV';
-export const DEFAULT_ENVIRONMENT = Environment.PROD;
+export const DEFAULT_ENVIRONMENT = Environment.prod;
 
 export function getAppEnv(appEnvKey?: string): Result<Environment, Error> {
     appEnvKey ??= DEFAULT_APP_ENV_KEY;
