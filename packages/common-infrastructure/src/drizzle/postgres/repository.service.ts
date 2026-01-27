@@ -7,7 +7,7 @@ import {
 } from '../../contracts/repository.schema';
 import { PostgresUnitOfWork } from './unit-of-work.service';
 import { QueryResultBase } from 'pg';
-import { IFilterTranslationService } from 'src/contracts/filter-translation.schema';
+import { IFilterTranslationService } from '../../contracts/filter-translation.schema';
 
 export abstract class DrizzlePgQueryRepository<
     TModel extends object,

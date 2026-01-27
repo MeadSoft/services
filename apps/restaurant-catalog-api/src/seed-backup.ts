@@ -19,20 +19,15 @@ import {
 } from '@meadsoft/restaurant-catalog-server-nestjs';
 import { RestaurantCatalogModule } from '@meadsoft/restaurant-catalog-server-nestjs';
 import {
-    NewMenuItemSchema,
-    NewMenuItemToSizeSchema,
-    NewMenuItemToTagSchema,
-    NewSizeSchema,
-    NewTagSchema,
+    MenuItemSchema,
+    MenuItemToSizeSchema,
+    MenuItemToTagSchema,
+    SizeSchema,
+    TagSchema,
 } from '@meadsoft/restaurant-catalog-contracts';
 import * as fs from 'fs';
 import * as path from 'path';
-import {
-    EMPTY_LENGTH,
-    ICommandService,
-    IQueryService,
-    SYSTEM_UUID,
-} from '@meadsoft/common';
+import { EMPTY_LENGTH, ICommandService, IQueryService } from '@meadsoft/common';
 import {
     BackupSchema,
     IBackup,
@@ -98,11 +93,11 @@ async function seedbackup(
         console.error(JSON.stringify(errors, null, 2));
         throw new Error('Failed to parse some items');
     }
-    const newItems = parseResults
+    const items = parseResults
         .filter((result) => result.success)
         .map((result) => result.data);
     console.log(`Seeding ${parseResults.length.toString()} items...`);
-    const result = await commandService.createMany(SYSTEM_UUID, ...newItems);
+    const result = await commandService.seedMany(...items);
 
     if (result.ok) {
         console.log(`✓ Created: ${parseResults.length.toString()} items`);
@@ -159,7 +154,7 @@ async function main() {
         backupSeed.tables.find(
             (table) => table.tableName === MENU_ITEMS_TABLE_NAME,
         ),
-        NewMenuItemSchema,
+        MenuItemSchema,
     );
 
     // Tags
@@ -167,7 +162,7 @@ async function main() {
         app.get(TagsQueryService),
         app.get(TagsCommandService),
         backupSeed.tables.find((table) => table.tableName === TAGS_TABLE_NAME),
-        NewTagSchema,
+        TagSchema,
     );
 
     // Sizes
@@ -175,7 +170,7 @@ async function main() {
         app.get(SizeQueryService),
         app.get(SizeCommandService),
         backupSeed.tables.find((table) => table.tableName === SIZE_TABLE_NAME),
-        NewSizeSchema,
+        SizeSchema,
     );
 
     // Menu Items to Tags
@@ -185,7 +180,7 @@ async function main() {
         backupSeed.tables.find(
             (table) => table.tableName === MENU_ITEMS_TO_TAGS_TABLE_NAME,
         ),
-        NewMenuItemToTagSchema,
+        MenuItemToTagSchema,
     );
 
     // Menu Items to Sizes
@@ -195,7 +190,7 @@ async function main() {
         backupSeed.tables.find(
             (table) => table.tableName === MENU_ITEMS_TO_SIZES_TABLE_NAME,
         ),
-        NewMenuItemToSizeSchema,
+        MenuItemToSizeSchema,
     );
     await app.close();
 }

@@ -1,6 +1,10 @@
 # Architecture Overview
 
+TODO: This file is more of a brain dump than architectural documentation. I need to move the contents around into more appropriate files and locations.
+
 > The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+
+https://matklad.github.io//2021/02/06/ARCHITECTURE.md.html
 
 This document, and its subdocuments, serve as a critical, living template designed to equip **people** and AI agents with a rapid and comprehensive understanding of the codebase's architecture. Enabling efficient navigation and effective contribution from day one. Update this document as the codebase evolves.
 

@@ -121,7 +121,6 @@ export default [
             "@typescript-eslint/no-unsafe-unary-minus": "error",
             "no-unused-private-class-members": "off",
             "@typescript-eslint/no-unused-private-class-members": "error",
-            "@typescript-eslint/no-unused-vars": "error",
             "no-use-before-define": "off",
             "@typescript-eslint/no-use-before-define": "error",
             "@typescript-eslint/class-literal-property-style": "error",
@@ -183,6 +182,7 @@ export default [
             "@typescript-eslint/switch-exhaustiveness-check": "error",
             "@typescript-eslint/unified-signatures": "error",
             // warnings
+            "@typescript-eslint/no-unused-vars": "warn",
             "@typescript-eslint/no-floating-promises": "warn",
             "@typescript-eslint/no-meaningless-void-operator": "warn",
             "@typescript-eslint/no-unnecessary-type-constraint": "warn",

@@ -17,6 +17,8 @@ export interface ICommandService<
         userId: string,
         ...items: TNewModel[]
     ): Promise<Result<TModel[], Error>>;
+    seedOne(item: TNewModel): Promise<Result<TModel, Error>>;
+    seedMany(...items: TNewModel[]): Promise<Result<TModel[], Error>>;
     updateOne(
         userId: string,
         id: TId,

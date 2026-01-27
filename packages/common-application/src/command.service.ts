@@ -60,6 +60,30 @@ export class CommandService<
         });
     }
 
+    /**
+     * Create many items from existing data. This bypasses entity initialization and validation
+     */
+    async seedOne(item: TModel): Promise<Result<TModel, Error>> {
+        return this.unitOfWork.startTransaction(async () => {
+            return Ok(
+                await this.repository.createOne.bind(this.repository)(item),
+            );
+        });
+    }
+
+    /**
+     * Create many items from existing data. This bypasses entity initialization and validation
+     */
+    async seedMany(...items: TModel[]): Promise<Result<TModel[], Error>> {
+        return this.unitOfWork.startTransaction(async () => {
+            return Ok(
+                await this.repository.createMany.bind(this.repository)(
+                    ...items,
+                ),
+            );
+        });
+    }
+
     async updateOne(
         userId: string,
         id: string,
