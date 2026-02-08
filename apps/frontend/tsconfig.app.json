@@ -6,7 +6,6 @@
         "outDir": "./out-tsc/app",
         "baseUrl": ".",
         "rootDir": "src",
-        "emitDeclarationOnly": false,
         "types": [
             "node"
         ],

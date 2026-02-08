@@ -7,7 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { FiltersComponent } from 'src/components/filters/filters.component';
 import { FooterComponent } from 'src/components/footer/footer.component';
 import { MenuItemComponent } from 'src/components/menu-item/menu-item.component';
-import { LegacyCarouselComponent } from '../carousel-legacy/carousel.component';
+// import { LegacyCarouselComponent } from '../carousel-legacy/carousel.component';
 import { FilterService } from 'src/services/filter.service';
 import { ButtonModule } from 'primeng/button';
 import { HeaderComponent } from '../header/header.component';
@@ -27,7 +27,7 @@ const PAGE_SIZE = 9;
         MatButtonModule,
         MatTooltipModule,
         CommonModule,
-        LegacyCarouselComponent,
+        // LegacyCarouselComponent,
         ButtonModule,
         HeaderComponent,
     ],

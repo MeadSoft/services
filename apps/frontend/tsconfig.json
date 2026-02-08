@@ -3,6 +3,10 @@
     "files": [],
     "include": [],
     "compileOnSave": false,
+    "compilerOptions": {
+        "emitDeclarationOnly": false,
+        "emitDecoratorMetadata": false,
+    },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,
