@@ -1,11 +1,13 @@
 {
-    "name": "Haru Cafe",
+    "name": "meadsoft-services",
     "build": {
-        "dockerfile": "Dockerfile"
+        "dockerfile": "Dockerfile",
+        "context": "."
     },
-    "runArgs": [
-        "--privileged"
-    ],
+    "remoteUser": "vscode",
+    "containerUser": "vscode",
+    "updateRemoteUserUID": true,
+    "privileged": true,
     "containerEnv": {
         "WORKSPACE_FOLDER": "${containerWorkspaceFolder}"
     },
@@ -13,17 +15,17 @@
         {
             "type": "bind",
             "source": "${localWorkspaceFolder}/.devcontainer/scripts",
-            "target": "/root/scripts"
+            "target": "/home/vscode/scripts"
         },
         {
             "type": "bind",
-            "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.ssh",
-            "target": "/root/.ssh"
+            "source": "${localEnv:HOME}/.ssh",
+            "target": "/home/vscode/.ssh"
         }
     ],
-    "postCreateCommand": ".devcontainer/scripts/post-create.sh --workspace-folder='${containerWorkspaceFolder}'",
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/${localWorkspaceFolderBasename}/,type=bind",
-    "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}/",
+    "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
+    "postCreateCommand": "chmod 755 -R /workspace/${localWorkspaceFolderBasename}/.devcontainer/scripts; /workspace/${localWorkspaceFolderBasename}/.devcontainer/scripts/post-create.sh",
     "customizations": {
         "vscode": {
             "extensions": [
