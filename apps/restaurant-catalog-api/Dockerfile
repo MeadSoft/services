@@ -1,6 +1,9 @@
-FROM node:20-slim AS base
+FROM node:24-slim AS base
+
+ENV APP_ENV="local"
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+
 RUN corepack enable
 COPY . /workspace
 WORKDIR /workspace
