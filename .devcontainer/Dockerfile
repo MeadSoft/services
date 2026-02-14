@@ -50,6 +50,14 @@ RUN sudo apt-get install apt-transport-https ca-certificates gnupg curl --yes &&
     sudo apt-get update && sudo apt-get install google-cloud-cli --yes
 
 #################################################
+# Terraform cli
+
+# https://developer.hashicorp.com/terraform/install
+RUN wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    sudo apt update && sudo apt install terraform
+
+#################################################
 # Hoppscotch CLI
 
 # RUN sudo apt-get install python g++ build-essential --yes && \
