@@ -7,8 +7,10 @@
 # More about specific permissions inside the .ssh folder 
 # https://serverfault.com/a/253314
 if [ -d "$HOME/.ssh" ]; then
-    echo ".ssh folder found. Ensuring docker container has proper permissions to ssh folder contents. See https://serverfault.com/a/253314"
-    sudo find ~/.ssh -maxdepth 1 -type f -exec chmod 600 {} \;
+    find ~/.ssh -maxdepth 1 -type f -exec chmod 600 {} \;
     chmod u+r ~/.ssh/config
     chmod u+r ~/.ssh/known_hosts
+
+    SSH_GITHUB_STATUS=$(ssh -T git@github.com)
+    export SSH_GITHUB_STATUS
 fi 

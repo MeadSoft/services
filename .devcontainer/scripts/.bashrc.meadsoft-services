@@ -1,7 +1,7 @@
 #!/bin/bash
 
+source ${WORKSPACE_FOLDER}/.devcontainer/scripts/check-ssh.sh
 source ${WORKSPACE_FOLDER}/.devcontainer/scripts/colors.sh
 source ${WORKSPACE_FOLDER}/.devcontainer/scripts/setup-welcome.sh
 source ${WORKSPACE_FOLDER}/.devcontainer/scripts/git-prompt.sh
 source ${WORKSPACE_FOLDER}/.devcontainer/scripts/bash-prompt.sh
-source ${WORKSPACE_FOLDER}/.devcontainer/scripts/ensure-ssh-permissions.sh
