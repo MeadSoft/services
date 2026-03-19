@@ -14,8 +14,9 @@ locals {
   default_api_build_context = "${path.module}/../../../../apps/restaurant-catalog-api"
   env_file_path             = var.env_file_path != null ? var.env_file_path : local.default_env_file_path
   api_build_context         = var.api_build_context != null ? var.api_build_context : local.default_api_build_context
+  env_file_contents         = fileexists(local.env_file_path) ? file(local.env_file_path) : ""
   env_vars = [
-    for line in split("\n", file(local.env_file_path)) : trimspace(line)
+    for line in split("\n", local.env_file_contents) : trimspace(line)
     if length(trimspace(line)) > 0 && !startswith(trimspace(line), "#")
   ]
 }

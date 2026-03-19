@@ -11,6 +11,15 @@
     "containerEnv": {
         "WORKSPACE_FOLDER": "${containerWorkspaceFolder}"
     },
+    "portsAttributes": {
+        "5432": {
+            "label": "PostgreSQL",
+            "onAutoForward": "notify"
+        }
+    },
+    "forwardPorts": [
+        5432
+    ],
     "mounts": [
         {
             "type": "bind",
@@ -21,6 +30,11 @@
             "type": "bind",
             "source": "${localEnv:HOME}/.ssh",
             "target": "/home/vscode/.ssh"
+        },
+        {
+            "type": "bind",
+            "source": "/var/run/docker.sock",
+            "target": "/var/run/docker.sock"
         }
     ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/${localWorkspaceFolderBasename}/,type=bind",

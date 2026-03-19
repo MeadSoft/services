@@ -4,7 +4,6 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu24.04
 
 SHELL ["/bin/bash", "-c"]
 
-ENV USER=vscode
 ENV NODE_VERSION=24
 
 #################################################
@@ -15,12 +14,12 @@ RUN apt update --yes && \
     rm -rf /var/lib/apt/lists/*w
 
 # create user if it doesn't exist and add to sudo group
-RUN if ! id -u $USER >/dev/null 2>&1; then \
-        useradd -m -s /bin/bash -G sudo $USER; \
+RUN if ! id -u vscode >/dev/null 2>&1; then \
+        useradd -m -s /bin/bash -G sudo vscode; \
     fi
 # allow vscode user to execute sudo commands without password
-RUN echo '$USER ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/$USER && \
-    chmod 0440 /etc/sudoers.d/$USER
+RUN echo 'vscode ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/vscode && \
+    chmod 0440 /etc/sudoers.d/vscode
 
 #################################################
 # docker in docker
@@ -31,24 +30,20 @@ RUN bash install-docker.sh
 #################################################
 # node https://nodejs.org/en/download
 
-USER $USER
+USER vscode
 
 # nvm
 # https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-in-docker
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
-RUN bash -c "source /home/$USER/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION"
+RUN bash -c "source /home/vscode/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION"
 
 # pnpm
 # https://pnpm.i/installation#in-a-docker-container
-RUN source /home/$USER/.nvm/nvm.sh && \
+RUN source /home/vscode/.nvm/nvm.sh && \
     corepack enable pnpm
-# RUN mkdir -p "$PNPM_HOME" && \
-#     chown -R $USER:$USER "$PNPM_HOME" && \
-#     chmod -R u+rwX,go+rX "$PNPM_HOME"
-# RUN curl -fsSL https://get.pnpm.io/install.sh | SHELL="$(which bash)" bash -
 
 # angular and nestjs cli
-RUN source /home/$USER/.nvm/nvm.sh && \
+RUN source /home/vscode/.nvm/nvm.sh && \
     npm i -g @angular/cli --loglevel verbose && \
     npm i -g @nestjs/cli --loglevel verbose
 
