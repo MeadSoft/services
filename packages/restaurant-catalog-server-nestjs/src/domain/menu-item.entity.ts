@@ -1,6 +1,7 @@
 import { Err, Ok, Result } from 'ts-results';
 import { AggregateRoot } from '@meadsoft/common-application';
-import { EMPTY_LENGTH, EntityService } from '@meadsoft/common';
+import { EMPTY_LENGTH } from '@meadsoft/common-server';
+import { EntityService } from '@meadsoft/common-nestjs';
 import { MenuItemCreatedEvent } from './events/menu-item-created.event';
 import { IMenuItem, NewMenuItem } from '@meadsoft/restaurant-catalog-contracts';
 

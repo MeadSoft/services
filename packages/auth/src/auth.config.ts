@@ -1,4 +1,4 @@
-import { loadConfig } from '@meadsoft/common';
+import { loadConfig } from '@meadsoft/common-server';
 import { Provider } from '@nestjs/common';
 import zod from 'zod';
 import path from 'path';
@@ -15,9 +15,11 @@ export class AuthConfig {
 }
 
 export class AuthEnvironmentConfig {
+    APP_ENV: string;
     JWT_SECRET: string;
 
-    constructor(JWT_SECRET: string) {
+    constructor(APP_ENV: string, JWT_SECRET: string) {
+        this.APP_ENV = APP_ENV;
         this.JWT_SECRET = JWT_SECRET;
     }
 }
@@ -27,6 +29,7 @@ export const AuthConfigSchema = zod.object({
 }) satisfies zod.ZodType<AuthConfig>;
 
 export const AuthEnvironmentConfigSchema = zod.object({
+    APP_ENV: zod.string().nonempty(),
     JWT_SECRET: zod.string().min(1),
 }) satisfies zod.ZodType<AuthEnvironmentConfig>;
 

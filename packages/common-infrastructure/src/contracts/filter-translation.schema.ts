@@ -1,4 +1,4 @@
-import { IFilter, NotImplementedException } from '@meadsoft/common';
+import { IFilter, NotImplementedException } from '@meadsoft/common-server';
 
 export interface IFilterTranslationService<TFilterImpl = unknown> {
     translate(...filters: IFilter[]): TFilterImpl | undefined;

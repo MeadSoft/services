@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Err, Result } from 'ts-results';
 import { DomainEventPublisher } from '@meadsoft/common-application';
 import { IMenuItem, NewMenuItem } from '@meadsoft/restaurant-catalog-contracts';
-import { EntityService } from '@meadsoft/common';
+import { EntityService } from '@meadsoft/common-nestjs';
 import {
     MenuItemCommandService,
     MenuItemQueryService,

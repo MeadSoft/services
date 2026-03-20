@@ -1,6 +1,8 @@
 scratch*.*
 **/scratch*.*
 
+.pnpm-store
+
 # https://github.com/github/gitignore
 
 # ==============================================================

@@ -1,4 +1,4 @@
-import { IQueryService } from '@meadsoft/common';
+import { IQueryService } from '@meadsoft/common-server';
 import { ICrudRepository } from '@meadsoft/common-infrastructure';
 
 export class QueryService<TModel> implements IQueryService<TModel> {

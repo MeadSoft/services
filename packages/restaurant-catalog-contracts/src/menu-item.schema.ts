@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { createZodDto } from 'nestjs-zod';
-import { EntitySchema, DEFAULT_STRING_LENGTH, IEntity } from '@meadsoft/common';
+import { EntitySchema, DEFAULT_STRING_LENGTH, IEntity } from '@meadsoft/common-browser';
 
 export const MENU_ITEM_IS_FAVORITE_DEFAULT = false;
 export const MENU_ITEM_IS_ACTIVE_DEFAULT = false;

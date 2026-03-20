@@ -28,7 +28,7 @@
         "name": "common-infrastructure"
     },
     "dependencies": {
-        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-server": "workspace:*",
         "@nestjs/common": "^11.0.1",
         "@nestjs/testing": "^11.0.1",
         "@types/pg": "^8.15.6",

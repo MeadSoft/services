@@ -7,7 +7,7 @@ import {
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import { join } from 'node:path';
-import { ColorSchemes } from '@meadsoft/common';
+import { ColorSchemes } from '@meadsoft/common-browser';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 

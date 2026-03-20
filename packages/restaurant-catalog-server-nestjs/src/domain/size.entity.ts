@@ -1,5 +1,6 @@
 import { Err, Ok, Result } from 'ts-results';
-import { EMPTY_LENGTH, Entity, EntityService } from '@meadsoft/common';
+import { EMPTY_LENGTH, Entity } from '@meadsoft/common-server';
+import { EntityService } from '@meadsoft/common-nestjs';
 import {
     IMenuItem,
     INewSize,

@@ -19,7 +19,7 @@ import {
 } from '@meadsoft/restaurant-catalog-server-nestjs';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
-import { Environment } from '@meadsoft/common';
+import { Environment } from '@meadsoft/common-server';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(

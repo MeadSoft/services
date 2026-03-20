@@ -1,5 +1,5 @@
 import { FirebaseApp, initializeApp } from 'firebase/app';
-import { Analytics, getAnalytics } from '@firebase/analytics';
+import { Analytics, getAnalytics } from 'firebase/analytics';
 import { Injectable } from '@angular/core';
 import { Config } from 'src/configs/config.schema';
 

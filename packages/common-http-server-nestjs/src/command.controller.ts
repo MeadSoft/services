@@ -4,11 +4,11 @@ import { ZodValidationPipe } from 'nestjs-zod';
 import { ZodObject } from 'zod';
 import {
     validateUuid,
-    InvalidIDException,
     Entity,
     SYSTEM_UUID,
     ICommandService,
-} from '@meadsoft/common';
+} from '@meadsoft/common-server';
+import { InvalidIDException } from '@meadsoft/common-nestjs';
 
 export function createCommandController<TNewModel, TModel extends Entity>(
     model: Type<TModel>,

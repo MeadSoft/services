@@ -23,7 +23,7 @@
     },
     "dependencies": {
         "@meadsoft/google": "workspace:*",
-        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-server": "workspace:*",
         "@nestjs/common": "^11.0.1",
         "@nestjs/jwt": "^11.0.1",
         "@nestjs/passport": "^11.0.1",

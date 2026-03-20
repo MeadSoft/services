@@ -1,4 +1,4 @@
-import { EntitySchema } from '@meadsoft/common';
+import { EntitySchema } from '@meadsoft/common-browser';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 

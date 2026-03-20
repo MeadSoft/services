@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@meadsoft/restaurant-catalog-contracts": "workspace:*",
-        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-browser": "workspace:*",
         "@meadsoft/common-http-client-angular": "workspace:*",
         "@angular/common": "^20.3.10",
         "rxjs": "~7.8.0",

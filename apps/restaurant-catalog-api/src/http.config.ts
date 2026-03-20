@@ -1,4 +1,4 @@
-import { JsonConfigLoader, ZodSchema } from '@meadsoft/common';
+import { JsonConfigLoader, ZodSchema } from '@meadsoft/common-server';
 import { Provider } from '@nestjs/common';
 import { createZodDto } from 'nestjs-zod';
 import zod from 'zod';

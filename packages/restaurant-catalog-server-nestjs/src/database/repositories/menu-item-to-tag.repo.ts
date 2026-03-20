@@ -4,7 +4,7 @@ import {
     DrizzlePgFilterTranslationService,
     PostgresUnitOfWork,
 } from '@meadsoft/common-infrastructure';
-import { ZodSchema } from '@meadsoft/common';
+import { ZodSchema } from '@meadsoft/common-server';
 import { eq } from 'drizzle-orm';
 import { menuItemToTagTable } from '../tables/menu-item-to-tag.table';
 import {

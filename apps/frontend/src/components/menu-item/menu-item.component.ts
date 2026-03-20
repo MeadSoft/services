@@ -2,8 +2,12 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, computed, input, signal } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { EMPTY_LENGTH } from '@meadsoft/common';
-import { IMenuItem, ISize, ITag } from '@meadsoft/restaurant-catalog-contracts';
+import { EMPTY_LENGTH } from '@meadsoft/common-browser';
+import type {
+    IMenuItem,
+    ISize,
+    ITag,
+} from '@meadsoft/restaurant-catalog-contracts';
 import { ImageDialogDirective } from 'src/directives/image-dialog.directive';
 import { RestaurantCatalogClientService } from 'src/services/clients/restaurant-catalog-client.service';
 

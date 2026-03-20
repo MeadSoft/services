@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DrizzlePgModule } from '@meadsoft/common-infrastructure';
-import { CommonModule } from '@meadsoft/common';
+import { CommonModule } from '@meadsoft/common-nestjs';
 import { MenuItemRepository } from './database/repositories/menu-items.repo';
 import { SizesRepository } from './database/repositories/sizes.repo';
 import { TagsRepository } from './database/repositories/tags.repo';

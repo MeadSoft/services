@@ -22,8 +22,9 @@
         "name": "google"
     },
     "dependencies": {
-        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-server": "workspace:*",
         "@nestjs/common": "^11.0.1",
+        "class-transformer": "^0.5.1",
         "firebase-admin": "^13.6.0",
         "tslib": "^2.3.0",
         "zod": "^4.1.12"

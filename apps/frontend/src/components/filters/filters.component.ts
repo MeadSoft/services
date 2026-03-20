@@ -11,7 +11,7 @@ import {
     NOT_FOUND_INDEX,
     TagGraphService,
 } from 'src/services/category-graph.service';
-import { FIRST_INDEX } from '@meadsoft/common';
+import { FIRST_INDEX } from '@meadsoft/common-browser';
 
 @Component({
     selector: 'haru-filters',

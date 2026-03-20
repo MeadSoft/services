@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { EntitySchema } from '@meadsoft/common';
+import { EntitySchema } from '@meadsoft/common-browser';
 import { createZodDto } from 'nestjs-zod';
 
 export const TagResourceName = 'tag';

@@ -1,11 +1,7 @@
 import { Get, Param, Type } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
-import {
-    validateUuid,
-    InvalidIDException,
-    Entity,
-    IQueryService,
-} from '@meadsoft/common';
+import { validateUuid, Entity, IQueryService } from '@meadsoft/common-server';
+import { InvalidIDException } from '@meadsoft/common-nestjs';
 
 export function createQueryController<TModel extends Entity>(
     model: Type<TModel>,

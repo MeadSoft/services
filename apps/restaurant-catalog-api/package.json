@@ -23,7 +23,7 @@
         "scratch": "tsx src/scratch.ts"
     },
     "dependencies": {
-        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-server": "workspace:*",
         "@meadsoft/common-infrastructure": "workspace:*",
         "@meadsoft/restaurant-catalog-server-nestjs": "workspace:*",
         "@meadsoft/restaurant-catalog-contracts": "workspace:*",

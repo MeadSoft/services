@@ -27,7 +27,7 @@ import {
 } from '@meadsoft/restaurant-catalog-contracts';
 import * as fs from 'fs';
 import * as path from 'path';
-import { EMPTY_LENGTH, ICommandService, IQueryService } from '@meadsoft/common';
+import { EMPTY_LENGTH, ICommandService, IQueryService } from '@meadsoft/common-server';
 import {
     BackupSchema,
     IBackup,

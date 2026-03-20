@@ -1,5 +1,6 @@
 import { Ok, Result } from 'ts-results';
-import { Entity, EntityService } from '@meadsoft/common';
+import { Entity } from '@meadsoft/common-server';
+import { EntityService } from '@meadsoft/common-nestjs';
 import {
     IMenuItemToSize,
     INewMenuItemToSize,

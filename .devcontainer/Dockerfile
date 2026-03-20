@@ -39,13 +39,17 @@ RUN bash -c "source /home/vscode/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm
 
 # pnpm
 # https://pnpm.i/installation#in-a-docker-container
+
+ENV PNPM_HOME=/home/vscode/.local/share/pnpm
+ENV PATH=$PNPM_HOME:$PATH
 RUN source /home/vscode/.nvm/nvm.sh && \
     corepack enable pnpm
 
 # angular and nestjs cli
 RUN source /home/vscode/.nvm/nvm.sh && \
-    npm i -g @angular/cli --loglevel verbose && \
-    npm i -g @nestjs/cli --loglevel verbose
+    pnpm i -g @angular/cli --loglevel verbose && \
+    pnpm i -g @nestjs/cli --loglevel verbose && \
+    pnpm i -g nx --loglevel verbose
 
 USER root
 

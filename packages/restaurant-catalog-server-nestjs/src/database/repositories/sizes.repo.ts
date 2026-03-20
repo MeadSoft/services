@@ -6,7 +6,7 @@ import {
 } from '@meadsoft/common-infrastructure';
 import { Size, SizeSchema } from '@meadsoft/restaurant-catalog-contracts';
 import { sizesTable } from '../tables/sizes.table';
-import { ZodSchema } from '@meadsoft/common';
+import { ZodSchema } from '@meadsoft/common-server';
 import { eq } from 'drizzle-orm';
 
 @Injectable()

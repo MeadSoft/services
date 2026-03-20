@@ -12,7 +12,7 @@ import {
     InfrastructureConfigLoader,
 } from '@meadsoft/common-infrastructure';
 import { MENU_ITEMS as legacyMenuItems } from './menu-items';
-import { EMPTY_LENGTH, SYSTEM_UUID } from '@meadsoft/common';
+import { EMPTY_LENGTH, SYSTEM_UUID } from '@meadsoft/common-server';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(

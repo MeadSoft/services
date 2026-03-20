@@ -1,12 +1,11 @@
 import {
-    ChangeHistoryService,
-    EntityService,
     ICommandService,
     IEntity,
     IFilter,
     IUpdateHistory,
     NotImplementedException,
-} from '@meadsoft/common';
+} from '@meadsoft/common-server';
+import { ChangeHistoryService, EntityService } from '@meadsoft/common-nestjs';
 import {
     ICrudRepository,
     IUnitOfWorkService,

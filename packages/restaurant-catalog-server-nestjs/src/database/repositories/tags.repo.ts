@@ -6,7 +6,7 @@ import {
     PostgresUnitOfWork,
 } from '@meadsoft/common-infrastructure';
 import { tagsTable } from '../tables/tags.table';
-import { ZodSchema } from '@meadsoft/common';
+import { ZodSchema } from '@meadsoft/common-server';
 import { eq } from 'drizzle-orm';
 
 @Injectable()

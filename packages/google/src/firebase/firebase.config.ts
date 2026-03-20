@@ -3,12 +3,14 @@ import path from 'path';
 import { Injectable, Provider } from '@nestjs/common';
 import {
     EnvConfigLoader,
+    EnvironmentConfigSchema,
     FileAndEnvConfig,
+    IBaseEnvConfig,
     JsonAndEnvConfigLoader,
     JsonConfigLoader,
     REGEX,
     ZodSchema,
-} from '@meadsoft/common';
+} from '@meadsoft/common-server';
 
 export const FIREBASE_CONFIG_KEY = 'firebase';
 
@@ -39,13 +41,14 @@ export class FirebaseJsonConfig implements IFirebaseJsonConfig {
     ) {}
 }
 
-export interface IFirebaseEnvironmentConfig {
+export interface IFirebaseEnvironmentConfig extends IBaseEnvConfig {
     FIREBASE_PRIVATE_KEY_ID: string | null;
     FIREBASE_PRIVATE_KEY: string | null;
 }
 
 @Injectable()
 export class FirebaseEnvironmentConfig implements IFirebaseEnvironmentConfig {
+    APP_ENV: string = '';
     FIREBASE_PRIVATE_KEY_ID: string | null = null;
     FIREBASE_PRIVATE_KEY: string | null = null;
 }
@@ -65,6 +68,7 @@ export const FirebaseConfigSchema = zod.object({
 }) satisfies zod.ZodType<FirebaseJsonConfig>;
 
 export const FirebaseEnvironmentConfigSchema = zod.object({
+    ...EnvironmentConfigSchema.shape,
     FIREBASE_PRIVATE_KEY_ID: zod.string().nonempty(),
     FIREBASE_PRIVATE_KEY: zod.string().nonempty(),
 }) satisfies zod.ZodType<FirebaseEnvironmentConfig>;

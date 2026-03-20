@@ -1,4 +1,4 @@
-import { IFilter, NotImplementedException } from '@meadsoft/common';
+import { IFilter, NotImplementedException } from '@meadsoft/common-server';
 
 export interface IQueryRepository<TModel = unknown, TId = string> {
     countRows(...filters: IFilter[]): Promise<number>;

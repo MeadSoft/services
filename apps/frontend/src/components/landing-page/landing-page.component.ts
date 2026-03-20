@@ -12,8 +12,8 @@ import { FilterService } from 'src/services/filter.service';
 import { ButtonModule } from 'primeng/button';
 import { HeaderComponent } from '../header/header.component';
 import { RestaurantCatalogClientService } from 'src/services/clients/restaurant-catalog-client.service';
-import { EMPTY_LENGTH } from '@meadsoft/common';
-import { IMenuItem } from '@meadsoft/restaurant-catalog-contracts';
+import { EMPTY_LENGTH } from '@meadsoft/common-browser';
+import type { IMenuItem } from '@meadsoft/restaurant-catalog-contracts';
 
 const PAGE_SIZE = 9;
 

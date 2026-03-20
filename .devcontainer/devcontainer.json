@@ -15,10 +15,15 @@
         "5432": {
             "label": "PostgreSQL",
             "onAutoForward": "notify"
+        },
+        "4200": {
+            "label": "Angular Dev Server",
+            "onAutoForward": "notify"
         }
     },
     "forwardPorts": [
-        5432
+        5432,
+        4200
     ],
     "mounts": [
         {

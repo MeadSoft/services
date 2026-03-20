@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
-import { FIRST_INDEX } from '@meadsoft/common';
+import { FIRST_INDEX } from '@meadsoft/common-browser';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 
 export type DotsPosition = 'both' | 'bottom' | 'none' | 'top';

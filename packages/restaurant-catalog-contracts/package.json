@@ -26,7 +26,7 @@
         "name": "restaurant-catalog-contracts"
     },
     "dependencies": {
-        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-browser": "workspace:*",
         "@meadsoft/common-application": "workspace:*",
         "@types/uuid": "^11.0.0",
         "ts-results": "^3.3.0",
