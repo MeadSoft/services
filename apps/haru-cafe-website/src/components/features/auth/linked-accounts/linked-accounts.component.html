@@ -1,0 +1,37 @@
+<div class="linked-accounts">
+    <h2>Linked Accounts</h2>
+    <ul>
+        <li>
+            Google:
+            <span *ngIf="isLinked('google.com')">✅ Linked</span>
+            <span *ngIf="!isLinked('google.com')">❌ Not linked</span>
+            <button *ngIf="!isLinked('google.com')" (click)="linkGoogle()">
+                Link Google
+            </button>
+            <button
+                *ngIf="isLinked('google.com')"
+                (click)="unlink('google.com')"
+            >
+                Unlink
+            </button>
+        </li>
+        <li>
+            Microsoft:
+            <span *ngIf="isLinked('microsoft.com')">✅ Linked</span>
+            <span *ngIf="!isLinked('microsoft.com')">❌ Not linked</span>
+            <button
+                *ngIf="!isLinked('microsoft.com')"
+                (click)="linkMicrosoft()"
+            >
+                Link Microsoft
+            </button>
+            <button
+                *ngIf="isLinked('microsoft.com')"
+                (click)="unlink('microsoft.com')"
+            >
+                Unlink
+            </button>
+        </li>
+    </ul>
+    <p *ngIf="error" class="error">{{ error }}</p>
+</div>

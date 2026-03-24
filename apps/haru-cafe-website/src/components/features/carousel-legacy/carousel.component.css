@@ -1,0 +1,8 @@
+button.active {
+    background: var(--cyan-300);
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+}

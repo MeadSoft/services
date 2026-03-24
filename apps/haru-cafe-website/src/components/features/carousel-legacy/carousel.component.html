@@ -1,0 +1,70 @@
+<!-- content -->
+@if (hasDots('top') && this.dotHelper().length > 1 && this.slider()) {
+<div class="flex justify-center lg:hidden md:mb-6 mb-4 gap-2 shrink-0">
+	<ng-container *ngTemplateOutlet="dotsTemplate"></ng-container>
+</div>
+}
+<div
+	class="keen-slider keen-slider--vertical grow"
+	#sliderRef>
+	<ng-content />
+</div>
+@if (hasDots('bottom') && this.dotHelper().length > 1 && this.slider()) {
+<div class="flex justify-center lg:mt-8 md:mt-6 mt-4 gap-2 shrink-0">
+	<ng-container *ngTemplateOutlet="dotsTemplate"></ng-container>
+</div>
+}
+
+<!-- arrows and dots -->
+<ng-template #dotsTemplate>
+  @if (hasArrows()) {
+  <button
+		matRipple
+		(click)="slider()?.prev()"
+		class="rounded-full w-4 h-4 flex justify-center items-center">
+		<svg
+			[ngClass]="{
+          'w-4 h-4': true,
+          'fill-slate-900/25': currentSlide() === 0,
+          'fill-cyan-200': currentSlide() !== 0,
+        }"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24">
+			<path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+		</svg>
+	</button>
+  }
+  @for (slide of dotHelper(); track $index) {
+	<button
+		matRipple
+		[matRippleCentered]="true"
+    [matRippleDisabled]="canClickDots() === false"
+    [disabled]="canClickDots() === false"
+		(click)="slider()?.moveToIdx($index)"
+		[ngClass]="{
+      'rounded-full text-sm font-light bg-cyan-100 active:bg-cyan-300': true,
+      'w-4 h-4': canClickDots() === true,
+      'w-3 h-3': canClickDots() === false,
+      'active': $index === currentSlide(),
+    }">
+		<!-- {{ $index + 1 }} -->
+	</button>
+	}
+  @if (hasArrows()) {
+    <button
+      matRipple
+      (click)="slider()?.next()"
+      class="rounded-full w-4 h-4 flex justify-center items-center">
+      <svg
+        [ngClass]="{
+            'w-4 h-4': true,
+            'fill-slate-900/25': slider()!.slides.length - 1 === currentSlide(),
+            'fill-cyan-200': slider()!.slides.length - 1 !== currentSlide(),
+          }"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24">
+        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+      </svg>
+    </button>
+  }
+</ng-template>

@@ -1,0 +1,22 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "files": [],
+    "include": [],
+    "compileOnSave": false,
+    "compilerOptions": {
+        "emitDeclarationOnly": false,
+        "emitDecoratorMetadata": false,
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "typeCheckHostBindings": true,
+        "strictTemplates": true
+    },
+    "references": [
+        {
+            "path": "./tsconfig.app.json"
+        },
+    ]
+}

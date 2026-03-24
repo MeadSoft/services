@@ -1,0 +1,21 @@
+:host {
+    display: block;
+}
+
+.linked-accounts {
+    max-width: 400px;
+    margin: 20px auto;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    margin: 10px 0;
+}
+button {
+    margin-left: 10px;
+}
+.error {
+    color: #c00;
+}

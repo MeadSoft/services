@@ -1,0 +1,58 @@
+{
+    "name": "meadsoft",
+    "version": "0.0.0",
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve --configuration development --poll 1000 --host 0.0.0.0",
+        "build": "ng build",
+        "watch": "ng build --watch --configuration development",
+        "test": "ng test",
+        "serve:ssr:auth-playground-frontend": "node dist/auth-playground-frontend/server/server.mjs"
+    },
+    "nx": {
+        "name": "frontend"
+    },
+    "private": true,
+    "dependencies": {
+        "@meadsoft/common-browser": "workspace:*",
+        "@meadsoft/restaurant-catalog-contracts": "workspace:*",
+        "@meadsoft/common-http-client-angular": "workspace:*",
+        "@meadsoft/restaurant-catalog-client-angular": "workspace:*",
+        "@angular/animations": "^20.3.10",
+        "@angular/cdk": "^20.2.12",
+        "@angular/common": "^20.3.10",
+        "@angular/compiler": "^20.3.10",
+        "@angular/core": "^20.3.10",
+        "@angular/fire": "^20.0.1",
+        "@angular/forms": "^20.3.10",
+        "@angular/material": "^20.2.12",
+        "@angular/platform-browser": "^20.3.10",
+        "@angular/platform-browser-dynamic": "^20.3.10",
+        "@angular/platform-server": "^20.3.10",
+        "@angular/router": "^20.3.10",
+        "@angular/ssr": "^20.3.9",
+        "@primeuix/themes": "^1.2.5",
+        "@types/express": "^5.0.5",
+        "cookie-parser": "^1.4.7",
+        "express": "^5.1.0",
+        "firebase": "^12.5.0",
+        "keen-slider": "^6.8.6",
+        "postcss": "^8.5.6",
+        "primeicons": "^7.0.0",
+        "primeng": "^20.3.0",
+        "rxjs": "~7.8.0",
+        "tailwindcss": "^4.1.17",
+        "tailwindcss-primeui": "^0.6.1",
+        "tslib": "^2.3.0",
+        "zone.js": "~0.15.0"
+    },
+    "devDependencies": {
+        "@angular/build": "^20.3.9",
+        "@angular/cli": "^20.3.9",
+        "@angular/compiler-cli": "^20.3.10",
+        "@tailwindcss/postcss": "^4.1.17",
+        "@types/cookie-parser": "^1.4.10",
+        "@types/node": "^20.17.19",
+        "typescript": "~5.9.3"
+    }
+}
