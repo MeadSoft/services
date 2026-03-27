@@ -1,0 +1,15 @@
+.p-carousel-indicator-button {
+    @apply w-4 h-4 bg-cyan-100 dark:bg-cyan-500 rounded-full mx-1;
+}
+
+.p-carousel-indicator-button:hover {
+    @apply bg-cyan-200 dark:bg-cyan-600;
+}
+
+.p-carousel-content {
+    @apply gap-8;
+}
+
+.p-carousel-content-container {
+    @apply gap-8;
+}

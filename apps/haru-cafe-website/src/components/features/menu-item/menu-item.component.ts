@@ -1,13 +1,13 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { EMPTY_LENGTH } from '@meadsoft/common-browser';
 import type {
     IMenuItem,
     ISize,
     ITag,
 } from '@meadsoft/restaurant-catalog-contracts';
+import { ButtonModule } from 'primeng/button';
 import { ImageDialogDirective } from 'src/directives/image-dialog.directive';
 import { RestaurantCatalogClientService } from 'src/services/clients/restaurant-catalog-client.service';
 
@@ -19,19 +19,12 @@ import { RestaurantCatalogClientService } from 'src/services/clients/restaurant-
         MatRippleModule,
         ImageDialogDirective,
         CommonModule,
+        ButtonModule,
     ],
     templateUrl: './menu-item.component.html',
 })
 export class MenuItemComponent {
     menuItem = input.required<IMenuItem>();
-    isDetailShown = signal<boolean>(false);
-    hasDetail = computed<boolean>(
-        () =>
-            this.menuItem().imageUrl !== '' ||
-            (typeof this.menuItem().description === 'string' &&
-                (this.menuItem().description ?? '').length > EMPTY_LENGTH),
-    );
-
     relatedTags = signal<ITag[]>([]);
     relatedSizes = signal<ISize[]>([]);
 

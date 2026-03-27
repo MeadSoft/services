@@ -59,6 +59,10 @@ export const primeNgThemeProvider = providePrimeNG({
         preset: NoirAuraTheme,
         options: {
             darkModeSelector: DARK_MODE_SELECTOR,
+            cssLayer: {
+                name: 'primeng',
+                order: 'primeng, primeng-overrides',
+            },
         },
     },
 });
