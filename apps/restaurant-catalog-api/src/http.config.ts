@@ -1,6 +1,9 @@
-import { JsonConfigLoader, ZodSchema } from '@meadsoft/common-server';
+import {
+    FIRST_INDEX,
+    JsonConfigLoader,
+    ZodSchema,
+} from '@meadsoft/common-server';
 import { Provider } from '@nestjs/common';
-import { createZodDto } from 'nestjs-zod';
 import zod from 'zod';
 import path from 'path';
 
@@ -12,7 +15,11 @@ export const HttpConfigSchema = zod.object({
     port: zod.number().min(MINIMUM_PORT).max(MAXIMUM_PORT),
 });
 
-export class HttpConfig extends createZodDto(HttpConfigSchema) {}
+export type IHttpConfig = zod.infer<typeof HttpConfigSchema>;
+
+export class HttpConfig implements IHttpConfig {
+    port = FIRST_INDEX;
+}
 
 export class HttpConfigLoader extends JsonConfigLoader<HttpConfig> {
     constructor(configFileDirectory: string) {
