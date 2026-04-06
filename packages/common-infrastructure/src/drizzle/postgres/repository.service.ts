@@ -1,6 +1,11 @@
 import { SQL } from 'drizzle-orm';
 import { PgTable } from 'drizzle-orm/pg-core';
-import { EMPTY_LENGTH, FIRST_INDEX, IFilter, ISchema } from '@meadsoft/common-server';
+import {
+    EMPTY_LENGTH,
+    FIRST_INDEX,
+    IFilter,
+    ISchema,
+} from '@meadsoft/common-server';
 import {
     IQueryRepository,
     ICrudRepository,
@@ -12,11 +17,12 @@ import { IFilterTranslationService } from '../../contracts/filter-translation.sc
 export abstract class DrizzlePgQueryRepository<
     TModel extends object,
     TId = string,
+    TSchema extends Record<string, unknown> = Record<string, never>,
 > implements IQueryRepository<TModel, TId> {
     constructor(
         public readonly table: PgTable,
         protected schema: ISchema<TModel>,
-        protected unitOfWork: PostgresUnitOfWork,
+        protected unitOfWork: PostgresUnitOfWork<TSchema>,
         protected filterTranslationService: IFilterTranslationService<SQL>,
     ) {}
 
@@ -87,8 +93,9 @@ export abstract class DrizzlePgQueryRepository<
 export abstract class DrizzlePgCommandRepository<
     TModel extends object,
     TId = string,
+    TSchema extends Record<string, unknown> = Record<string, never>,
 >
-    extends DrizzlePgQueryRepository<TModel, TId>
+    extends DrizzlePgQueryRepository<TModel, TId, TSchema>
     implements ICrudRepository<TModel, TId>
 {
     async createOne(item: TModel): Promise<TModel> {

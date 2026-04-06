@@ -4,11 +4,16 @@ import { InfrastructureConfig } from '../../infrastructure.config';
 // import { Pool } from 'pg';
 
 @Injectable()
-export class PostgresDbService {
+export class PostgresDbService<
+    TSchema extends Record<string, unknown> = Record<string, never>,
+> {
     // private pool: Pool;
-    private _db: NodePgDatabase | null = null;
+    private _db: NodePgDatabase<TSchema> | null = null;
 
-    constructor(private readonly infrastructureConfig: InfrastructureConfig) {
+    constructor(
+        private readonly schema: TSchema,
+        private readonly infrastructureConfig: InfrastructureConfig,
+    ) {
         // for some reason, when using the pool the client is undefined
         // this.pool = new Pool({
         //     connectionString: this.infrastructureConfig.DATABASE_URL,
@@ -19,7 +24,9 @@ export class PostgresDbService {
     }
 
     getDatabase() {
-        this._db ??= drizzle(this.infrastructureConfig.DATABASE_URL);
+        this._db ??= drizzle(this.infrastructureConfig.DATABASE_URL, {
+            schema: this.schema,
+        });
         // for some reason, when using the pool the client is undefined
         // this._db = drizzle({ client: this.pool });
         return this._db;

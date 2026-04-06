@@ -4,13 +4,13 @@ import {
     DrizzlePgFilterTranslationService,
     PostgresUnitOfWork,
 } from '@meadsoft/common-infrastructure';
-import { Size, SizeSchema } from '@meadsoft/restaurant-catalog-contracts';
+import { ISize, SizeSchema } from '@meadsoft/restaurant-catalog-contracts';
 import { sizesTable } from '../tables/sizes.table';
 import { ZodSchema } from '@meadsoft/common-server';
 import { eq } from 'drizzle-orm';
 
 @Injectable()
-export class SizesRepository extends DrizzlePgCommandRepository<Size> {
+export class SizesRepository extends DrizzlePgCommandRepository<ISize> {
     constructor(
         protected override unitOfWork: PostgresUnitOfWork,
         filterTranslationService: DrizzlePgFilterTranslationService,

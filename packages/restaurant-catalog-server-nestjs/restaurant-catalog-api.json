@@ -1,0 +1,464 @@
+[
+  {
+    "v": 11,
+    "name": "Restaurant Catalog API",
+    "folders": [
+      {
+        "v": 11,
+        "name": "Menu Items",
+        "folders": [],
+        "requests": [
+          {
+            "v": "17",
+            "name": "One",
+            "method": "GET",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>/6e030c7c-4a8a-4bc8-9a32-130dbd9184b4",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "Many",
+            "method": "GET",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "One",
+            "method": "POST",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"name\": \"hello again\",\n  \"description\": \"world\",\n  \"imageUrl\": null,\n  \"price\": null,\n  \"isFavorite\": false,\n  \"isActive\": false\n}\n"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "One",
+            "method": "PUT",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>/79f459fb-38aa-4494-8e6f-c3c2379b3a89",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"id\": \"c2f952c6-b6ae-40e5-a01b-95b7788372a9\",\n  \"name\": \"hello again\",\n  \"description\": \"world\",\n  \"imageUrl\": null,\n  \"price\": null,\n  \"isFavorite\": false,\n  \"isActive\": false,\n  \"createdDate\": \"2025-12-04T04:24:17.141Z\",\n  \"updatedDate\": \"2025-12-04T04:24:17.141Z\",\n  \"createdById\": null,\n  \"updatedById\": null\n}\n"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "One",
+            "method": "DELETE",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>/c2f952c6-b6ae-40e5-a01b-95b7788272a9",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{}"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          }
+        ],
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "headers": [],
+        "variables": [
+          {
+            "currentValue": "",
+            "secret": false,
+            "initialValue": "",
+            "key": "resource"
+          }
+        ],
+        "description": null
+      },
+      {
+        "v": 11,
+        "name": "Tags",
+        "folders": [],
+        "requests": [
+          {
+            "v": "17",
+            "name": "One",
+            "method": "GET",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>/6e030c7c-4a8a-4bc8-9a32-130dbd9184b4",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "Many",
+            "method": "GET",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "One",
+            "method": "POST",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"name\": \"hello again\",\n  \"description\": \"world\",\n  \"imageUrl\": null,\n  \"price\": null,\n  \"isFavorite\": false,\n  \"isActive\": false\n}\n"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "One",
+            "method": "PUT",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>/79f459fb-38aa-4494-8e6f-c3c2379b3a89",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"id\": \"c2f952c6-b6ae-40e5-a01b-95b7788372a9\",\n  \"name\": \"hello again\",\n  \"description\": \"world\",\n  \"imageUrl\": null,\n  \"price\": null,\n  \"isFavorite\": false,\n  \"isActive\": false,\n  \"createdDate\": \"2025-12-04T04:24:17.141Z\",\n  \"updatedDate\": \"2025-12-04T04:24:17.141Z\",\n  \"createdById\": null,\n  \"updatedById\": null\n}\n"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "One",
+            "method": "DELETE",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>/c2f952c6-b6ae-40e5-a01b-95b7788272a9",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{}"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          }
+        ],
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "headers": [],
+        "variables": [
+          {
+            "secret": false,
+            "initialValue": "tags",
+            "key": "resource",
+            "currentValue": ""
+          }
+        ],
+        "description": null
+      },
+      {
+        "v": 11,
+        "name": "Menu Item To Tag",
+        "folders": [],
+        "requests": [
+          {
+            "v": "17",
+            "name": "One",
+            "method": "GET",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>/6e030c7c-4a8a-4bc8-9a32-130dbd9184b4",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "Many",
+            "method": "GET",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "One",
+            "method": "POST",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"name\": \"hello again\",\n  \"description\": \"world\",\n  \"imageUrl\": null,\n  \"price\": null,\n  \"isFavorite\": false,\n  \"isActive\": false\n}\n"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "One",
+            "method": "PUT",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>/79f459fb-38aa-4494-8e6f-c3c2379b3a89",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"id\": \"c2f952c6-b6ae-40e5-a01b-95b7788372a9\",\n  \"name\": \"hello again\",\n  \"description\": \"world\",\n  \"imageUrl\": null,\n  \"price\": null,\n  \"isFavorite\": false,\n  \"isActive\": false,\n  \"createdDate\": \"2025-12-04T04:24:17.141Z\",\n  \"updatedDate\": \"2025-12-04T04:24:17.141Z\",\n  \"createdById\": null,\n  \"updatedById\": null\n}\n"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          },
+          {
+            "v": "17",
+            "name": "One",
+            "method": "DELETE",
+            "endpoint": "<<transport>><<host>>:<<port>>/<<resource>>/c2f952c6-b6ae-40e5-a01b-95b7788272a9",
+            "params": [],
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "body": {
+              "contentType": "application/json",
+              "body": "{}"
+            },
+            "requestVariables": [],
+            "responses": {},
+            "description": null
+          }
+        ],
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "headers": [],
+        "variables": [
+          {
+            "secret": false,
+            "key": "resource",
+            "initialValue": "menu-item-to-tag",
+            "currentValue": ""
+          }
+        ],
+        "description": null
+      }
+    ],
+    "requests": [],
+    "auth": {
+      "authType": "none",
+      "authActive": true
+    },
+    "headers": [],
+    "variables": [],
+    "description": null
+  },
+  {
+    "v": 11,
+    "name": "Auth",
+    "folders": [],
+    "requests": [
+      {
+        "v": "17",
+        "name": "Firebase Auth",
+        "method": "POST",
+        "endpoint": "<<transport>><<host>>:<<port>>/auth/firebase-login",
+        "params": [],
+        "headers": [],
+        "preRequestScript": "",
+        "testScript": "",
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "body": {
+          "contentType": null,
+          "body": null
+        },
+        "requestVariables": [],
+        "responses": {},
+        "description": null
+      }
+    ],
+    "auth": {
+      "authType": "none",
+      "authActive": true
+    },
+    "headers": [],
+    "variables": [],
+    "description": null
+  },
+  {
+    "v": 11,
+    "name": "Debug",
+    "folders": [],
+    "requests": [
+      {
+        "v": "17",
+        "name": "Hello World",
+        "method": "GET",
+        "endpoint": "<<transport>><<host>>:<<port>>/debug/hello-world",
+        "params": [],
+        "headers": [],
+        "preRequestScript": "",
+        "testScript": "",
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "body": {
+          "contentType": null,
+          "body": null
+        },
+        "requestVariables": [],
+        "responses": {},
+        "description": null
+      }
+    ],
+    "auth": {
+      "authActive": true,
+      "authType": "none"
+    },
+    "headers": [],
+    "variables": [],
+    "description": ""
+  }
+]

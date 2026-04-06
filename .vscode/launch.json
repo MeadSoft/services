@@ -4,8 +4,26 @@
     "configurations": [
         {
             "type": "node",
-            "request": "launch",
+            "request": "attach",
+            "name": "Attach to Node",
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceFolder}/apps/haru-cafe-website/dist/**/*.mjs",
+                "${workspaceFolder}/apps/haru-cafe-website/dist/**/*.js",
+                "${workspaceFolder}/packages/*/dist/**/*.map"
+            ],
+            "resolveSourceMapLocations": [
+                "${workspaceFolder}/apps/haru-cafe-website/**",
+                "!**/node_modules/**"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
             "name": "Node: Debug Restaurant Catalog API",
+            "type": "node",
+            "request": "launch",
             "env": {
                 "APP_ENV": "local"
             },
@@ -14,16 +32,15 @@
                 "run",
                 "restaurant-catalog-api:start:debug"
             ],
-            "port": 9229,
             "console": "integratedTerminal",
+            "sourceMaps": true,
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "restart": true,
-            "sourceMaps": true,
             "outFiles": [
                 "${workspaceFolder}/apps/restaurant-catalog-api/dist/**/*.js",
-                "${workspaceFolder}/packages/*/dist/**/*.js"
+                "${workspaceFolder}/packages/*/dist/**/*.js",
+                "${workspaceFolder}/packages/*/dist/**/*.map"
             ],
             "resolveSourceMapLocations": [
                 "${workspaceFolder}/**",
@@ -31,9 +48,9 @@
             ]
         },
         {
+            "name": "Node: Debug Script",
             "type": "node",
             "request": "launch",
-            "name": "Node: Debug Script",
             "env": {
                 "APP_ENV": "local"
             },
@@ -44,14 +61,14 @@
             ],
             "port": 9229,
             "console": "integratedTerminal",
+            "sourceMaps": true,
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "restart": true,
-            "sourceMaps": true,
             "outFiles": [
                 "${workspaceFolder}/apps/restaurant-catalog-api/dist/**/*.js",
-                "${workspaceFolder}/packages/*/dist/**/*.js"
+                "${workspaceFolder}/packages/*/dist/**/*.js",
+                "${workspaceFolder}/packages/*/dist/**/*.map"
             ],
             "resolveSourceMapLocations": [
                 "${workspaceFolder}/**",
@@ -59,11 +76,39 @@
             ]
         },
         {
-            "name": "ng serve",
+            "name": "Angular: haru-cafe-website SSR",
+            "type": "node",
+            "request": "launch",
+            "env": {
+                "APP_ENV": "local"
+            },
+            "runtimeExecutable": "nx",
+            "runtimeArgs": [
+                "run",
+                "haru-cafe-website:serve:ssr:debug"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "outFiles": [
+                "${workspaceFolder}/apps/haru-cafe-website/dist/haru-cafe/server/**/*.mjs",
+                "${workspaceFolder}/apps/haru-cafe-website/dist/haru-cafe/server**/*.js",
+                "${workspaceFolder}/packages/*/dist/**/*.map"
+            ],
+            "resolveSourceMapLocations": [
+                "!**/node_modules/**"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+        },
+        {
+            "name": "Angular: haru-cafe-website (Microsoft Edge)",
             "type": "msedge",
             "request": "launch",
-            "preLaunchTask": "npm: start",
-            "url": "http://localhost:4200/"
+            "preLaunchTask": "Angular: serve haru-cafe-website",
+            "url": "http://localhost:4200/",
+            "webRoot": "${workspaceFolder}"
         }
-    ]
+    ],
 }

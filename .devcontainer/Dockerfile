@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu24.04
 
-# TODO: add installation of Nx
+EXPOSE 4200
 
 SHELL ["/bin/bash", "-c"]
 
@@ -10,7 +10,7 @@ ENV NODE_VERSION=24
 # general ubuntu
 
 RUN apt update --yes && \
-    apt install git iputils-ping unzip sudo --yes && \
+    apt install acl git iputils-ping unzip sudo --yes && \
     rm -rf /var/lib/apt/lists/*w
 
 # create user if it doesn't exist and add to sudo group
@@ -62,6 +62,13 @@ RUN apt install python3 -y && \
     alias pip=pip3
 
 #################################################
+# postgres client tools (psql, pg_isready, pg_dump, etc.)
+
+RUN apt-get update --yes && \
+    apt-get install --yes postgresql-client && \
+    rm -rf /var/lib/apt/lists/*
+
+#################################################
 # gcloud
 
 RUN sudo apt-get install apt-transport-https ca-certificates gnupg curl --yes && \
@@ -86,5 +93,4 @@ RUN wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /us
 #################################################
 
 USER vscode
-
 ENTRYPOINT ["tail", "-f", "/dev/null"]

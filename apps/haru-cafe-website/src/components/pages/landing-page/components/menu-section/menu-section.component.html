@@ -78,35 +78,50 @@
     </div>
     <haru-filters></haru-filters>
     <div class="mt-8">
-        <p-carousel
-            [value]="pagedMenuItems()"
-            [numVisible]="1"
-            [numScroll]="1"
-            [circular]="pagedMenuItems().length > 1"
-            [showIndicators]="true"
-            [showNavigators]="false"
-        >
-            <ng-template #item let-pageOfMenuItems>
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3 gap-4 h-full"
-                >
-                    @for (menuItem of pageOfMenuItems; track $index) {
-                        <haru-menu-item
-                            #menuItemRef
-                            [menuItem]="menuItem"
-                        ></haru-menu-item>
-                    }
-                    @for (
-                        empty of createEmptyArray(
-                            pageSize - pageOfMenuItems.length
-                        );
-                        track $index
-                    ) {
-                        <div class="h-full"></div>
-                    }
-                </div>
-            </ng-template>
-        </p-carousel>
+        @if (this.menuItems.error()) {
+            <div class="text-red-500 text-center">
+                Failed to load menu items
+            </div>
+        } @else if (
+            this.menuItems.status() === 'loading' ||
+            this.menuItems.status() === 'reloading'
+        ) {
+            <div class="text-gray-500 text-center">Loading menu items...</div>
+        } @else if (
+            this.menuItems.hasValue() && this.menuItems.value().length === 0
+        ) {
+            <div class="text-gray-500 text-center">No menu items found.</div>
+        } @else {
+            <p-carousel
+                [value]="pagedMenuItems()"
+                [numVisible]="1"
+                [numScroll]="1"
+                [circular]="pagedMenuItems().length > 1"
+                [showIndicators]="true"
+                [showNavigators]="false"
+            >
+                <ng-template #item let-pageOfMenuItems>
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3 gap-4 h-full"
+                    >
+                        @for (menuItem of pageOfMenuItems; track $index) {
+                            <haru-menu-item
+                                #menuItemRef
+                                [menuItem]="menuItem"
+                            ></haru-menu-item>
+                        }
+                        @for (
+                            empty of createEmptyArray(
+                                PAGE_SIZE - pageOfMenuItems.length
+                            );
+                            track $index
+                        ) {
+                            <div class="h-full"></div>
+                        }
+                    </div>
+                </ng-template>
+            </p-carousel>
+        }
     </div>
 
     <!-- location -->

@@ -3,6 +3,7 @@ import {
     IMenuItemToSize,
     MenuItemToSize,
     MenuItemToSizeSchema,
+    MENU_ITEM_TO_SIZE_RESOURCE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import {
     createCommandController,
@@ -23,10 +24,8 @@ const menuItemToSizeCommandController = createCommandController<
     IMenuItemToSize
 >(MenuItemToSize, MenuItemToSizeSchema, MenuItemToSizeSchema);
 
-const RESOURCE_NAME = 'menu-item-to-size';
-
 @ApiTags(RESTAURANT_CATALOG_TAG)
-@Controller(RESOURCE_NAME)
+@Controller(MENU_ITEM_TO_SIZE_RESOURCE_NAME)
 export class MenuItemToSizeQueryController extends menuItemToSizeQueryController {
     constructor(service: MenuItemToSizeQueryService) {
         super(service);
@@ -34,7 +33,7 @@ export class MenuItemToSizeQueryController extends menuItemToSizeQueryController
 }
 
 @ApiTags(RESTAURANT_CATALOG_TAG)
-@Controller(RESOURCE_NAME)
+@Controller(MENU_ITEM_TO_SIZE_RESOURCE_NAME)
 export class MenuItemToSizeCommandController extends menuItemToSizeCommandController {
     constructor(service: MenuItemToSizeCommandService) {
         super(service);

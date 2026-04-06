@@ -1,16 +1,19 @@
 {
-    "name": "meadsoft",
+    "name": "@meadsoft/haru-cafe-website",
+    "nx": {
+        "name": "haru-cafe-website"
+    },
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
         "start": "ng serve --configuration development --poll 1000 --host 0.0.0.0",
+        "start:debug": "NODE_OPTIONS=--inspect ng serve --configuration development --poll 1000 --host 0.0.0.0",
         "build": "ng build",
+        "build:development": "ng build --configuration development",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "serve:ssr:auth-playground-frontend": "node dist/auth-playground-frontend/server/server.mjs"
-    },
-    "nx": {
-        "name": "frontend"
+        "serve:ssr": "node dist/haru-cafe/server/server.mjs",
+        "serve:ssr:debug": "node --inspect --enable-source-maps dist/haru-cafe/server/server.mjs"
     },
     "private": true,
     "dependencies": {

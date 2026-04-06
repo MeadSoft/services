@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Tag, TagSchema } from '@meadsoft/restaurant-catalog-contracts';
+import { ITag, TagSchema } from '@meadsoft/restaurant-catalog-contracts';
 import {
     DrizzlePgCommandRepository,
     DrizzlePgFilterTranslationService,
@@ -10,7 +10,7 @@ import { ZodSchema } from '@meadsoft/common-server';
 import { eq } from 'drizzle-orm';
 
 @Injectable()
-export class TagsRepository extends DrizzlePgCommandRepository<Tag> {
+export class TagsRepository extends DrizzlePgCommandRepository<ITag> {
     constructor(
         protected override unitOfWork: PostgresUnitOfWork,
         filterTranslationService: DrizzlePgFilterTranslationService,

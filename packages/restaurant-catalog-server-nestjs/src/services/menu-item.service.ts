@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {
     IMenuItem,
+    IMenuItemWithRelations,
     INewMenuItem,
 } from '@meadsoft/restaurant-catalog-contracts';
 import { ChangeHistoryService, EntityService } from '@meadsoft/common-nestjs';
@@ -11,8 +12,18 @@ import { MenuItemEntity } from '../domain/menu-item.entity';
 
 @Injectable()
 export class MenuItemQueryService extends QueryService<IMenuItem> {
-    constructor(repository: MenuItemRepository) {
-        super(repository);
+    constructor(private readonly _repository: MenuItemRepository) {
+        super(_repository);
+    }
+
+    async findOneWithRelations(
+        id: string,
+    ): Promise<IMenuItemWithRelations | null> {
+        return await this._repository.findOneWithRelations(id);
+    }
+
+    async findManyWithRelations(): Promise<IMenuItemWithRelations[]> {
+        return await this._repository.findManyWithRelations();
     }
 }
 

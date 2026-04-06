@@ -3,7 +3,10 @@ import { AggregateRoot } from '@meadsoft/common-application';
 import { EMPTY_LENGTH } from '@meadsoft/common-server';
 import { EntityService } from '@meadsoft/common-nestjs';
 import { MenuItemCreatedEvent } from './events/menu-item-created.event';
-import { IMenuItem, NewMenuItem } from '@meadsoft/restaurant-catalog-contracts';
+import {
+    IMenuItem,
+    INewMenuItem,
+} from '@meadsoft/restaurant-catalog-contracts';
 
 export class MenuItemEntity extends AggregateRoot implements IMenuItem {
     public name!: string;
@@ -15,7 +18,7 @@ export class MenuItemEntity extends AggregateRoot implements IMenuItem {
 
     public static create(
         userId: string,
-        newMenuItem: NewMenuItem,
+        newMenuItem: INewMenuItem,
         entityService: EntityService,
     ): Result<MenuItemEntity, Error> {
         const menuItem = new MenuItemEntity();

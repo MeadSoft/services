@@ -6,30 +6,28 @@ export class QueryClient<
     TModel extends Entity,
 > implements IQueryClient<TModel> {
     constructor(
-        protected readonly base_path: string,
-        protected readonly resource_name: string,
+        public readonly basePath: string,
+        protected readonly resourceName: string,
         protected readonly http: HttpClient,
     ) {}
 
+    getApiUrl(): string {
+        return `${this.basePath}/${this.resourceName}`;
+    }
+
     async countRows(): Promise<number> {
         return firstValueFrom(
-            this.http.get<number>(
-                `${this.base_path}/${this.resource_name}/count`,
-            ),
+            this.http.get<number>(`${this.getApiUrl()}/count`),
         );
     }
 
     async findOne(id: string): Promise<TModel | null> {
         return firstValueFrom(
-            this.http.get<TModel>(
-                `${this.base_path}/${this.resource_name}/${id}`,
-            ),
+            this.http.get<TModel>(`${this.getApiUrl()}/${id}`),
         );
     }
 
     async findMany(): Promise<TModel[]> {
-        return firstValueFrom(
-            this.http.get<TModel[]>(`${this.base_path}/${this.resource_name}`),
-        );
+        return firstValueFrom(this.http.get<TModel[]>(this.getApiUrl()));
     }
 }

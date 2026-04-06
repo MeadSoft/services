@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Err, Result } from 'ts-results';
 import { DomainEventPublisher } from '@meadsoft/common-application';
-import { IMenuItem, NewMenuItem } from '@meadsoft/restaurant-catalog-contracts';
+import {
+    IMenuItem,
+    INewMenuItem,
+} from '@meadsoft/restaurant-catalog-contracts';
 import { EntityService } from '@meadsoft/common-nestjs';
 import {
     MenuItemCommandService,
@@ -19,7 +22,7 @@ export class MenuItemDomainService {
     ) {}
 
     async create(
-        newMenuItem: NewMenuItem,
+        newMenuItem: INewMenuItem,
         userId: string,
     ): Promise<Result<IMenuItem, Error>> {
         const menuItem = MenuItemEntity.create(

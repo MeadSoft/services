@@ -6,6 +6,9 @@
     "compilerOptions": {
         "emitDeclarationOnly": false,
         "emitDecoratorMetadata": false,
+        "sourceMap": true,
+        "inlineSources": false,
+        "inlineSourceMap": false,
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,

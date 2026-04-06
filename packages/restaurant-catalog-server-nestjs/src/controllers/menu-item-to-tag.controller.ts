@@ -3,6 +3,7 @@ import {
     IMenuItemToTag,
     MenuItemToTag,
     MenuItemToTagSchema,
+    MENU_ITEM_TO_TAG_RESOURCE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import {
     createCommandController,
@@ -23,10 +24,8 @@ const menuItemToTagCommandController = createCommandController<
     IMenuItemToTag
 >(MenuItemToTag, MenuItemToTagSchema, MenuItemToTagSchema);
 
-const RESOURCE_NAME = 'menu-item-to-tag';
-
 @ApiTags(RESTAURANT_CATALOG_TAG)
-@Controller(RESOURCE_NAME)
+@Controller(MENU_ITEM_TO_TAG_RESOURCE_NAME)
 export class MenuItemToTagQueryController extends menuItemToTagQueryController {
     constructor(service: MenuItemToTagQueryService) {
         super(service);
@@ -34,7 +33,7 @@ export class MenuItemToTagQueryController extends menuItemToTagQueryController {
 }
 
 @ApiTags(RESTAURANT_CATALOG_TAG)
-@Controller(RESOURCE_NAME)
+@Controller(MENU_ITEM_TO_TAG_RESOURCE_NAME)
 export class MenuItemToTagCommandController extends menuItemToTagCommandController {
     constructor(service: MenuItemToTagCommandService) {
         super(service);

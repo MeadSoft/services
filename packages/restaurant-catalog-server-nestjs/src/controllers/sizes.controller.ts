@@ -1,9 +1,10 @@
 import { Controller } from '@nestjs/common';
 import {
-    NewSize,
+    INewSize,
     NewSizeSchema,
     Size,
     SizeSchema,
+    SIZE_RESOURCE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import {
     createCommandController,
@@ -18,16 +19,14 @@ import { RESTAURANT_CATALOG_TAG } from './api-tags';
 
 const sizesQueryController = createQueryController<Size>(Size);
 
-const sizesCommandController = createCommandController<NewSize, Size>(
+const sizesCommandController = createCommandController<INewSize, Size>(
     Size,
     NewSizeSchema,
     SizeSchema,
 );
 
-const RESOURCE_NAME = 'sizes';
-
 @ApiTags(RESTAURANT_CATALOG_TAG)
-@Controller(RESOURCE_NAME)
+@Controller(SIZE_RESOURCE_NAME)
 export class SizesQueryController extends sizesQueryController {
     constructor(service: SizeQueryService) {
         super(service);
@@ -35,7 +34,7 @@ export class SizesQueryController extends sizesQueryController {
 }
 
 @ApiTags(RESTAURANT_CATALOG_TAG)
-@Controller(RESOURCE_NAME)
+@Controller(SIZE_RESOURCE_NAME)
 export class SizesCommandController extends sizesCommandController {
     constructor(service: SizeCommandService) {
         super(service);

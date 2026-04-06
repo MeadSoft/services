@@ -2,7 +2,7 @@ import { IConfig } from './config.schema';
 
 export const config: IConfig = {
     production: false,
-    apiBaseUrl: 'http://localhost:3000',
+    apiBaseUrl: 'http://localhost:3000/api',
     firebase: {
         apiKey: '',
         authDomain: 'smart-quasar-297403.firebaseapp.com',

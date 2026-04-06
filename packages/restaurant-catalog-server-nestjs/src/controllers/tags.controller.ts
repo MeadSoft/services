@@ -1,9 +1,10 @@
 import { Controller } from '@nestjs/common';
 import {
-    NewTag,
+    INewTag,
     NewTagSchema,
     Tag,
     TagSchema,
+    TAG_RESOURCE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import {
     createCommandController,
@@ -15,16 +16,14 @@ import { RESTAURANT_CATALOG_TAG } from './api-tags';
 
 const tagsQueryController = createQueryController<Tag>(Tag);
 
-const tagsCommandController = createCommandController<NewTag, Tag>(
+const tagsCommandController = createCommandController<INewTag, Tag>(
     Tag,
     NewTagSchema,
     TagSchema,
 );
 
-const RESOURCE_NAME = 'tags';
-
 @ApiTags(RESTAURANT_CATALOG_TAG)
-@Controller(RESOURCE_NAME)
+@Controller(TAG_RESOURCE_NAME)
 export class TagsQueryController extends tagsQueryController {
     constructor(service: TagsQueryService) {
         super(service);
@@ -32,7 +31,7 @@ export class TagsQueryController extends tagsQueryController {
 }
 
 @ApiTags(RESTAURANT_CATALOG_TAG)
-@Controller(RESOURCE_NAME)
+@Controller(TAG_RESOURCE_NAME)
 export class TagsCommandController extends tagsCommandController {
     constructor(service: TagsCommandService) {
         super(service);

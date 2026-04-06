@@ -11,7 +11,7 @@
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "scripts": {
-        "build": "../../scripts/build-and-bundle.sh"
+        "build": "tsc --build tsconfig.lib.json"
     },
     "exports": {
         "./package.json": "./package.json",
@@ -19,7 +19,7 @@
             "@meadsoft/monorepo": "./src/index.ts",
             "types": "./dist/index.d.ts",
             "import": "./dist/index.js",
-            "require": "./dist/index.cjs",
+            "require": "./dist/index.js",
             "default": "./dist/index.js"
         }
     },
@@ -29,9 +29,9 @@
     "dependencies": {
         "@meadsoft/common-browser": "workspace:*",
         "@angular/common": "^20.3.10",
+        "@angular/core": "^20.3.10",
         "rxjs": "~7.8.0",
         "tslib": "^2.3.0",
-        "tsup": "^8.5.1",
         "zod": "^4.1.12"
     }
 }

@@ -9,7 +9,7 @@ export interface IConfig {
 export class Config implements IConfig {
     production = false;
     apiBaseUrl = '';
-    firebase = {
+    firebase: FirebaseOptions = {
         apiKey: '',
         authDomain: '',
         projectId: '',

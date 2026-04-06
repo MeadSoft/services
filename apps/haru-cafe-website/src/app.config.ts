@@ -4,29 +4,33 @@ import {
     provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { routes } from './routing/app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import {
     provideClientHydration,
     withEventReplay,
 } from '@angular/platform-browser';
-import { primeNgThemeProvider } from './theme.config';
-import { HttpCookieCredentialsInterceptor } from './interceptors/http-cookie-credentials.interceptor';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { provideRestaurantCatalog } from '@meadsoft/restaurant-catalog-client-angular';
+import { EMPTY_LENGTH } from '@meadsoft/common-browser';
+import { routes } from './routing/app.routes';
+import { HttpCookieCredentialsInterceptor } from './interceptors/http-cookie-credentials.interceptor';
+import { primeNgThemeProvider } from './theme.config';
 import { Config } from './configs/config.schema';
 import { config } from './configs/config';
 
-const hasFirebaseApiKey = (config.firebase.apiKey ?? '').trim().length > 0;
+const hasFirebaseApiKey =
+    (config.firebase.apiKey ?? '').trim().length > EMPTY_LENGTH;
 
 export const appConfig: ApplicationConfig = {
     providers: [
+        // ##################################################
+        // code infra
         provideRouter(routes),
         provideHttpClient(),
         provideClientHydration(withEventReplay()),
         provideZonelessChangeDetection(),
         provideBrowserGlobalErrorListeners(),
-        { provide: Config, useValue: config },
         ...(hasFirebaseApiKey
             ? [
                   provideFirebaseApp(() => initializeApp(config.firebase)),
@@ -40,5 +44,10 @@ export const appConfig: ApplicationConfig = {
         },
         primeNgThemeProvider,
         // ...googleAuthProviders,
+
+        // ##################################################
+        // business services
+        { provide: Config, useValue: config },
+        provideRestaurantCatalog(config.apiBaseUrl),
     ],
 };

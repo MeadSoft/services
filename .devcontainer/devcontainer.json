@@ -9,20 +9,16 @@
     "updateRemoteUserUID": true,
     "privileged": true,
     "containerEnv": {
-        "WORKSPACE_FOLDER": "${containerWorkspaceFolder}"
+        "WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
+        "DOCKER_HOST": "unix:///var/run/docker.sock"
     },
     "portsAttributes": {
-        "5432": {
-            "label": "PostgreSQL",
-            "onAutoForward": "notify"
-        },
         "4200": {
-            "label": "Angular Dev Server",
+            "label": "Angular",
             "onAutoForward": "notify"
         }
     },
     "forwardPorts": [
-        5432,
         4200
     ],
     "mounts": [
@@ -44,6 +40,7 @@
     ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/${localWorkspaceFolderBasename}/,type=bind",
     "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
+    "postStartCommand": "sudo bash -lc 'if [ -S /var/run/docker.sock ]; then setfacl -m u:vscode:rw /var/run/docker.sock; fi'",
     "postCreateCommand": "chmod 755 -R /workspace/${localWorkspaceFolderBasename}/.devcontainer/scripts; /workspace/${localWorkspaceFolderBasename}/.devcontainer/scripts/post-create.sh",
     "customizations": {
         "vscode": {

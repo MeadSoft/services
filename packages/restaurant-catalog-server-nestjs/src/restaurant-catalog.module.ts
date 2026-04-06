@@ -1,5 +1,9 @@
 import { Module } from '@nestjs/common';
-import { DrizzlePgModule } from '@meadsoft/common-infrastructure';
+import {
+    DrizzlePgModule,
+    PostgresUnitOfWork,
+    UnitOfWorkService,
+} from '@meadsoft/common-infrastructure';
 import { CommonModule } from '@meadsoft/common-nestjs';
 import { MenuItemRepository } from './database/repositories/menu-items.repo';
 import { SizesRepository } from './database/repositories/sizes.repo';
@@ -38,6 +42,10 @@ import {
     MenuItemToTagCommandController,
     MenuItemToTagQueryController,
 } from './controllers';
+import {
+    RestaurantCatalogDbService,
+    RestaurantCatalogUnitOfWork,
+} from './database/repositories/restaurant-catalog-database.service';
 
 @Module({
     imports: [DrizzlePgModule, CommonModule],
@@ -54,6 +62,18 @@ import {
         MenuItemToTagCommandController,
     ],
     providers: [
+        // database
+        RestaurantCatalogUnitOfWork,
+        RestaurantCatalogDbService,
+        {
+            provide: PostgresUnitOfWork,
+            useExisting: RestaurantCatalogUnitOfWork,
+        },
+        {
+            provide: UnitOfWorkService,
+            useExisting: RestaurantCatalogUnitOfWork,
+        },
+        //
         MenuItemRepository,
         MenuItemQueryService,
         MenuItemCommandService,

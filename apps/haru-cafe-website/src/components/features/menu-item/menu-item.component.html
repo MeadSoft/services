@@ -17,15 +17,15 @@
             <p class="text font-medium">
                 {{ menuItem().price | currency }}
             </p>
-            @if (relatedSizes().length > 0) {
-                @for (size of relatedSizes(); track $index) {
+            @if (menuItem().sizes.length > 0) {
+                @for (size of menuItem().sizes; track $index) {
                     <p class="text-sm text-gray-500">{{ size.name }}</p>
                 }
             }
-            @if (hasTagWithId('0d8e4e3d-c5e0-445c-a851-0964404fc376')) {
+            @if (hasHotTag()) {
                 <p class="text-sm text-gray-500">Hot</p>
             }
-            @if (hasTagWithId('d539e003-5c0e-480a-8a4d-fac5b4db8d99')) {
+            @if (hasColdTag()) {
                 <p class="text-sm text-gray-500">Cold</p>
             }
         </div>

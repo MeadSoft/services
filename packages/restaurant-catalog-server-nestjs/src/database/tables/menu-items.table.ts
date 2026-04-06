@@ -5,6 +5,7 @@ import {
     MENU_ITEM_IS_ACTIVE_DEFAULT,
     MENU_ITEM_IS_FAVORITE_DEFAULT,
 } from '@meadsoft/restaurant-catalog-contracts';
+import { menuItemToSizeTable } from './menu-item-to-size.table';
 import { menuItemToTagTable } from './menu-item-to-tag.table';
 import { restaurantCatalogSchema } from './restaurant-catalog.db-schema';
 
@@ -22,8 +23,7 @@ export const menuItemsTable = restaurantCatalogSchema.table(
         isActive: boolean().default(MENU_ITEM_IS_ACTIVE_DEFAULT).notNull(),
     },
 );
-
 export const menuItemsRelations = relations(menuItemsTable, ({ many }) => ({
     menuItemsToTags: many(menuItemToTagTable),
-    sizes: many(menuItemToTagTable),
+    menuItemsToSizes: many(menuItemToSizeTable),
 }));

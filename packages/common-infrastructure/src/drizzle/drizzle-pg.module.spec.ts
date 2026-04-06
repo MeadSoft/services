@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PostgresUnitOfWork } from './postgres/unit-of-work.service';
-import { PostgresDbService } from './postgres/postgres-db.service';
 import { InfrastructureConfig } from '../infrastructure.config';
 import { DrizzlePgModule } from './drizzle-pg.module';
+import { DrizzlePgFilterTranslationService } from './postgres/filter-translation.service';
+import { FilterTranslationService } from '../contracts';
 
 describe('DrizzlePgModule', () => {
     let module: TestingModule;
@@ -20,25 +20,31 @@ describe('DrizzlePgModule', () => {
         expect(module).toBeDefined();
     });
 
-    it('should provide PostgresUnitOfWork', () => {
-        const service = module.get<PostgresUnitOfWork>(PostgresUnitOfWork);
+    it('should provide DrizzlePgFilterTranslationService', () => {
+        const service = module.get<DrizzlePgFilterTranslationService>(
+            DrizzlePgFilterTranslationService,
+        );
         expect(service).toBeDefined();
     });
 
-    it('should provide PostgresDbService', () => {
-        const service = module.get<PostgresDbService>(PostgresDbService);
+    it('should provide FilterTranslationService', () => {
+        const service = module.get<FilterTranslationService>(
+            FilterTranslationService,
+        );
         expect(service).toBeDefined();
     });
 
-    it('should export PostgresUnitOfWork', () => {
-        const exportedService =
-            module.get<PostgresUnitOfWork>(PostgresUnitOfWork);
+    it('should export DrizzlePgFilterTranslationService', () => {
+        const exportedService = module.get<DrizzlePgFilterTranslationService>(
+            DrizzlePgFilterTranslationService,
+        );
         expect(exportedService).toBeDefined();
     });
 
-    it('should export PostgresDbService', () => {
-        const exportedService =
-            module.get<PostgresDbService>(PostgresDbService);
+    it('should export FilterTranslationService', () => {
+        const exportedService = module.get<FilterTranslationService>(
+            FilterTranslationService,
+        );
         expect(exportedService).toBeDefined();
     });
 });

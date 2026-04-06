@@ -12,21 +12,12 @@ export class CrudClient<TModel extends Entity, TNewModel>
     extends QueryClient<TModel>
     implements ICrudClient<TNewModel, TModel>
 {
-    constructor(
-        protected readonly basePath: string,
-        protected readonly resourceName: string,
-        http: HttpClient,
-    ) {
+    constructor(basePath: string, resourceName: string, http: HttpClient) {
         super(basePath, resourceName, http);
     }
 
     async createOne(item: TNewModel): Promise<TModel> {
-        return firstValueFrom(
-            this.http.post<TModel>(
-                `${this.basePath}/${this.resourceName}`,
-                item,
-            ),
-        );
+        return firstValueFrom(this.http.post<TModel>(this.getApiUrl(), item));
     }
 
     async createMany(...items: TNewModel[]): Promise<TModel[]> {
