@@ -61,7 +61,7 @@ export const primeNgThemeProvider = providePrimeNG({
             darkModeSelector: DARK_MODE_SELECTOR,
             cssLayer: {
                 name: 'primeng',
-                order: 'primeng, primeng-overrides',
+                order: 'theme, base, primeng, primeng-overrides',
             },
         },
     },

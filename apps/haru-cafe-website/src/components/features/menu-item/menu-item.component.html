@@ -1,42 +1,50 @@
 <div
-    class="flex flex-col flex-col-reverse md:flex-row justify-between haru-card !p-0 rounded-lg transition-all"
+    class="w-[20rem] h-[20rem] flex flex-col gap-0.5 justify-end haru-card rounded-lg transition-all relative overflow-hidden"
+    [style.backgroundImage]="'url(' + menuItem().imageUrl + ')'"
+    [style.backgroundSize]="'cover'"
+    [style.backgroundPosition]="'center'"
+    (mouseenter)="isHovered.set(true)"
+    (mouseleave)="isHovered.set(false)"
 >
-    <div class="grow flex flex-col justify-between p-4">
-        <div>
-            <div class="font-bold flex items-start gap-1 mb-2">
-                @if (menuItem().isFavorite) {
-                    <mat-icon inline class="text-yellow-500">star</mat-icon>
-                }
-                {{ menuItem().name }}
-            </div>
-            @if (menuItem().description) {
-                <p class="text-sm">{{ menuItem().description }}</p>
+    <div
+        class="transition-transform"
+        [class.h-none]="isHovered()"
+        [class.h-[15rem]]="isHovered() === false"
+    ></div>
+    <div
+        class="bg-white dark:bg-slate-900 p-2 rounded-lg shadow-lg transition-transform -m-4"
+    >
+        <div class="font-bold flex items-start gap-1 mb-2">
+            @if (menuItem().isFavorite) {
+                <mat-icon inline class="text-yellow-500">star</mat-icon>
             }
+            {{ menuItem().name }}
         </div>
-        <div class="flex gap-2 items-center">
+        @if (menuItem().description) {
+            <p class="text-sm">{{ menuItem().description }}</p>
+        }
+        <div class="flex gap-2 items-end">
             <p class="text font-medium">
                 {{ menuItem().price | currency }}
             </p>
             @if (menuItem().sizes.length > 0) {
                 @for (size of menuItem().sizes; track $index) {
-                    <p class="text-sm text-gray-500">{{ size.name }}</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                        {{ size.name }}
+                    </p>
                 }
             }
             @if (hasHotTag()) {
-                <p class="text-sm text-gray-500">Hot</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Hot</p>
             }
             @if (hasColdTag()) {
-                <p class="text-sm text-gray-500">Cold</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Cold</p>
+            }
+            @for (tagName of displayOnlyTags(); track $index) {
+                <p class="text-sm text-slate-500 dark:text-slate-400">
+                    {{ tagName }}
+                </p>
             }
         </div>
     </div>
-
-    <!-- @if (menuItem().imageUrl && menuItem().imageUrl !== '') {
-        <img
-            imageDialog
-            [src]="menuItem().imageUrl"
-            [alt]="menuItem().name"
-            class="object-cover h-[15em] md:h-[10em] rounded-lg cursor-pointer bg-white border-teal-200 border-solid border-s-2"
-        />
-    } -->
 </div>

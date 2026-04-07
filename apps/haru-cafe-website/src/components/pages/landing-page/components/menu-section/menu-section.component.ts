@@ -7,6 +7,8 @@ import { EMPTY_LENGTH } from '@meadsoft/common-browser';
 import { MenuItemsWithRelationsStore } from '@meadsoft/restaurant-catalog-client-angular';
 import { IMenuItemWithRelations } from '@meadsoft/restaurant-catalog-contracts';
 import { CarouselModule } from 'primeng/carousel';
+import { SkeletonModule } from 'primeng/skeleton';
+import { TooltipModule } from 'primeng/tooltip';
 import { FiltersComponent } from 'src/components/features/filters/filters.component';
 import { FooterComponent } from 'src/components/features/footer/footer.component';
 import { MenuItemComponent } from 'src/components/features/menu-item/menu-item.component';
@@ -23,6 +25,8 @@ import { FilterService } from 'src/services/filter.service';
         FiltersComponent,
         MenuItemComponent,
         FooterComponent,
+        TooltipModule,
+        SkeletonModule,
     ],
     templateUrl: './menu-section.component.html',
 })

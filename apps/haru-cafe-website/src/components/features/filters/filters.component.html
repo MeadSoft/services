@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full gap-0.5">
+<div class="flex flex-col w-full gap-0">
     @for (parentTag of tagGraphService.getNodes(); track $index) {
         <p-selectbutton
             [options]="parentTag.childTagIds"

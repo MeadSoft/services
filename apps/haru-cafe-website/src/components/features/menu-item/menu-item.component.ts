@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import type { IMenuItemWithRelations } from '@meadsoft/restaurant-catalog-contracts';
@@ -20,6 +20,7 @@ import { ImageDialogDirective } from 'src/directives/image-dialog.directive';
 })
 export class MenuItemComponent {
     menuItem = input.required<IMenuItemWithRelations>();
+    isHovered = signal<boolean>(false);
 
     hasHotTag(): boolean {
         return this.menuItem().tags.some((t) => t.name.toLowerCase() === 'hot');
@@ -29,5 +30,17 @@ export class MenuItemComponent {
         return this.menuItem().tags.some(
             (t) => t.name.toLowerCase() === 'cold',
         );
+    }
+
+    displayOnlyTags(): string[] {
+        return this.menuItem()
+            .tags.filter(
+                (t) =>
+                    t.name.toLowerCase() !== 'hot' &&
+                    t.name.toLowerCase() !== 'drink' &&
+                    t.name.toLowerCase() !== 'food' &&
+                    t.name.toLowerCase() !== 'cold',
+            )
+            .map((t) => t.name);
     }
 }
