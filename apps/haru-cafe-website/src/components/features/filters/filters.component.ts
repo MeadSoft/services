@@ -1,21 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-    MatButtonToggleChange,
-    MatButtonToggleModule,
-} from '@angular/material/button-toggle';
-import { MatChipsModule } from '@angular/material/chips';
-import { FilterService } from 'src/services/filter.service';
-import { ITagNode } from 'src/data/category-nodes';
-import {
-    NOT_FOUND_INDEX,
-    TagGraphService,
-} from 'src/services/category-graph.service';
+    SelectButtonChangeEvent,
+    SelectButtonModule,
+} from 'primeng/selectbutton';
 import { FIRST_INDEX } from '@meadsoft/common-browser';
+import { FilterService } from 'src/services/filter.service';
+import { ITagNode } from 'src/data/tag-nodes';
+import { TagGraphService } from 'src/services/tag-graph.service';
+import { TagsStore } from '@meadsoft/restaurant-catalog-client-angular';
 
 @Component({
     selector: 'haru-filters',
-    imports: [MatButtonToggleModule, MatChipsModule, CommonModule],
+    imports: [CommonModule, SelectButtonModule],
     templateUrl: './filters.component.html',
 })
 export class FiltersComponent {
@@ -24,6 +21,7 @@ export class FiltersComponent {
     constructor(
         protected filtersService: FilterService,
         protected tagGraphService: TagGraphService,
+        protected tagsStore: TagsStore,
     ) {
         this.currentOptions = [this.tagGraphService.getRootNode()];
     }
@@ -34,20 +32,28 @@ export class FiltersComponent {
         };
     }
 
-    onToggleButtonClicked(event: MatButtonToggleChange) {
+    onToggleButtonClicked(event: SelectButtonChangeEvent, depth: number) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-        const tagId = event.source.value as string;
+        const tagName = event.value as string | null;
         let activeTags = this.filtersService.activeTags();
-        const root = this.tagGraphService.getRootNode();
-        const depth = this.tagGraphService.getDepthOfTag(root, tagId);
-        if (depth === NOT_FOUND_INDEX) {
-            console.error(`Tag ${tagId} not found in category graph`);
+        if (tagName === null) {
+            activeTags = activeTags.slice(FIRST_INDEX, depth);
+            this.filtersService.activeTags.set(activeTags);
             return;
         }
-        const isAlreadyActive = activeTags.includes(tagId);
+        const isAlreadyActive = activeTags.some(
+            (tag_) => tag_.name === tagName,
+        );
         activeTags = activeTags.slice(FIRST_INDEX, depth);
         if (isAlreadyActive == false) {
-            activeTags.push(tagId);
+            const tag = this.tagsStore.resource
+                .value()
+                .find((tag_) => tag_.name === tagName);
+            if (tag === undefined) {
+                console.error(`Tag with name ${tagName} not found in database`);
+                return;
+            }
+            activeTags.push(tag);
         }
         this.filtersService.activeTags.set(activeTags);
     }

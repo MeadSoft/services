@@ -1,36 +1,9 @@
 <div class="flex flex-col w-full gap-0.5">
-    @for (tagNode of tagGraphService.getNodes(); track $index) {
-        <mat-button-toggle-group
-            class="w-full !grid"
-            hideMultipleSelectionIndicator
-            hideSingleSelectionIndicator
-            [ngStyle]="getStyle(tagNode)"
+    @for (parentTag of tagGraphService.getNodes(); track $index) {
+        <p-selectbutton
+            [options]="parentTag.childTagIds"
+            (onChange)="onToggleButtonClicked($event, $index)"
         >
-            @for (tagId of tagNode.childTagIds; track $index) {
-                <mat-button-toggle
-                    [value]="tagId"
-                    class="col-span-1"
-                    (change)="onToggleButtonClicked($event)"
-                    [checked]="tagGraphService.isCategorySelected(tagId)"
-                    >{{ tagId }}</mat-button-toggle
-                >
-            }
-        </mat-button-toggle-group>
+        </p-selectbutton>
     }
 </div>
-
-<!-- <div class="xl:w-[80%] xl:mx-auto w-full">
-@for (categoryGroup of categoryGroupKeys; track $index) {
-<mat-chip-listbox
-	class="w-full"
-	multiple>
-	@for (category of categoryGroups[categoryGroup]; track $index) {
-	<mat-chip-option
-		(selectionChange)="onToggleButtonClicked($event)"
-		[value]="category"
-		>{{ category }}</mat-chip-option
-	>
-	}
-</mat-chip-listbox>
-}
-</div> -->

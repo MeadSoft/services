@@ -1,0 +1,37 @@
+/* .p-selectbutton {
+    @apply bg-cyan-100 dark:bg-cyan-900;
+} */
+
+.p-selectbutton .p-togglebutton {
+    @apply p-2 bg-cyan-100 dark:bg-cyan-900 grow;
+}
+
+.p-selectbutton .p-togglebutton:first-child {
+    @apply rounded-s-lg;
+}
+
+.p-selectbutton .p-togglebutton:last-child {
+    @apply rounded-e-lg;
+}
+
+.p-selectbutton .p-togglebutton-content {
+    @apply rounded-lg px-4 py-2;
+}
+
+.p-selectbutton .p-togglebutton-content:not(.p-togglebutton-checked) {
+    @apply border-cyan-200 dark:border-cyan-700 border-solid border;
+}
+
+.p-selectbutton
+    .p-togglebutton:not(.p-togglebutton-checked)
+    .p-togglebutton-content:hover {
+    @apply bg-cyan-200 dark:bg-cyan-800;
+}
+
+.p-togglebutton.p-togglebutton-checked .p-togglebutton-content {
+    @apply bg-slate-50 dark:bg-slate-800;
+}
+
+.p-togglebutton.p-togglebutton-checked .p-togglebutton-content:hover {
+    @apply bg-slate-100 dark:bg-slate-700;
+}

@@ -1,5 +1,5 @@
 <div
-    class="h-full flex flex-col flex-col-reverse md:flex-row justify-between haru-card !p-0 rounded-lg flex transition-all"
+    class="flex flex-col flex-col-reverse md:flex-row justify-between haru-card !p-0 rounded-lg transition-all"
 >
     <div class="grow flex flex-col justify-between p-4">
         <div>
@@ -31,12 +31,12 @@
         </div>
     </div>
 
-    @if (menuItem().imageUrl && menuItem().imageUrl !== '') {
+    <!-- @if (menuItem().imageUrl && menuItem().imageUrl !== '') {
         <img
             imageDialog
-            class="object-cover h-[15em] md:h-[10em] rounded-lg cursor-pointer bg-white border-teal-200 border-solid border-s-2"
             [src]="menuItem().imageUrl"
             [alt]="menuItem().name"
+            class="object-cover h-[15em] md:h-[10em] rounded-lg cursor-pointer bg-white border-teal-200 border-solid border-s-2"
         />
-    }
+    } -->
 </div>

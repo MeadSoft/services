@@ -96,7 +96,7 @@
                 [value]="pagedMenuItems()"
                 [numVisible]="1"
                 [numScroll]="1"
-                [circular]="pagedMenuItems().length > 1"
+                [circular]="true"
                 [showIndicators]="true"
                 [showNavigators]="false"
             >
@@ -109,14 +109,6 @@
                                 #menuItemRef
                                 [menuItem]="menuItem"
                             ></haru-menu-item>
-                        }
-                        @for (
-                            empty of createEmptyArray(
-                                PAGE_SIZE - pageOfMenuItems.length
-                            );
-                            track $index
-                        ) {
-                            <div class="h-full"></div>
                         }
                     </div>
                 </ng-template>

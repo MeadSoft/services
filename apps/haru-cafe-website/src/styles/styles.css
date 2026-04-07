@@ -1,11 +1,9 @@
-/* @use "@angular/material" as mat; */
 @layer primeng, primeng-overrides;
 
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
 @import 'primeicons/primeicons.css';
 @import './rotate.css';
-@import './keen-slider.min.css';
 @import './components/index.css';
 @import './primeng/index.css';
 @custom-variant dark (&:where(.dark, .dark *));

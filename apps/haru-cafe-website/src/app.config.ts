@@ -5,10 +5,10 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import {
-    provideClientHydration,
-    withEventReplay,
-} from '@angular/platform-browser';
+// import {
+//     provideClientHydration,
+//     withEventReplay,
+// } from '@angular/platform-browser';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { provideRestaurantCatalog } from '@meadsoft/restaurant-catalog-client-angular';
@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
         // code infra
         provideRouter(routes),
         provideHttpClient(),
-        provideClientHydration(withEventReplay()),
+        // provideClientHydration(withEventReplay()),
         provideZonelessChangeDetection(),
         provideBrowserGlobalErrorListeners(),
         ...(hasFirebaseApiKey
