@@ -1,0 +1,60 @@
+:root {
+    /* Core brand colors */
+    --color-primary: #834b58;
+    --color-on-primary: #fef6e7;
+    --color-primary-container: #ecd8de;
+    --color-on-primary-container: #3a2128;
+
+    --color-secondary: #006b1f;
+    --color-on-secondary: #f3fff3;
+    --color-secondary-container: #cdeecf;
+    --color-on-secondary-container: #00280b;
+
+    /* Warm parchment base */
+    --color-background: #fef6e7;
+    --color-surface: #fef6e7;
+    --color-on-surface: #322e25;
+
+    /* Surface hierarchy (no-line sectioning) */
+    --color-surface-container-lowest: #fffaf1;
+    --color-surface-container-low: #f8efdf;
+    --color-surface-container: #f3e7d6;
+    --color-surface-container-high: #ede0ce;
+    --color-surface-container-highest: #e6d8c5;
+
+    /* Supporting neutrals */
+    --color-outline: #8f7f72;
+    --color-outline-variant: #b8a899;
+    --color-on-surface-variant: #6d6458;
+
+    /* Utility / effect tokens from the design guidance */
+    --color-primary-rgb: 131, 75, 88;
+    --color-surface-container-lowest-rgb: 255, 250, 241;
+    --color-outline-variant-rgb: 184, 168, 153;
+
+    --color-primary-shadow-06: rgba(var(--color-primary-rgb), 0.06);
+    --color-primary-ghost-20: rgba(var(--color-primary-rgb), 0.2);
+    --color-outline-variant-15: rgba(var(--color-outline-variant-rgb), 0.15);
+    --color-surface-container-lowest-70: rgba(
+        var(--color-surface-container-lowest-rgb),
+        0.7
+    );
+
+    --gradient-hero-morning: linear-gradient(
+        45deg,
+        var(--color-primary-container),
+        var(--color-surface)
+    );
+
+    --shadow-ambient-soft: 0 20px 40px var(--color-primary-shadow-06);
+
+    /* Alias tokens for underscore naming mentioned in the design doc */
+    --color-surface_container_lowest: var(--color-surface-container-lowest);
+    --color-surface_container_low: var(--color-surface-container-low);
+    --color-surface_container: var(--color-surface-container);
+    --color-surface_container_high: var(--color-surface-container-high);
+    --color-surface_container_highest: var(--color-surface-container-highest);
+    --color-primary_container: var(--color-primary-container);
+    --color-secondary_container: var(--color-secondary-container);
+    --color-outline_variant: var(--color-outline-variant);
+}

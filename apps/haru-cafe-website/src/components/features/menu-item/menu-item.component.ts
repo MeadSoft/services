@@ -1,10 +1,9 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, input, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import type { IMenuItemWithRelations } from '@meadsoft/restaurant-catalog-contracts';
 import { ButtonModule } from 'primeng/button';
-import { ImageDialogDirective } from 'src/directives/image-dialog.directive';
 
 @Component({
     selector: 'haru-menu-item',
@@ -12,15 +11,15 @@ import { ImageDialogDirective } from 'src/directives/image-dialog.directive';
         CurrencyPipe,
         MatIconModule,
         MatRippleModule,
-        ImageDialogDirective,
         CommonModule,
         ButtonModule,
     ],
     templateUrl: './menu-item.component.html',
 })
 export class MenuItemComponent {
+    imageHeight = input<string>('20rem');
+    infoHeight = input<string>('7rem');
     menuItem = input.required<IMenuItemWithRelations>();
-    isHovered = signal<boolean>(false);
 
     hasHotTag(): boolean {
         return this.menuItem().tags.some((t) => t.name.toLowerCase() === 'hot');

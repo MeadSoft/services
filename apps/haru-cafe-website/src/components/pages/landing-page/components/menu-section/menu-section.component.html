@@ -1,7 +1,7 @@
 <!-- menu -->
 <div
     id="menu"
-    class="bg-cyan-50 dark:bg-cyan-700 lg:px-40 md:px-20 px-4 lg:py-8 py-4 flex flex-col gap-8 transition"
+    class="bg-cyan-50 dark:bg-cyan-700 lg:px-48 md:px-20 px-4 lg:py-8 py-4 flex flex-col gap-8 transition"
 >
     <div class="mx-auto flex gap-3 haru-card">
         <mat-icon class="text-cyan-600">
@@ -26,6 +26,7 @@
         <a
             mat-icon-button
             pTooltip="Google"
+            tooltipPosition="bottom"
             href="https://www.google.com/viewer/chooseprovider/?mid=/g/11l5x5k_0j"
             target="_blank"
         >
@@ -34,6 +35,7 @@
         <a
             mat-icon-button
             pTooltip="Uber Eats"
+            tooltipPosition="bottom"
             href="https://www.ubereats.com/store/haru-fresh-juice-cartoon/nVU5b1E7TnST0jYGqDDSaw?diningMode=DELIVERY&sc=SEARCH_SUGGESTION"
             target="_blank"
         >
@@ -42,6 +44,7 @@
         <a
             mat-icon-button
             pTooltip="Clover"
+            tooltipPosition="bottom"
             href="https://www.clover.com/online-ordering/haru-fresh-juice-cartoon-sterling-heights"
             target="_blank"
         >
@@ -59,6 +62,7 @@
         <a
             mat-icon-button
             pTooltip="Grubhub"
+            tooltipPosition="bottom"
             href="https://www.grubhub.com/restaurant/haru-cafe-11445-15-mile-road-sterling-heights/7394008"
             target="_blank"
         >
@@ -67,6 +71,7 @@
         <a
             mat-button
             pTooltip="Seamless (powered by Grubhub)"
+            tooltipPosition="bottom"
             href="https://www.seamless.com/menu/haru-cafe-11445-15-mile-road-sterling-heights/7394008?utm_source=google&utm_medium=organic&utm_campaign=place-action-link&pickup=true&rwg_token=AAiGsoa0yDDk53TjyWQhiBoYlVxEmeZa97TDwzTpPD287xcz69CsKJ2OsZ329fq2omDdd2NZhy2CZpw2eBEdYlR3_ejvzGlumw%3D%3D"
             target="_blank"
         >
@@ -78,48 +83,60 @@
     </div>
     <haru-filters></haru-filters>
     <div>
-        @if (this.menuItems.error()) {
-            <div class="text-red-500 text-center">
-                Failed to load menu items
-            </div>
-        } @else if (
-            this.menuItems.status() === 'loading' ||
-            this.menuItems.status() === 'reloading'
-        ) {
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3 gap-4 h-full"
-            >
-                @for (item of createEmptyArray(PAGE_SIZE); track $index) {
-                    <p-skeleton height="20rem"></p-skeleton>
-                }
-            </div>
-        } @else if (
-            this.menuItems.hasValue() && this.menuItems.value().length === 0
-        ) {
-            <div class="text-gray-500 text-center">No menu items found.</div>
-        } @else {
-            <p-carousel
-                [value]="pagedMenuItems()"
-                [numVisible]="1"
-                [numScroll]="1"
-                [circular]="true"
-                [showIndicators]="true"
-                [showNavigators]="false"
-            >
+        <p-carousel
+            [value]="pagedMenuItems()"
+            class="menu-carousel-centered"
+            [numVisible]="1"
+            [numScroll]="1"
+            [circular]="true"
+            [showIndicators]="true"
+            [showNavigators]="false"
+        >
+            @if (this.menuItems.error()) {
+                <div class="text-red-500 text-center">
+                    Failed to load menu items
+                </div>
+            } @else if (
+                this.menuItems.status() === 'loading' ||
+                this.menuItems.status() === 'reloading'
+            ) {
+                <div
+                    class="grid gap-4 h-full"
+                    [style.gridTemplateColumns]="gridTemplateColumns()"
+                >
+                    @for (
+                        item of createEmptyArray(itemsPerPage());
+                        track $index
+                    ) {
+                        <p-skeleton [height]="MENU_ITEM_HEIGHT"></p-skeleton>
+                    }
+                </div>
+            } @else if (
+                this.menuItems.hasValue() && this.menuItems.value().length === 0
+            ) {
+                <div class="text-gray-500 text-center">
+                    No menu items found.
+                </div>
+            } @else {
                 <ng-template #item let-pageOfMenuItems>
-                    <div
-                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3 gap-4 h-full"
-                    >
-                        @for (menuItem of pageOfMenuItems; track $index) {
-                            <haru-menu-item
-                                #menuItemRef
-                                [menuItem]="menuItem"
-                            ></haru-menu-item>
-                        }
+                    <div class="flex justify-center h-full">
+                        <div
+                            class="grid gap-4 h-full"
+                            [style.gridTemplateColumns]="gridTemplateColumns()"
+                        >
+                            @for (menuItem of pageOfMenuItems; track $index) {
+                                <haru-menu-item
+                                    [class]="'w-[' + MENU_ITEM_HEIGHT + ']'"
+                                    #menuItemRef
+                                    [menuItem]="menuItem"
+                                    [imageHeight]="MENU_ITEM_HEIGHT"
+                                ></haru-menu-item>
+                            }
+                        </div>
                     </div>
                 </ng-template>
-            </p-carousel>
-        }
+            }
+        </p-carousel>
     </div>
 
     <!-- location -->

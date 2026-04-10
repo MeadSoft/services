@@ -1,5 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, inject, Signal } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import {
+    Component,
+    computed,
+    HostListener,
+    inject,
+    PLATFORM_ID,
+    Signal,
+    signal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -13,6 +21,15 @@ import { FiltersComponent } from 'src/components/features/filters/filters.compon
 import { FooterComponent } from 'src/components/features/footer/footer.component';
 import { MenuItemComponent } from 'src/components/features/menu-item/menu-item.component';
 import { FilterService } from 'src/services/filter.service';
+
+const SMALL_ITEMS_PER_PAGE = 10;
+const MEDIUM_ITEMS_PER_PAGE = 12;
+const LARGE_ITEMS_PER_PAGE = 20;
+const EXTRA_LARGE_ITEMS_PER_PAGE = 25;
+
+const MEDIUM_BREAKPOINT = 768;
+const LARGE_BREAKPOINT = 1024;
+const EXTRA_LARGE_BREAKPOINT = 1280;
 
 @Component({
     selector: 'haru-landing-page-menu-section',
@@ -31,11 +48,51 @@ import { FilterService } from 'src/services/filter.service';
     templateUrl: './menu-section.component.html',
 })
 export class MenuSectionComponent {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    protected readonly PAGE_SIZE = 9;
+    protected readonly MENU_ITEM_HEIGHT = '20rem';
+    private readonly platformId = inject(PLATFORM_ID);
+    private readonly viewportWidth = signal<number>(EMPTY_LENGTH);
+
     readonly filterService = inject(FilterService);
     readonly menuItemsStore = inject(MenuItemsWithRelationsStore);
     menuItems = this.menuItemsStore.resource;
+
+    constructor() {
+        this.updateViewportWidth();
+    }
+
+    readonly itemsPerPage = computed(() => {
+        const width = this.viewportWidth();
+        if (width >= EXTRA_LARGE_BREAKPOINT) {
+            return EXTRA_LARGE_ITEMS_PER_PAGE;
+        }
+        if (width >= LARGE_BREAKPOINT) {
+            return LARGE_ITEMS_PER_PAGE;
+        }
+        if (width >= MEDIUM_BREAKPOINT) {
+            return MEDIUM_ITEMS_PER_PAGE;
+        }
+        return SMALL_ITEMS_PER_PAGE;
+    });
+
+    readonly gridTemplateColumns = computed(() => {
+        const width = this.viewportWidth();
+        if (width >= EXTRA_LARGE_BREAKPOINT) {
+            return `repeat(5, ${this.MENU_ITEM_HEIGHT})`;
+        }
+        if (width >= LARGE_BREAKPOINT) {
+            return `repeat(4, ${this.MENU_ITEM_HEIGHT})`;
+        }
+        if (width >= MEDIUM_BREAKPOINT) {
+            return `repeat(3, ${this.MENU_ITEM_HEIGHT})`;
+        }
+        return `repeat(2, ${this.MENU_ITEM_HEIGHT})`;
+    });
+
+    @HostListener('window:resize')
+    onWindowResize(): void {
+        this.updateViewportWidth();
+    }
+
     readonly filteredMenuItems: Signal<IMenuItemWithRelations[]> = computed(
         () => {
             if (!this.menuItems.hasValue()) {
@@ -59,8 +116,9 @@ export class MenuSectionComponent {
         () => {
             const items = this.filteredMenuItems();
             const pages: Array<typeof items> = [];
-            for (let i = 0; i < items.length; i += this.PAGE_SIZE) {
-                pages.push(items.slice(i, i + this.PAGE_SIZE));
+            const size = this.itemsPerPage();
+            for (let i = 0; i < items.length; i += size) {
+                pages.push(items.slice(i, i + size));
             }
             return pages;
         },
@@ -68,5 +126,12 @@ export class MenuSectionComponent {
 
     createEmptyArray(size: number): number[] {
         return Array.from({ length: size });
+    }
+
+    private updateViewportWidth(): void {
+        if (!isPlatformBrowser(this.platformId)) {
+            return;
+        }
+        this.viewportWidth.set(window.innerWidth);
     }
 }
