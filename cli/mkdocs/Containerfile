@@ -1,0 +1,10 @@
+FROM python:latest
+
+EXPOSE 8000
+WORKDIR /workspace
+
+COPY ./cli/mkdocs/scripts/install-mkdocs.sh ./cli/mkdocs/scripts/install-mkdocs.sh
+
+RUN ./cli/mkdocs/scripts/install-mkdocs.sh
+
+ENTRYPOINT ["/workspace/cli/mkdocs/entrypoint.sh"]

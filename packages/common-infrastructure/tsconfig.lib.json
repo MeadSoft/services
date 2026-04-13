@@ -15,7 +15,7 @@
     ],
     "references": [
         {
-            "path": "../common/tsconfig.lib.json"
+            "path": "../common-server/tsconfig.lib.json"
         }
     ],
     "exclude": [

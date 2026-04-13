@@ -1,0 +1,190 @@
+<div class="flex justify-between items-center mb-4">
+    <h2 class="text-lg font-semibold text-zinc-800 dark:text-zinc-200">Menu Items</h2>
+    <p-button label="Add Item" icon="pi pi-plus" (onClick)="openCreate()" />
+</div>
+
+<p-table
+    [value]="menuItems.value()"
+    [loading]="menuItems.isLoading()"
+    [paginator]="true"
+    [rows]="10"
+    styleClass="p-datatable-sm"
+>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Tags</th>
+            <th>Sizes</th>
+            <th class="w-24">Active</th>
+            <th class="w-24">Favorite</th>
+            <th class="w-28"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price != null ? ('$' + item.price) : '—' }}</td>
+            <td>{{ joinNames(item.tags) }}</td>
+            <td>{{ joinNames(item.sizes) }}</td>
+            <td>
+                <span [class]="item.isActive ? 'text-green-600' : 'text-zinc-400'">
+                    {{ item.isActive ? 'Yes' : 'No' }}
+                </span>
+            </td>
+            <td>
+                <span [class]="item.isFavorite ? 'text-yellow-500' : 'text-zinc-400'">
+                    {{ item.isFavorite ? '★' : '☆' }}
+                </span>
+            </td>
+            <td class="flex gap-2">
+                <p-button
+                    icon="pi pi-pencil"
+                    [text]="true"
+                    size="small"
+                    (onClick)="openEdit(item)"
+                />
+                <p-button
+                    icon="pi pi-trash"
+                    [text]="true"
+                    severity="danger"
+                    size="small"
+                    (onClick)="deleteItem(item)"
+                />
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="7" class="text-center text-zinc-400 py-8">No menu items found.</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- Create / Edit dialog -->
+<p-dialog
+    [header]="editingItem() ? 'Edit Menu Item' : 'Add Menu Item'"
+    [visible]="showDialog()"
+    (visibleChange)="$event ? null : closeDialog()"
+    [modal]="true"
+    [style]="{ width: '36rem' }"
+    [draggable]="false"
+>
+    <div class="flex flex-col gap-4 pt-2">
+
+        @if (error()) {
+            <p class="text-sm text-red-600 dark:text-red-400">{{ error() }}</p>
+        }
+
+        <!-- Name -->
+        <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-zinc-700 dark:text-zinc-300">Name *</label>
+            <input
+                pInputText
+                [value]="formName()"
+                (input)="formName.set($any($event.target).value)"
+                placeholder="Item name"
+                class="w-full"
+            />
+        </div>
+
+        <!-- Description -->
+        <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-zinc-700 dark:text-zinc-300">Description</label>
+            <textarea
+                rows="3"
+                [value]="formDescription()"
+                (input)="formDescription.set($any($event.target).value)"
+                placeholder="Optional description"
+                class="w-full rounded border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-zinc-400"
+            ></textarea>
+        </div>
+
+        <!-- Image URL -->
+        <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-zinc-700 dark:text-zinc-300">Image URL</label>
+            <input
+                pInputText
+                [value]="formImageUrl()"
+                (input)="formImageUrl.set($any($event.target).value)"
+                placeholder="https://..."
+                class="w-full"
+            />
+        </div>
+
+        <!-- Price -->
+        <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-zinc-700 dark:text-zinc-300">Price</label>
+            <input
+                type="number"
+                min="0"
+                step="0.01"
+                [value]="formPrice() ?? ''"
+                (input)="formPrice.set($any($event.target).valueAsNumber || null)"
+                placeholder="0.00"
+                class="w-full rounded border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-400"
+            />
+        </div>
+
+        <!-- Tags -->
+        <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-zinc-700 dark:text-zinc-300">Tags</label>
+            <p-multiSelect
+                [options]="tagOptions()"
+                [(ngModel)]="selectedTagIds"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select tags"
+                display="chip"
+                styleClass="w-full"
+            />
+        </div>
+
+        <!-- Sizes -->
+        <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-zinc-700 dark:text-zinc-300">Sizes</label>
+            <p-multiSelect
+                [options]="sizeOptions()"
+                [(ngModel)]="selectedSizeIds"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select sizes"
+                display="chip"
+                styleClass="w-full"
+            />
+        </div>
+
+        <!-- Flags -->
+        <div class="flex gap-6">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+                <input
+                    type="checkbox"
+                    [checked]="formIsActive()"
+                    (change)="formIsActive.set($any($event.target).checked)"
+                    class="w-4 h-4 accent-zinc-900 dark:accent-zinc-100"
+                />
+                <span class="text-sm text-zinc-700 dark:text-zinc-300">Active</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+                <input
+                    type="checkbox"
+                    [checked]="formIsFavorite()"
+                    (change)="formIsFavorite.set($any($event.target).checked)"
+                    class="w-4 h-4 accent-zinc-900 dark:accent-zinc-100"
+                />
+                <span class="text-sm text-zinc-700 dark:text-zinc-300">Favorite</span>
+            </label>
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <div class="flex justify-end gap-2">
+            <p-button label="Cancel" [text]="true" (onClick)="closeDialog()" />
+            <p-button
+                [label]="saving() ? 'Saving…' : 'Save'"
+                [loading]="saving()"
+                (onClick)="save()"
+            />
+        </div>
+    </ng-template>
+</p-dialog>

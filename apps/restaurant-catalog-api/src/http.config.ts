@@ -1,40 +1,33 @@
 import {
+    CONFIG_PATH_TOKEN,
     FIRST_INDEX,
     JsonConfigLoader,
     ZodSchema,
+    createConfigProvider,
 } from '@meadsoft/common-server';
-import { Provider } from '@nestjs/common';
+import { Inject, Provider } from '@nestjs/common';
 import zod from 'zod';
-import path from 'path';
 
 export const HTTP_CONFIG_KEY = 'http';
 export const MINIMUM_PORT = 1;
 export const MAXIMUM_PORT = 65535;
-
-export const HttpConfigSchema = zod.object({
+export const HttpJsonConfigSchema = zod.object({
     port: zod.number().min(MINIMUM_PORT).max(MAXIMUM_PORT),
 });
-
-export type IHttpConfig = zod.infer<typeof HttpConfigSchema>;
-
-export class HttpConfig implements IHttpConfig {
+export const HttpEnvConfigSchema = zod.object();
+export type IHttpJsonConfig = zod.infer<typeof HttpJsonConfigSchema>;
+export type IHttpEnvConfig = zod.infer<typeof HttpEnvConfigSchema>;
+export class HttpConfig implements IHttpJsonConfig {
     port = FIRST_INDEX;
 }
 
 export class HttpConfigLoader extends JsonConfigLoader<HttpConfig> {
-    constructor(configFileDirectory: string) {
-        super('http', new ZodSchema(HttpConfigSchema), configFileDirectory);
+    constructor(@Inject(CONFIG_PATH_TOKEN) configFileDirectory: string) {
+        super('http', new ZodSchema(HttpJsonConfigSchema), configFileDirectory);
     }
 }
 
-export const HttpConfigProvider: Provider = {
-    provide: HttpConfig,
-    useFactory: async (): Promise<HttpConfig> => {
-        const configLoader = new HttpConfigLoader(path.join(__dirname, '..'));
-        const config = await configLoader.load();
-        if (config.err) {
-            throw config.val;
-        }
-        return config.val;
-    },
-};
+export const HttpConfigProvider: Provider = createConfigProvider(
+    HttpConfig,
+    HttpConfigLoader,
+);

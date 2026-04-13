@@ -12,6 +12,29 @@ export class ApiAuthService {
         private readonly http: HttpClient,
     ) {}
 
+    async login(email: string, password: string): Promise<User> {
+        return await firstValueFrom(
+            this.http.post<User>(`${this.config.apiBaseUrl}/auth/login`, {
+                email,
+                password,
+            }),
+        );
+    }
+
+    async register(
+        email: string,
+        password: string,
+        displayName?: string,
+    ): Promise<User> {
+        return await firstValueFrom(
+            this.http.post<User>(`${this.config.apiBaseUrl}/auth/register`, {
+                email,
+                password,
+                displayName,
+            }),
+        );
+    }
+
     async exchangeFirebaseToken(idToken: string): Promise<User> {
         const headers = new HttpHeaders().set(
             'Authorization',
@@ -21,9 +44,7 @@ export class ApiAuthService {
             this.http.post<User>(
                 `${this.config.apiBaseUrl}/auth/firebase-login`,
                 null,
-                {
-                    headers,
-                },
+                { headers },
             ),
         );
     }
@@ -36,7 +57,7 @@ export class ApiAuthService {
 
     async getCurrentUser(): Promise<User> {
         return await firstValueFrom(
-            this.http.post<User>(`${this.config.apiBaseUrl}/auth/me`, null),
+            this.http.get<User>(`${this.config.apiBaseUrl}/auth/me`),
         );
     }
 }

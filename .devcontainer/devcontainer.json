@@ -1,7 +1,7 @@
 {
     "name": "meadsoft-services",
     "build": {
-        "dockerfile": "Dockerfile",
+        "dockerfile": "Containerfile",
         "context": "."
     },
     "remoteUser": "vscode",
@@ -19,7 +19,8 @@
         }
     },
     "forwardPorts": [
-        4200
+        4200,
+        5432
     ],
     "mounts": [
         {
@@ -59,7 +60,8 @@
                 "rvest.vs-code-prettier-eslint",
                 "GitHub.copilot",
                 "github.vscode-github-actions",
-                "hashicorp.terraform"
+                "hashicorp.terraform",
+                "Anthropic.claude-code"
             ]
         }
     }

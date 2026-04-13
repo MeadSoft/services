@@ -1,0 +1,85 @@
+<div class="min-h-[60vh] flex items-center justify-center p-4">
+    <div class="haru-card w-full max-w-sm flex flex-col gap-6">
+        <h1 class="text-2xl font-semibold text-center">Create an Account</h1>
+
+        <!-- Email / Password Form -->
+        <form
+            [formGroup]="registerForm"
+            (ngSubmit)="registerWithEmailPassword()"
+            class="flex flex-col gap-4"
+        >
+            <div class="flex flex-col gap-2">
+                <label for="email" class="text-sm font-medium">Email</label>
+                <input
+                    pInputText
+                    id="email"
+                    type="email"
+                    formControlName="email"
+                    placeholder="you@example.com"
+                    class="w-full"
+                />
+            </div>
+            <div class="flex flex-col gap-2">
+                <label for="password" class="text-sm font-medium"
+                    >Password</label
+                >
+                <input
+                    pInputText
+                    id="password"
+                    type="password"
+                    formControlName="password"
+                    placeholder="••••••••"
+                    class="w-full"
+                />
+            </div>
+            <div class="flex flex-col gap-2">
+                <label for="confirmPassword" class="text-sm font-medium"
+                    >Confirm Password</label
+                >
+                <input
+                    pInputText
+                    id="confirmPassword"
+                    type="password"
+                    formControlName="confirmPassword"
+                    placeholder="••••••••"
+                    class="w-full"
+                />
+                @if (passwordsMismatch) {
+                    <p class="text-red-500 text-xs">Passwords do not match.</p>
+                }
+            </div>
+            <p-button
+                type="submit"
+                label="Create account"
+                [loading]="isLoading()"
+                [disabled]="registerForm.invalid"
+                styleClass="w-full"
+            />
+        </form>
+
+        <div class="flex items-center gap-3">
+            <hr class="flex-1 border-gray-300 dark:border-gray-600" />
+            <span class="text-sm text-gray-500">or continue with</span>
+            <hr class="flex-1 border-gray-300 dark:border-gray-600" />
+        </div>
+
+        <!-- Google OAuth -->
+        <p-button
+            (click)="registerWithGoogle()"
+            label="Sign up with Google"
+            severity="secondary"
+            [outlined]="true"
+            [loading]="isLoading()"
+            styleClass="w-full"
+        />
+
+        @if (error() !== null) {
+            <p class="text-red-500 text-sm text-center">{{ error() }}</p>
+        }
+
+        <p class="text-sm text-center text-gray-500">
+            Already have an account?
+            <a routerLink="/login" class="underline hover:text-gray-800 dark:hover:text-gray-200">Sign in</a>
+        </p>
+    </div>
+</div>

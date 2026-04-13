@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { provideRestaurantCatalog } from '@meadsoft/restaurant-catalog-client-angular';
+import { provideAuthClient } from '@meadsoft/auth-client-angular';
 import { EMPTY_LENGTH } from '@meadsoft/common-browser';
 import { routes } from './routing/app.routes';
 import { HttpCookieCredentialsInterceptor } from './interceptors/http-cookie-credentials.interceptor';
@@ -49,5 +50,6 @@ export const appConfig: ApplicationConfig = {
         // business services
         { provide: Config, useValue: config },
         provideRestaurantCatalog(config.apiBaseUrl),
+        provideAuthClient(config.apiBaseUrl),
     ],
 };

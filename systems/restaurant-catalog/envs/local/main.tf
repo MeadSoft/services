@@ -40,7 +40,7 @@ resource "docker_container" "postgres_db" {
   restart  = "always"
   shm_size = var.postgres_shm_size_bytes
   must_run = true
-  env      = local.env_vars
+  env      = concat(["POSTGRES_DB=${var.postgres_db_name}"], local.env_vars)
 
   ports {
     internal = var.postgres_internal_port

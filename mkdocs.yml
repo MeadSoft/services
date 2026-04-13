@@ -1,0 +1,36 @@
+site_name: MeadSoft
+theme:
+    name: material
+    features:
+        - search.suggest
+        - search.highlight
+        - search.share
+        - navigation.indexes
+        - navigation.path
+        # - navigation.tabs
+        - toc.follow
+    palette:
+        # Palette toggle for light mode
+        - scheme: default
+          toggle:
+              icon: material/brightness-7
+              name: Switch to dark mode
+
+        # Palette toggle for dark mode
+        - scheme: slate
+          toggle:
+              icon: material/brightness-4
+              name: Switch to light mode
+
+markdown_extensions:
+    - toc:
+          permalink: true
+
+plugins:
+    - awesome-pages
+    - gen-files:
+          scripts:
+              - /workspace/cli/mkdocs/scripts/include_readme_as_index.py
+              - /workspace/cli/mkdocs/scripts/generate_reports_index.py
+    - search:
+          lang: en

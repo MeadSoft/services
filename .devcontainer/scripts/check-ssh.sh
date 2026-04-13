@@ -11,6 +11,7 @@ if [ -d "$HOME/.ssh" ]; then
     chmod u+r ~/.ssh/config
     chmod u+r ~/.ssh/known_hosts
 
+    echo "Checking SSH connection to GitHub..."
     SSH_GITHUB_STATUS=$(ssh -T git@github.com)
     export SSH_GITHUB_STATUS
 fi 

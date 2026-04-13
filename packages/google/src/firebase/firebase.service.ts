@@ -15,12 +15,20 @@ export class FirebaseService {
     }
 
     private initialize() {
+        if (!this.config.env.FIREBASE_PRIVATE_KEY) {
+            Logger.warn(
+                'FIREBASE_PRIVATE_KEY not set — Firebase services disabled. ' +
+                    'Set FIREBASE_PRIVATE_KEY in your .env file to enable Firebase.',
+                FirebaseService.name,
+            );
+            return;
+        }
         if (!admin.apps.length) {
             this.app = admin.initializeApp({
                 credential: admin.credential.cert({
                     projectId: this.config.file.project_id,
                     clientEmail: this.config.file.client_email ?? '',
-                    privateKey: this.config.env.FIREBASE_PRIVATE_KEY?.replace(
+                    privateKey: this.config.env.FIREBASE_PRIVATE_KEY.replace(
                         /\\n/g,
                         '\n',
                     ),
@@ -34,6 +42,7 @@ export class FirebaseService {
         Logger.log(
             'Firebase initialized successfully for project: ' +
                 this.config.file.project_id,
+            FirebaseService.name,
         );
     }
 }

@@ -21,7 +21,7 @@
             "path": "../common-infrastructure/tsconfig.lib.json"
         },
         {
-            "path": "../common/tsconfig.lib.json"
+            "path": "../common-server/tsconfig.lib.json"
         },
         {
             "path": "../restaurant-catalog-contracts/tsconfig.lib.json"

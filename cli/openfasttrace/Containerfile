@@ -1,0 +1,18 @@
+FROM eclipse-temurin:17-jre-jammy
+
+ARG OFT_VERSION=4.2.1
+ARG OFT_JAR_URL=https://repo1.maven.org/maven2/org/itsallcode/openfasttrace/openfasttrace/${OFT_VERSION}/openfasttrace-${OFT_VERSION}.jar
+
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends curl ca-certificates \
+	&& rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /opt/openfasttrace /workspace/docs/reports \
+	&& curl -fsSL "$OFT_JAR_URL" -o /opt/openfasttrace/openfasttrace.jar \
+	&& printf '#!/usr/bin/env sh\nexec java -jar /opt/openfasttrace/openfasttrace.jar "$@"\n' > /usr/local/bin/oft \
+	&& chmod +x /usr/local/bin/oft
+
+WORKDIR /workspace
+
+ENTRYPOINT ["oft"]
+CMD ["--help"]

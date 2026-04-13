@@ -83,23 +83,15 @@
     </div>
     <haru-filters></haru-filters>
     <div>
-        <p-carousel
-            [value]="pagedMenuItems()"
-            class="menu-carousel-centered"
-            [numVisible]="1"
-            [numScroll]="1"
-            [circular]="true"
-            [showIndicators]="true"
-            [showNavigators]="false"
-        >
-            @if (this.menuItems.error()) {
-                <div class="text-red-500 text-center">
-                    Failed to load menu items
-                </div>
-            } @else if (
-                this.menuItems.status() === 'loading' ||
-                this.menuItems.status() === 'reloading'
-            ) {
+        @if (this.menuItems.error()) {
+            <div class="text-red-500 text-center">
+                Failed to load menu items
+            </div>
+        } @else if (
+            this.menuItems.status() === 'loading' ||
+            this.menuItems.status() === 'reloading'
+        ) {
+            <div class="flex justify-center h-full">
                 <div
                     class="grid gap-4 h-full"
                     [style.gridTemplateColumns]="gridTemplateColumns()"
@@ -108,16 +100,27 @@
                         item of createEmptyArray(itemsPerPage());
                         track $index
                     ) {
-                        <p-skeleton [height]="MENU_ITEM_HEIGHT"></p-skeleton>
+                        <p-skeleton
+                            [height]="MENU_ITEM_HEIGHT"
+                            [width]="MENU_ITEM_HEIGHT"
+                        ></p-skeleton>
                     }
                 </div>
-            } @else if (
-                this.menuItems.hasValue() && this.menuItems.value().length === 0
-            ) {
-                <div class="text-gray-500 text-center">
-                    No menu items found.
-                </div>
-            } @else {
+            </div>
+        } @else if (
+            this.menuItems.hasValue() && this.menuItems.value().length === 0
+        ) {
+            <div class="text-gray-500 text-center">No menu items found.</div>
+        } @else {
+            <p-carousel
+                [value]="pagedMenuItems()"
+                class="menu-carousel-centered"
+                [numVisible]="1"
+                [numScroll]="1"
+                [circular]="true"
+                [showIndicators]="true"
+                [showNavigators]="false"
+            >
                 <ng-template #item let-pageOfMenuItems>
                     <div class="flex justify-center h-full">
                         <div
@@ -135,8 +138,8 @@
                         </div>
                     </div>
                 </ng-template>
-            }
-        </p-carousel>
+            </p-carousel>
+        }
     </div>
 
     <!-- location -->

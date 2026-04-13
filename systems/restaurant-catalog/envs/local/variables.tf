@@ -27,7 +27,7 @@ variable "api_build_context" {
 variable "api_dockerfile" {
   description = "Dockerfile path relative to api_build_context."
   type        = string
-  default     = "Dockerfile"
+  default     = "Containerfile"
 }
 
 variable "api_container_name" {
@@ -76,4 +76,10 @@ variable "postgres_shm_size_bytes" {
   description = "Shared memory size in bytes for Postgres container (128mb = 134217728)."
   type        = number
   default     = 134217728
+}
+
+variable "postgres_db_name" {
+  description = "Name of the database to create in the Postgres container."
+  type        = string
+  default     = "restaurant_db"
 }

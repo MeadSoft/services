@@ -7,8 +7,8 @@
         "metadata": "pnpx ts-node src/generate-metadata.ts",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "start": "nest start",
-        "start:dev": "nest start --watch",
-        "start:debug": "nest start --debug --watch",
+        "start:dev": "APP_ENV=local nest start --watch",
+        "start:debug": "APP_ENV=local nest start --debug --watch",
         "start:prod": "node dist/main",
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
         "test": "jest",
@@ -23,6 +23,8 @@
         "scratch": "tsx src/scratch.ts"
     },
     "dependencies": {
+        "@anthropic-ai/sdk": "^0.39.0",
+        "@meadsoft/auth-server-nestjs": "workspace:*",
         "@meadsoft/common-server": "workspace:*",
         "@meadsoft/common-nestjs": "workspace:*",
         "@meadsoft/common-infrastructure": "workspace:*",
@@ -36,6 +38,7 @@
         "@nestjs/swagger": "^11.2.3",
         "@nestjs/testing": "^11.1.9",
         "@types/cookie-parser": "^1.4.10",
+        "@types/express": "^5.0.0",
         "cookie-parser": "^1.4.7",
         "drizzle-kit": "^0.31.7",
         "nestjs-zod": "^5.0.1",
