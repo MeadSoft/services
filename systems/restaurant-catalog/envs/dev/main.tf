@@ -5,6 +5,11 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "gcs" {
+    bucket = "smart-quasar-297403-terraform-state"
+    prefix = "restaurant-catalog/dev"
+  }
 }
 
 provider "google" {
@@ -16,7 +21,7 @@ provider "google" {
 
 resource "google_sql_database_instance" "postgres" {
   name             = var.db_instance_name
-  database_version = "POSTGRES_16"
+  database_version = "POSTGRES_18"
   region           = var.region
 
   settings {
@@ -73,7 +78,7 @@ resource "google_secret_manager_secret" "database_url" {
 }
 
 resource "google_secret_manager_secret_version" "database_url" {
-  secret = google_secret_manager_secret.database_url.id
+  secret      = google_secret_manager_secret.database_url.id
   secret_data = "postgresql://${var.db_user}:${var.db_password}@${google_sql_database_instance.postgres.public_ip_address}:5432/${var.db_name}"
 }
 
@@ -91,7 +96,7 @@ resource "google_secret_manager_secret_version" "db_password" {
 }
 
 resource "google_secret_manager_secret" "jwt_secret" {
-  secret_id = "${var.secret_prefix}jwt-secret"
+  secret_id = "jwt-secret"
 
   replication {
     auto {}
