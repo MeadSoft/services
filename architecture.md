@@ -115,7 +115,7 @@ This section provides a high-level overview of the mono-repositories directories
 ### CI/CD Requirements
 
 - GitHub Actions MUST be used for continuous integration and continuous deployment (CI/CD) pipelines.
-- Dockerfiles MUST be created for each application to ensure consistent deployment strategies across different environments.
+- Containerfiles MUST be created for each application to ensure consistent deployment strategies across different environments.
 
 ## Glossary
 

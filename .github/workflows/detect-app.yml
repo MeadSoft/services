@@ -40,10 +40,13 @@ jobs:
                   APP=$(echo "$REF_NAME" | cut -d'/' -f1)
                   ENV=$(echo "$REF_NAME" | cut -d'/' -f2)
                   VERSION=$(echo "$REF_NAME" | cut -d'/' -f3)
+                  if [ -z "$VERSION" ]; then
+                    VERSION="${GITHUB_SHA::7}"
+                  fi
                   echo "app=$APP" >> $GITHUB_OUTPUT
                   echo "env=$ENV" >> $GITHUB_OUTPUT
                   echo "version=$VERSION" >> $GITHUB_OUTPUT
-                  echo "Deploying app: $APP version: $VERSION to PRODUCTION"
+                  echo "Deploying app: $APP version: $VERSION to $ENV environment"
 
             - name: Validate tag format
               run: |

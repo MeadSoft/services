@@ -49,7 +49,7 @@ When an application depends on another application, it is recommended to impleme
     - MAY exist
     - MUST contain non-secret config values
     - MAY be committed to version control
-- `Dockerfile`
+- `Containerfile`
     - MUST exist
     - MUST contain the deployment configuration of the application for **any** environment
 - `package.json`

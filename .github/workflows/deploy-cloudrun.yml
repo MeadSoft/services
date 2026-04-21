@@ -8,7 +8,7 @@ on:
                 required: true
                 type: choice
                 options:
-                    - frontend
+                    - haru-cafe-website
                     - restaurant-catalog-api
             version:
                 description: "Version of the application"
@@ -27,7 +27,7 @@ on:
                 description: "Google Cloud Run region"
                 required: false
                 type: string
-                default: "us-central1"
+                default: "us-east5"
             cloudrun-flags:
                 description: "Additional flags for gcloud deploy command"
                 required: false
@@ -47,12 +47,12 @@ on:
                 description: "Target environment name"
                 required: false
                 type: string
-                default: "production"
+                default: "prod"
             region:
                 description: "Google Cloud Run region"
                 required: false
                 type: string
-                default: "us-central1"
+                default: "us-east5"
             cloudrun-flags:
                 description: "Additional flags for gcloud deploy command"
                 required: false
@@ -66,6 +66,9 @@ on:
 jobs:
     deploy:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
         outputs:
             url: ${{ steps.deploy.outputs.url }}
         environment:
@@ -74,6 +77,16 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
+            - name: Derive Cloud Run service name
+              id: service
+              run: |
+                  APP="${{ inputs.app-name }}"
+                  ENV="${{ inputs.environment }}"
+                  BASE="${APP%-*}"
+                  SUFFIX="${APP##*-}"
+                  echo "name=${BASE}-${ENV}-${SUFFIX}" >> $GITHUB_OUTPUT
+                  echo "Cloud Run service: ${BASE}-${ENV}-${SUFFIX}"
+
             - name: Authenticate to Google Cloud
               uses: google-github-actions/auth@v2
               with:
@@ -81,19 +94,12 @@ jobs:
                   workload_identity_provider: projects/764108434612/locations/global/workloadIdentityPools/github-pool/providers/github
                   service_account: meadsoft-dev-sa@smart-quasar-297403.iam.gserviceaccount.com
 
-            - name: Log in to GitHub Container Registry
-              uses: docker/login-action@v3
-              with:
-                  registry: ghcr.io
-                  username: ${{ github.actor }}
-                  password: ${{ secrets.GITHUB_TOKEN }}
-
             - name: Deploy to Cloud Run
               id: deploy
               uses: google-github-actions/deploy-cloudrun@v2
               with:
-                  service: ${{ inputs.app-name }}
-                  image: ghcr.io/${{ github.repository_owner }}/${{ inputs.app-name }}:${{ inputs.version }}
+                  service: ${{ steps.service.outputs.name }}
+                  image: us-docker.pkg.dev/smart-quasar-297403/repo/${{ inputs.app-name }}:${{ inputs.version }}
                   region: ${{ inputs.region }}
                   flags: ${{ inputs.cloudrun-flags }}
 
@@ -105,5 +111,6 @@ jobs:
                   echo "**Version:** ${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
                   echo "**Environment:** ${{ inputs.environment }}" >> $GITHUB_STEP_SUMMARY
                   echo "**Region:** ${{ inputs.region }}" >> $GITHUB_STEP_SUMMARY
-                  echo "**Docker Image:** ghcr.io/${{ github.repository_owner }}/${{ inputs.app-name }}:${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
+                  echo "**Service:** ${{ steps.service.outputs.name }}" >> $GITHUB_STEP_SUMMARY
+                  echo "**Docker Image:** us-docker.pkg.dev/smart-quasar-297403/repo/${{ inputs.app-name }}:${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
                   echo "**URL:** ${{ steps.deploy.outputs.url }}" >> $GITHUB_STEP_SUMMARY

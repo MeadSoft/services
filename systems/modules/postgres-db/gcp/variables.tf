@@ -1,3 +1,15 @@
+# ─── Common ───────────────────────────────────────────────────────────────
+
+variable "app_uri" {
+  description = "The name of the application that may contain more metadata, such as environment and region. Used as a prefix for resource names and secrets."
+  type        = string
+}
+
+variable "labels" {
+  type    = map(string)
+  default = {}
+}
+
 # ─── Common GCP ───────────────────────────────────────────────────────────────
 
 variable "project_id" {
@@ -10,22 +22,11 @@ variable "region" {
   default = "us-east5"
 }
 
-variable "labels" {
-  type    = map(string)
-  default = {}
+variable "service_account_email" {
+  type = string
 }
 
 # ─── Cloud SQL ───────────────────────────────────────────────────────────────
-
-variable "db_instance_name" {
-  description = "Name of the Cloud SQL instance."
-  type        = string
-}
-
-variable "db_name" {
-  description = "Name of the PostgreSQL database."
-  type        = string
-}
 
 variable "db_user" {
   description = "PostgreSQL user name."
@@ -46,12 +47,4 @@ variable "authorized_networks" {
     cidr = string
   }))
   default = []
-}
-
-# ─── Secret Manager ───────────────────────────────────────────────────────────────
-
-variable "secret_prefix" {
-  description = "Prefix applied to all Secret Manager secret IDs (e.g. 'restaurant-catalog-dev-')."
-  type        = string
-  default     = ""
 }

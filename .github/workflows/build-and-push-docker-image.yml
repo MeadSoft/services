@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build and Push Container Image
 
 on:
     workflow_dispatch:
@@ -37,47 +37,52 @@ on:
                 required: false
                 type: string
                 default: "production"
-        secrets:
-            github-token:
-                description: "GitHub token for GHCR authentication"
-                required: false
 
 jobs:
     build:
         runs-on: ubuntu-latest
         permissions:
             contents: read
-            packages: write
+            id-token: write
         steps:
             - uses: actions/checkout@v4
+
+            - name: Authenticate to Google Cloud
+              id: auth
+              uses: google-github-actions/auth@v2
+              with:
+                  token_format: access_token
+                  workload_identity_provider: projects/764108434612/locations/global/workloadIdentityPools/github-pool/providers/github
+                  service_account: meadsoft-dev-sa@smart-quasar-297403.iam.gserviceaccount.com
 
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v3
 
-            - name: Log in to GitHub Container Registry
+            - name: Log in to Artifact Registry
               uses: docker/login-action@v3
               with:
-                  registry: ghcr.io
-                  username: ${{ github.actor }}
-                  password: ${{ secrets.github-token || secrets.GITHUB_TOKEN }}
+                  registry: us-docker.pkg.dev
+                  username: oauth2accesstoken
+                  password: ${{ steps.auth.outputs.access_token }}
 
-            - name: Extract metadata for Docker
+            - name: Extract metadata for Container
               id: meta
               uses: docker/metadata-action@v5
               with:
-                  images: ghcr.io/${{ github.repository_owner }}/${{ inputs.app-name }}
+                  images: us-docker.pkg.dev/smart-quasar-297403/repo/${{ inputs.app-name }}
                   tags: |
                       type=semver,pattern={{version}},value=${{ inputs.version }}
                       type=semver,pattern={{major}}.{{minor}},value=${{ inputs.version }}
                       type=semver,pattern={{major}},value=${{ inputs.version }}
+                      type=raw,value=${{ inputs.version }}
                       type=raw,value=latest
-                      type=sha,prefix=prod-
+                      type=sha,prefix=sha-
 
-            - name: Build and push Docker image
+            - name: Build and push Container image
               uses: docker/build-push-action@v5
               with:
                   context: .
-                  file: ./apps/${{ inputs.app-name }}/Dockerfile
+                  file: ./apps/${{ inputs.app-name }}/Containerfile
                   push: true
                   tags: ${{ steps.meta.outputs.tags }}
                   labels: ${{ steps.meta.outputs.labels }}

@@ -4,25 +4,25 @@ on:
     workflow_dispatch:
         inputs:
             app-name:
-                description: 'Name of the application to build'
+                description: "Name of the application to build"
                 required: true
                 type: choice
                 options:
                     - frontend
                     - restaurant-catalog-api
             load:
-                description: 'Load image to Docker daemon (for local testing)'
+                description: "Load image to Docker daemon (for local testing)"
                 required: false
                 type: boolean
                 default: false
     workflow_call:
         inputs:
             app-name:
-                description: 'Name of the application to build'
+                description: "Name of the application to build"
                 required: true
                 type: string
             load:
-                description: 'Load image to Docker daemon (for local testing)'
+                description: "Load image to Docker daemon (for local testing)"
                 required: false
                 type: boolean
                 default: false
@@ -33,18 +33,18 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: Validate Dockerfile exists
-              id: validate-dockerfile
+            - name: Validate Containerfile exists
+              id: validate-containerfile
               run: |
-                  DOCKERFILE="./apps/${{ inputs.app-name }}/Dockerfile"
-                  if [ ! -f "$DOCKERFILE" ]; then
-                    echo "::warning::Dockerfile not found at $DOCKERFILE"
-                    echo "::warning::Please create a Dockerfile for ${{ inputs.app-name }} at apps/${{ inputs.app-name }}/Dockerfile"
+                  CONTAINERFILE="./apps/${{ inputs.app-name }}/Containerfile"
+                  if [ ! -f "$CONTAINERFILE" ]; then
+                    echo "::warning::Containerfile not found at $CONTAINERFILE"
+                    echo "::warning::Please create a Containerfile for ${{ inputs.app-name }} at apps/${{ inputs.app-name }}/Containerfile"
                     echo "exists=false" >> $GITHUB_OUTPUT
                     exit 1
                   fi
                   echo "exists=true" >> $GITHUB_OUTPUT
-                  echo "✅ Dockerfile found at $DOCKERFILE"
+                  echo "✅ Containerfile found at $CONTAINERFILE"
 
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v3
@@ -53,7 +53,7 @@ jobs:
               uses: docker/build-push-action@v5
               with:
                   context: .
-                  file: ./apps/${{ inputs.app-name }}/Dockerfile
+                  file: ./apps/${{ inputs.app-name }}/Containerfile
                   push: false
                   load: ${{ inputs.load }}
                   tags: |

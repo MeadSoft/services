@@ -19,11 +19,12 @@ on:
                 description: "Google Cloud Run region"
                 required: false
                 type: string
-                default: "us-central1"
+                default: "us-east5"
 
 permissions:
     actions: read
     contents: read
+    id-token: write
     packages: write
 
 jobs:
@@ -46,6 +47,6 @@ jobs:
         with:
             app-name: ${{ needs.detect-app.outputs.app-name }}
             version: ${{ needs.detect-app.outputs.version }}
-            environment: prod
-            region: ${{ inputs.region || 'us-central1' }}
+            environment: dev
+            region: ${{ inputs.region || 'us-east5' }}
             cloudrun-flags: ${{ inputs.cloudrun-flags || '' }}
