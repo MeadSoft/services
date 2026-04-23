@@ -3,8 +3,6 @@ import {
     Auth,
     OAuthProvider,
     signInWithPopup,
-    onAuthStateChanged,
-    User as FirebaseUser,
     UserCredential,
 } from '@angular/fire/auth';
 import { AuthClient } from '@meadsoft/auth-client-angular';
@@ -12,52 +10,32 @@ import type { User } from '@meadsoft/auth-contracts';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+    private readonly authClient = inject(AuthClient);
     /**
-     * undefined = Firebase auth state not yet resolved (initializing)
-     * null      = no Firebase user signed in
-     * FirebaseUser = authenticated via Google/Firebase
-     */
-    private readonly _firebaseUser = signal<FirebaseUser | null | undefined>(
-        undefined,
-    );
-
-    /**
-     * undefined = API session check not yet complete
-     * null      = no active API session
-     * User      = authenticated via local email/password
+     * undefined = backend session check not yet complete
+     * null      = no active backend session
+     * User      = authenticated application user
      */
     private readonly _apiUser = signal<User | null | undefined>(undefined);
-
-    readonly isAuthReady = computed(() => {
-        const firebaseUser = this._firebaseUser();
-        if (firebaseUser === undefined) return false;
-        if (firebaseUser !== null) return true;
-        return this._apiUser() !== undefined;
-    });
-
+    readonly apiUser = computed(() => this._apiUser() ?? null);
+    readonly isAuthReady = computed(() => this._apiUser() !== undefined);
     readonly isAuthenticated = computed(
-        () =>
-            (this._firebaseUser() !== null &&
-                this._firebaseUser() !== undefined) ||
-            (this._apiUser() !== null && this._apiUser() !== undefined),
+        () => this._apiUser() !== null && this._apiUser() !== undefined,
     );
 
-    readonly currentUser = computed(() => this._apiUser() ?? null);
+    constructor(@Optional() private readonly firebaseAuth: Auth | null) {
+        this.fetchAndSetAuthenticatedUser();
+    }
 
-    constructor(@Optional() private readonly auth: Auth | null) {
-        const authClient = inject(AuthClient);
-        if (!this.auth) {
-            this._firebaseUser.set(null);
-        } else {
-            onAuthStateChanged(this.auth, (user) =>
-                this._firebaseUser.set(user),
-            );
-        }
-
-        authClient
+    fetchAndSetAuthenticatedUser(): void {
+        this.authClient
             .me()
-            .then((user) => this._apiUser.set(user))
-            .catch(() => this._apiUser.set(null));
+            .then((user) => {
+                this._apiUser.set(user);
+            })
+            .catch(() => {
+                this._apiUser.set(null);
+            });
     }
 
     setLocalUser(user: User | null) {
@@ -70,18 +48,10 @@ export class AuthService {
         return await signInWithPopup(auth, provider);
     }
 
-    async signOut(): Promise<void> {
-        if (this.auth) {
-            await this.auth.signOut();
-        }
-        this._firebaseUser.set(null);
-        this._apiUser.set(null);
-    }
-
     private getRequiredAuth(): Auth {
-        if (!this.auth) {
-            throw new Error('Firebase Auth is not configured');
+        if (!this.firebaseAuth) {
+            throw new Error('Google Auth is not configured');
         }
-        return this.auth;
+        return this.firebaseAuth;
     }
 }

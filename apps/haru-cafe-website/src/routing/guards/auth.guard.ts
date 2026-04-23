@@ -1,5 +1,11 @@
 import { inject, Injectable, Injector } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
+import {
+    ActivatedRouteSnapshot,
+    CanActivate,
+    Router,
+    RouterStateSnapshot,
+    UrlTree,
+} from '@angular/router';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Observable, of } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
@@ -12,9 +18,12 @@ export class AuthGuard implements CanActivate {
     private readonly router = inject(Router);
     private readonly injector = inject(Injector);
 
-    canActivate(): Observable<UrlTree | boolean> {
+    canActivate(
+        _: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot,
+    ): Observable<UrlTree | boolean> {
         if (this.authService.isAuthReady()) {
-            return of(this.resolveAccess());
+            return of(this.resolveAccess(state.url));
         }
 
         return toObservable(this.authService.isAuthReady, {
@@ -22,12 +31,14 @@ export class AuthGuard implements CanActivate {
         }).pipe(
             filter((ready) => ready),
             take(ONE_ITEM),
-            map(() => this.resolveAccess()),
+            map(() => this.resolveAccess(state.url)),
         );
     }
 
-    private resolveAccess(): UrlTree | boolean {
+    private resolveAccess(returnUrl: string): UrlTree | boolean {
         if (this.authService.isAuthenticated()) return true;
-        return this.router.createUrlTree(['/login']);
+        return this.router.createUrlTree(['/login'], {
+            queryParams: { returnUrl },
+        });
     }
 }

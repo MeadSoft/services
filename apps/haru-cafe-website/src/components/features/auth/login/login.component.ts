@@ -3,7 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/auth/auth.service';
 import { AuthClient } from '@meadsoft/auth-client-angular';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -18,6 +18,7 @@ export class LoginComponent {
     readonly loginForm;
 
     private readonly authClient = inject(AuthClient);
+    private readonly route = inject(ActivatedRoute);
 
     constructor(
         private readonly fb: FormBuilder,
@@ -38,7 +39,7 @@ export class LoginComponent {
             this.error.set(null);
             const user = await this.authClient.login({ email, password });
             this.auth.setLocalUser(user);
-            await this.router.navigate(['/']);
+            await this.navigateAfterLogin();
         } catch (e: unknown) {
             this.error.set(e instanceof Error ? e.message : 'Login failed');
         } finally {
@@ -55,11 +56,23 @@ export class LoginComponent {
                 await credential.user.getIdToken(),
             );
             this.auth.setLocalUser(user);
-            await this.router.navigate(['/']);
+            await this.navigateAfterLogin();
         } catch (e: unknown) {
             this.error.set(e instanceof Error ? e.message : 'Login failed');
         } finally {
             this.isLoading.set(false);
         }
+    }
+
+    private async navigateAfterLogin() {
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+
+        // Restrict redirects to in-app absolute paths to avoid open redirects.
+        if (returnUrl?.startsWith('/') && !returnUrl.startsWith('//')) {
+            await this.router.navigateByUrl(returnUrl);
+            return;
+        }
+
+        await this.router.navigate(['/']);
     }
 }

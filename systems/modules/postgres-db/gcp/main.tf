@@ -11,8 +11,6 @@ resource "google_project_iam_member" "cloudsql_client" {
 }
 
 resource "google_secret_manager_secret_iam_member" "db_url_access" {
-  depends_on = [google_secret_manager_secret]
-
   secret_id = google_secret_manager_secret.database_url.id
   role      = "roles/secretmanager.secretAccessor"
   member    = "serviceAccount:${var.service_account_email}"

@@ -7,6 +7,29 @@ import { setupSwagger } from './swagger';
 // import { DebugService } from '@meadsoft/debug';
 
 const DEFAULT_PORT = 3000;
+const DEFAULT_ALLOWED_ORIGINS = ['http://localhost:4200', 'http://localhost:4201'];
+
+function getAllowedOrigins(): string[] {
+    const raw = process.env.CORS_ALLOWED_ORIGINS?.trim();
+    if (!raw) return DEFAULT_ALLOWED_ORIGINS;
+
+    return raw
+        .split(',')
+        .map((entry) => entry.trim())
+        .filter((entry) => entry.length > 0);
+}
+
+function originMatches(allowedOriginPattern: string, origin: string): boolean {
+    if (!allowedOriginPattern.includes('*')) {
+        return allowedOriginPattern === origin;
+    }
+
+    const escapedPattern = allowedOriginPattern
+        .replace(/[.+?^${}()|[\]\\]/g, '\\$&')
+        .replace(/\*/g, '.*');
+
+    return new RegExp(`^${escapedPattern}$`).test(origin);
+}
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
@@ -19,8 +42,30 @@ async function bootstrap() {
     //     console.log(`Route: ${route}`);
     // });
 
+    const allowedOrigins = getAllowedOrigins();
+
     app.enableCors({
-        origin: ['http://localhost:4200', 'http://localhost:4201'],
+        origin: (
+            origin: string | undefined,
+            callback: (err: Error | null, allow?: boolean) => void,
+        ) => {
+            // Non-browser clients or same-origin requests may omit the Origin header.
+            if (!origin) {
+                callback(null, true);
+                return;
+            }
+
+            const isAllowed = allowedOrigins.some((allowedPattern) =>
+                originMatches(allowedPattern, origin),
+            );
+
+            if (isAllowed) {
+                callback(null, true);
+                return;
+            }
+
+            callback(new Error(`CORS origin not allowed: ${origin}`));
+        },
         credentials: true,
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],

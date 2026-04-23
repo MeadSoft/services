@@ -15,6 +15,17 @@ export const AuthConfigJsonSchema = zod.any();
 export const AuthConfigEnvSchema = zod
     .object({
         JWT_SECRET: zod.string().nonempty(),
+        AUTH_COOKIE_DOMAIN: zod.string().optional(),
+        AUTH_COOKIE_SAME_SITE: zod
+            .enum(['strict', 'lax', 'none'])
+            .default('lax'),
+        AUTH_COOKIE_SECURE: zod.enum(['true', 'false']).optional(),
+        AUTH_COOKIE_MAX_AGE_SECONDS: zod.coerce
+            .number()
+            .int()
+            .positive()
+            // 7 days
+            .default(7 * 24 * 60 * 60),
     })
     .extend(DEFAULT_CONFIG_SCHEMA.shape);
 export type IAuthJsonConfig = zod.infer<typeof AuthConfigJsonSchema>;
@@ -24,7 +35,14 @@ export class AuthConfig implements IFileAndEnvConfig<
     IAuthEnvConfig
 > {
     file: IAuthJsonConfig;
-    env: IAuthEnvConfig = { JWT_SECRET: '', APP_ENV: '' };
+    env: IAuthEnvConfig = {
+        JWT_SECRET: '',
+        AUTH_COOKIE_DOMAIN: undefined,
+        AUTH_COOKIE_SAME_SITE: 'lax',
+        AUTH_COOKIE_SECURE: undefined,
+        AUTH_COOKIE_MAX_AGE_SECONDS: 7 * 24 * 60 * 60,
+        APP_ENV: '',
+    };
 }
 
 export class AuthConfigLoader extends JsonAndEnvConfigLoader<
