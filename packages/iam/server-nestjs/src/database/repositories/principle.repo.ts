@@ -7,23 +7,23 @@ import {
 import { EMPTY_LENGTH, FIRST_INDEX, ZodSchema } from '@meadsoft/common';
 import { principlesTable } from '../tables/principles.table';
 import { principleLoginMethodsTable } from '../tables/principle-login-methods.table';
-import type { AuthDrizzleSchema } from '../tables/drizzle-schema';
+import type { IamDrizzlePgSchema } from '../tables/drizzle-schema';
 import {
     IPrincipleLoginMethod,
     PrincipleSchema,
     PrincipleLoginMethodSchema,
     IPrinciple,
 } from '@meadsoft/iam-contracts';
-import { AuthUnitOfWork } from './iam-database.service';
+import { IamUnitOfWork } from '../iam-database.service';
 
 @Injectable()
 export class PrincipleRepository extends DrizzlePgCommandRepository<
     IPrinciple,
     string,
-    AuthDrizzleSchema
+    IamDrizzlePgSchema
 > {
     constructor(
-        unitOfWork: AuthUnitOfWork,
+        unitOfWork: IamUnitOfWork,
         filterTranslationService: DrizzlePgFilterTranslationService,
     ) {
         super(
@@ -53,10 +53,10 @@ export class PrincipleRepository extends DrizzlePgCommandRepository<
 export class PrincipleLoginMethodRepository extends DrizzlePgCommandRepository<
     IPrincipleLoginMethod,
     string,
-    AuthDrizzleSchema
+    IamDrizzlePgSchema
 > {
     constructor(
-        unitOfWork: AuthUnitOfWork,
+        unitOfWork: IamUnitOfWork,
         filterTranslationService: DrizzlePgFilterTranslationService,
     ) {
         super(

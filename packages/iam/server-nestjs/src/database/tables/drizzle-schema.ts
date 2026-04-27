@@ -73,7 +73,7 @@ export const policyBindingsRelations = relations(
     }),
 );
 
-export const authDrizzleSchema = {
+export const iamDrizzlePgSchema = {
     principlesTable,
     principleLoginMethodsTable,
     rolesTable,
@@ -92,4 +92,4 @@ export const authDrizzleSchema = {
     policyBindingsRelations,
 };
 
-export type AuthDrizzleSchema = typeof authDrizzleSchema;
+export type IamDrizzlePgSchema = typeof iamDrizzlePgSchema;

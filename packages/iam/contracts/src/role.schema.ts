@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { EntitySchema } from '@meadsoft/common';
 import { PermissionSchema } from './permission.schema';
 
+export const ROLE_RESOURCE_NAME = 'role';
+
 // new role
 export const NewRoleSchema = z.object({
     name: z.string().nonempty(),
@@ -20,3 +22,23 @@ export const RoleWithPermissionsSchema = RoleSchema.extend({
     permissions: z.array(PermissionSchema),
 });
 export type IRoleWithPermissions = z.infer<typeof RoleWithPermissionsSchema>;
+
+export class Role implements IRole {
+    id: string;
+    name: string;
+    description: string | null;
+    createdDate: string | null;
+    updatedDate: string | null;
+    createdById: string | null;
+    updatedById: string | null;
+
+    constructor(data: IRole) {
+        this.id = data.id;
+        this.name = data.name;
+        this.description = data.description;
+        this.createdDate = data.createdDate;
+        this.updatedDate = data.updatedDate;
+        this.createdById = data.createdById;
+        this.updatedById = data.updatedById;
+    }
+}

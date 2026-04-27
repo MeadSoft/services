@@ -10,8 +10,8 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 module.exports = {
-    displayName: "iam-contracts",
-    preset: "../../../est.preset.js",
+    displayName: "restaurant-catalog",
+    preset: "../../../jest.preset.js",
     testEnvironment: "node",
     transform: {
         "^.+\\.[tj]s$": ["@swc/jest", swcJestConfig],

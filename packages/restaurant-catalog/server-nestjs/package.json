@@ -1,18 +1,18 @@
 {
-    "name": "@meadsoft/common-infrastructure",
+    "name": "@meadsoft/restaurant-catalog-server-nestjs",
     "version": "0.0.0",
     "tags": [
-        "util",
-        "model",
         "query",
-        "command"
+        "command",
+        "server",
+        "restaurant-catalog"
     ],
     "private": true,
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "scripts": {
-        "build": "../../scripts/build-and-bundle.sh"
+        "build": "../../../scripts/build-and-bundle.sh"
     },
     "exports": {
         "./package.json": "./package.json",
@@ -25,20 +25,25 @@
         }
     },
     "nx": {
-        "name": "common-infrastructure"
+        "name": "restaurant-catalog-server-nestjs"
     },
     "dependencies": {
+        "@meadsoft/restaurant-catalog-contracts": "workspace:*",
         "@meadsoft/common-server": "workspace:*",
-        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-nestjs": "workspace:*",
+        "@meadsoft/common-infrastructure": "workspace:*",
+        "@meadsoft/common-http-server-nestjs": "workspace:*",
+        "@meadsoft/common-application": "workspace:*",
         "@nestjs/common": "^11.0.1",
+        "@nestjs/swagger": "^11.2.3",
         "@nestjs/testing": "^11.0.1",
         "@types/pg": "^8.15.6",
         "drizzle-orm": "^0.44.7",
+        "nestjs-zod": "^5.0.1",
+        "ts-results": "^3.3.0",
         "pg": "^8.16.3",
         "tslib": "^2.3.0",
-        "ts-results": "^3.3.0",
         "tsup": "^8.5.1",
-        "zod": "^4.1.12",
-        "nestjs-zod": "^5.0.1"
+        "zod": "^4.1.12"
     }
 }

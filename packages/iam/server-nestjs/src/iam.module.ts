@@ -10,10 +10,7 @@ import {
     PostgresUnitOfWork,
     UnitOfWorkService,
 } from '@meadsoft/common-infrastructure';
-import {
-    AuthDbService,
-    AuthUnitOfWork,
-} from './database/repositories/iam-database.service';
+import { IamDbService, IamUnitOfWork } from './database/iam-database.service';
 import {
     PrincipleRepository,
     PrincipleLoginMethodRepository,
@@ -33,10 +30,10 @@ import { PrincipleService } from './services/principle.service';
     providers: [
         JwtCookieStrategy,
         IamConfigProvider,
-        AuthDbService,
-        AuthUnitOfWork,
-        { provide: PostgresUnitOfWork, useExisting: AuthUnitOfWork },
-        { provide: UnitOfWorkService, useExisting: AuthUnitOfWork },
+        IamDbService,
+        IamUnitOfWork,
+        { provide: PostgresUnitOfWork, useExisting: IamUnitOfWork },
+        { provide: UnitOfWorkService, useExisting: IamUnitOfWork },
         PrincipleRepository,
         PrincipleLoginMethodRepository,
         PrincipleService,
