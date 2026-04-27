@@ -10,7 +10,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { Observable, of } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 import { AuthService } from 'src/services/auth/auth.service';
-import { ONE_ITEM } from '@meadsoft/common-browser';
+import { ONE_ITEM } from '@meadsoft/common';
 
 export const ADMIN_ROLE = 'haru-cafe.admin';
 
@@ -43,8 +43,8 @@ export class AdminGuard implements CanActivate {
                 queryParams: { returnUrl },
             });
         }
-        const user = this.authService.apiUser();
-        if (!user?.roles?.includes(ADMIN_ROLE)) {
+        const principle = this.authService.apiPrinciple();
+        if (!principle?.roles?.includes(ADMIN_ROLE)) {
             return this.router.createUrlTree(['/']);
         }
         return true;

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { v4 as uuidv4 } from 'uuid';
+import { v7 as uuidv7 } from 'uuid';
 import { IEntity } from '@meadsoft/common-server';
 import { ChangeHistoryService } from './change-history.service';
 
@@ -8,7 +8,7 @@ export class EntityService {
     constructor(private readonly changeHistoryService: ChangeHistoryService) {}
 
     createId(): string {
-        return uuidv4();
+        return uuidv7();
     }
 
     initialize(userId: string, entity: IEntity): void {

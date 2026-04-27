@@ -9,20 +9,15 @@
         "sourceMap": true,
         "inlineSources": true,
         "inlineSourceMap": false,
-        "types": [
-            "node"
-        ]
+        "types": ["node"]
     },
-    "include": [
-        "src/**/*.ts",
-        "../../tags.client.ts",
-    ],
+    "include": ["src/**/*.ts", "../../tags.client.ts"],
     "references": [
         {
-            "path": "../common-server/tsconfig.lib.json"
+            "path": "../common-http-client-angular/tsconfig.lib.json"
         },
         {
-            "path": "../common-http-client-angular/tsconfig.lib.json"
+            "path": "../common/tsconfig.lib.json"
         },
         {
             "path": "../restaurant-catalog-contracts/tsconfig.lib.json"

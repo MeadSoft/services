@@ -1,4 +1,4 @@
-import { EntitySchema } from '@meadsoft/common-browser';
+import { EntitySchema } from '@meadsoft/common';
 import { z } from 'zod';
 
 export const MENU_ITEM_TO_SIZE_RESOURCE_NAME = 'menu-item-to-size';

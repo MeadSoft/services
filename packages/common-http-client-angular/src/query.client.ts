@@ -1,4 +1,4 @@
-import { Entity, IQueryClient } from '@meadsoft/common-browser';
+import { Entity, IQueryClient } from '@meadsoft/common';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 

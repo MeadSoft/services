@@ -1,0 +1,50 @@
+{
+    "name": "@meadsoft/iam-server-nestjs",
+    "version": "0.0.0",
+    "tags": [
+        "iam",
+        "server",
+        "nestjs"
+    ],
+    "private": true,
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "../../../scripts/build-and-bundle.sh"
+    },
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@meadsoft/monorepo": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs",
+            "default": "./dist/index.js"
+        }
+    },
+    "nx": {
+        "name": "iam-server-nestjs"
+    },
+    "dependencies": {
+        "@meadsoft/iam-contracts": "workspace:*",
+        "@meadsoft/google": "workspace:*",
+        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-server": "workspace:*",
+        "@meadsoft/common-infrastructure": "workspace:*",
+        "@nestjs/common": "^11.0.1",
+        "@nestjs/jwt": "^11.0.1",
+        "@nestjs/passport": "^11.0.1",
+        "@nestjs/testing": "^11.1.9",
+        "@types/passport-jwt": "^4.0.1",
+        "drizzle-orm": "^0.44.7",
+        "passport-jwt": "^4.0.1",
+        "tslib": "^2.3.0",
+        "zod": "^4.1.12",
+        "uuid": "^13.0.0"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.0",
+        "firebase-admin": "^13.6.0"
+    }
+}

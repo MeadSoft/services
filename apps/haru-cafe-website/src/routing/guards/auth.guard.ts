@@ -10,7 +10,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { Observable, of } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 import { AuthService } from 'src/services/auth/auth.service';
-import { ONE_ITEM } from '@meadsoft/common-browser';
+import { ONE_ITEM } from '@meadsoft/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {

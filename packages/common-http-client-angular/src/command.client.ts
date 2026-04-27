@@ -3,7 +3,7 @@ import {
     ICrudClient,
     IFilter,
     NotImplementedException,
-} from '@meadsoft/common-browser';
+} from '@meadsoft/common';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { QueryClient } from './query.client';

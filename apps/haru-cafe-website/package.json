@@ -17,9 +17,9 @@
     },
     "private": true,
     "dependencies": {
-        "@meadsoft/common-browser": "workspace:*",
-        "@meadsoft/auth-client-angular": "workspace:*",
-        "@meadsoft/auth-contracts": "workspace:*",
+        "@meadsoft/common": "workspace:*",
+        "@meadsoft/iam-client-angular": "workspace:*",
+        "@meadsoft/iam-contracts": "workspace:*",
         "@meadsoft/restaurant-catalog-contracts": "workspace:*",
         "@meadsoft/common-http-client-angular": "workspace:*",
         "@meadsoft/restaurant-catalog-client-angular": "workspace:*",

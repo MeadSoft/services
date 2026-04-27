@@ -3,7 +3,7 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 // import { FilesModule } from '@meadsoft/files';
 import { HttpModule } from './http.module';
 // import { DebugModule } from '@meadsoft/debug';
-import { AuthModule } from '@meadsoft/auth-server-nestjs';
+import { AuthModule } from '@meadsoft/iam-server-nestjs';
 // import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { RestaurantCatalogModule } from '@meadsoft/restaurant-catalog-server-nestjs';
 import { RequestLoggerMiddleware } from '@meadsoft/common-nestjs';

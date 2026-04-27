@@ -1,0 +1,37 @@
+{
+    "name": "@meadsoft/iam-client-angular",
+    "version": "0.0.0",
+    "tags": [
+        "iam",
+        "client",
+        "angular"
+    ],
+    "private": true,
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "ngc -p tsconfig.lib.json"
+    },
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@meadsoft/monorepo": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "nx": {
+        "name": "iam-client-angular"
+    },
+    "dependencies": {
+        "@meadsoft/iam-contracts": "workspace:*",
+        "@meadsoft/common-http-client-angular": "workspace:*",
+        "@angular/common": "^20.3.10",
+        "@angular/core": "^20.3.10",
+        "rxjs": "~7.8.0",
+        "tslib": "^2.3.0"
+    }
+}

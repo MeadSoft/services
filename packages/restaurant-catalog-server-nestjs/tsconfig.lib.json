@@ -6,19 +6,21 @@
         "outDir": "dist",
         "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
         "emitDeclarationOnly": false,
-        "types": [
-            "node"
-        ]
+        "types": ["node"]
     },
-    "include": [
-        "src/**/*.ts",
-    ],
+    "include": ["src/**/*.ts"],
     "references": [
+        {
+            "path": "../common-application/tsconfig.lib.json"
+        },
         {
             "path": "../common-http-server-nestjs/tsconfig.lib.json"
         },
         {
             "path": "../common-infrastructure/tsconfig.lib.json"
+        },
+        {
+            "path": "../common-nestjs/tsconfig.lib.json"
         },
         {
             "path": "../common-server/tsconfig.lib.json"

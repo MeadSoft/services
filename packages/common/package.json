@@ -1,0 +1,35 @@
+{
+    "name": "@meadsoft/common",
+    "version": "0.0.0",
+    "tags": [
+        "util",
+        "model"
+    ],
+    "private": true,
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "../../scripts/build-and-bundle.sh"
+    },
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@meadsoft/monorepo": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs",
+            "default": "./dist/index.js"
+        }
+    },
+    "nx": {
+        "name": "common"
+    },
+    "dependencies": {
+        "@types/uuid": "^11.0.0",
+        "ts-results": "^3.3.0",
+        "tslib": "^2.3.0",
+        "uuid": "^13.0.0",
+        "zod": "^4.1.12"
+    }
+}

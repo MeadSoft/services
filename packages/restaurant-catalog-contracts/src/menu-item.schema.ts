@@ -1,9 +1,5 @@
 import { z } from 'zod';
-import {
-    EntitySchema,
-    DEFAULT_STRING_LENGTH,
-    IEntity,
-} from '@meadsoft/common-browser';
+import { EntitySchema, DEFAULT_STRING_LENGTH, IEntity } from '@meadsoft/common';
 import { ITag, TagSchema } from './tags.schema';
 import { ISize, SizeSchema } from './sizes.schema';
 
@@ -11,6 +7,7 @@ export const MENU_ITEM_IS_FAVORITE_DEFAULT = false;
 export const MENU_ITEM_IS_ACTIVE_DEFAULT = false;
 export const MENU_ITEM_RESOURCE_NAME = 'menu-items';
 
+// new menu item
 export const NewMenuItemSchema = z.object({
     name: z.string().nonempty().max(DEFAULT_STRING_LENGTH),
     description: z.string().nullable().default(null),
@@ -19,22 +16,14 @@ export const NewMenuItemSchema = z.object({
     isFavorite: z.boolean().default(MENU_ITEM_IS_FAVORITE_DEFAULT),
     isActive: z.boolean().default(MENU_ITEM_IS_ACTIVE_DEFAULT),
 });
-export const MenuItemSchema = EntitySchema.extend(NewMenuItemSchema.shape);
-export type INewMenuItem = z.infer<typeof NewMenuItemSchema>;
-export type IMenuItem = IEntity & z.infer<typeof MenuItemSchema>;
 export const NewMenuItemWithRelationsSchema = NewMenuItemSchema.extend({
     tags: z.uuid().array().optional(),
     sizes: z.uuid().array().optional(),
 });
-export const MenuItemWithRelationsSchema = MenuItemSchema.extend({
-    tags: z.array(TagSchema),
-    sizes: z.array(SizeSchema),
-});
-export type IMenuItemWithRelations = z.infer<
-    typeof MenuItemWithRelationsSchema
->;
-export type INewMenuItemWithRelations = IMenuItem &
-    z.infer<typeof NewMenuItemWithRelationsSchema>;
+export type INewMenuItem = z.infer<typeof NewMenuItemSchema>;
+// menu item
+export const MenuItemSchema = EntitySchema.extend(NewMenuItemSchema.shape);
+export type IMenuItem = IEntity & z.infer<typeof MenuItemSchema>;
 export class MenuItem implements IMenuItem {
     id: string;
     name: string;
@@ -62,6 +51,16 @@ export class MenuItem implements IMenuItem {
         this.updatedById = data.updatedById;
     }
 }
+// menu item with relations
+export const MenuItemWithRelationsSchema = MenuItemSchema.extend({
+    tags: z.array(TagSchema),
+    sizes: z.array(SizeSchema),
+});
+export type IMenuItemWithRelations = z.infer<
+    typeof MenuItemWithRelationsSchema
+>;
+export type INewMenuItemWithRelations = IMenuItem &
+    z.infer<typeof NewMenuItemWithRelationsSchema>;
 export class MenuItemWithRelations
     extends MenuItem
     implements IMenuItemWithRelations

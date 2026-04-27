@@ -2,6 +2,14 @@
     "http": {
         "port": 3000
     },
+    "auth": {
+        "cookie": {
+            "domain": null,
+            "sameSite": "lax",
+            "secure": true,
+            "maxAgeSeconds": 604800000
+        }
+    },
     "logging": {
         "levels": [
             "error",

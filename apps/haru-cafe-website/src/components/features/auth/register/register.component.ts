@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from 'src/services/auth/auth.service';
-import { AuthClient } from '@meadsoft/auth-client-angular';
+import { IamClient } from '@meadsoft/iam-client-angular';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -27,7 +27,7 @@ const passwordsMatchValidator: ValidatorFn = (
     imports: [ButtonModule, InputTextModule, ReactiveFormsModule, RouterLink],
 })
 export class RegisterComponent {
-    private readonly authClient = inject(AuthClient);
+    private readonly authClient = inject(IamClient);
 
     readonly error = signal<string | null>(null);
     readonly isLoading = signal<boolean>(false);
@@ -61,8 +61,11 @@ export class RegisterComponent {
         try {
             this.isLoading.set(true);
             this.error.set(null);
-            const user = await this.authClient.register({ email, password });
-            this.auth.setLocalUser(user);
+            const principle = await this.authClient.register({
+                email,
+                password,
+            });
+            this.auth.setLocalPrinciple(principle);
             await this.router.navigate(['/']);
         } catch (e: unknown) {
             this.error.set(
@@ -78,10 +81,10 @@ export class RegisterComponent {
             this.isLoading.set(true);
             this.error.set(null);
             const credential = await this.auth.signInWithGoogle();
-            const user = await this.authClient.firebaseLogin(
+            const principle = await this.authClient.firebaseLogin(
                 await credential.user.getIdToken(),
             );
-            this.auth.setLocalUser(user);
+            this.auth.setLocalPrinciple(principle);
             await this.router.navigate(['/']);
         } catch (e: unknown) {
             this.error.set(

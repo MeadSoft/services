@@ -2,7 +2,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/auth/auth.service';
-import { AuthClient } from '@meadsoft/auth-client-angular';
+import { IamClient } from '@meadsoft/iam-client-angular';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,7 +17,7 @@ export class LoginComponent {
     readonly isLoading = signal<boolean>(false);
     readonly loginForm;
 
-    private readonly authClient = inject(AuthClient);
+    private readonly authClient = inject(IamClient);
     private readonly route = inject(ActivatedRoute);
 
     constructor(
@@ -37,8 +37,8 @@ export class LoginComponent {
         try {
             this.isLoading.set(true);
             this.error.set(null);
-            const user = await this.authClient.login({ email, password });
-            this.auth.setLocalUser(user);
+            const principle = await this.authClient.login({ email, password });
+            this.auth.setLocalPrinciple(principle);
             await this.navigateAfterLogin();
         } catch (e: unknown) {
             this.error.set(e instanceof Error ? e.message : 'Login failed');
@@ -52,10 +52,10 @@ export class LoginComponent {
             this.isLoading.set(true);
             this.error.set(null);
             const credential = await this.auth.signInWithGoogle();
-            const user = await this.authClient.firebaseLogin(
+            const principle = await this.authClient.firebaseLogin(
                 await credential.user.getIdToken(),
             );
-            this.auth.setLocalUser(user);
+            this.auth.setLocalPrinciple(principle);
             await this.navigateAfterLogin();
         } catch (e: unknown) {
             this.error.set(e instanceof Error ? e.message : 'Login failed');

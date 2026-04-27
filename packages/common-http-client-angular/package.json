@@ -27,7 +27,7 @@
         "name": "common-http-client-angular"
     },
     "dependencies": {
-        "@meadsoft/common-browser": "workspace:*",
+        "@meadsoft/common": "workspace:*",
         "@angular/common": "^20.3.10",
         "@angular/core": "^20.3.10",
         "rxjs": "~7.8.0",

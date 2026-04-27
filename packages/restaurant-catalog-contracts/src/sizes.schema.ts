@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { EntitySchema } from '@meadsoft/common-browser';
+import { EntitySchema } from '@meadsoft/common';
 
 export const SIZE_RESOURCE_NAME = 'size';
 

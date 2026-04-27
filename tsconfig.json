@@ -10,15 +10,6 @@
             "path": "./apps/restaurant-catalog-api"
         },
         {
-            "path": "./packages/auth-contracts"
-        },
-        {
-            "path": "./packages/auth-server-nestjs"
-        },
-        {
-            "path": "./packages/auth-client-angular"
-        },
-        {
             "path": "./packages/common"
         },
         {
@@ -51,5 +42,20 @@
         {
             "path": "./packages/restaurant-catalog-client-angular"
         },
+        {
+            "path": "./packages/iam/client-angular"
+        },
+        {
+            "path": "./packages/iam/server-nestjs"
+        },
+        {
+            "path": "./packages/iam/contracts"
+        },
+        {
+            "path": "./packages/common-nestjs"
+        },
+        {
+            "path": "./packages/common-server"
+        }
     ]
 }

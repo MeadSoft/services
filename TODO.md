@@ -1,12 +1,8 @@
 # TODO
 
-1. finish setting up the auth package
-    1. split the auth package into a server, contracts, and client package
-        1. the server package must contain all nestjs, controller, backend service logic, and infrastructure logic
-    2. write a spec for the auth package. the spec must include a ERD diagram, an account creation flow with a diagram
-    3. write unit tests
+1. finish setting up the iam package 2. write a spec for the iam package. the spec must include a ERD diagram, an account creation flow with a diagram 3. write unit tests
 2. finish setting up the login page for the haru cafe website
-    1. add unit tests for the client auth services
+    1. add unit tests for the client iam services
     2. add end to end testing using playwright
 3. create a GCP terraform dev setup for the restaurant-catalog-api system. the terraform setup should be placed in systems/restaurant-catalog-api/dev
     1. GCP cloud sql postgres server

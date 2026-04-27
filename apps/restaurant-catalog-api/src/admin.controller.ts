@@ -1,5 +1,5 @@
 // import { Controller, UseGuards, Get } from '@nestjs/common';
-// // import { AuthGuard, RolesGuard } from '@meadsoft/auth-server-nestjs';
+// // import { AuthGuard, RolesGuard } from '@meadsoft/iam-server-nestjs';
 
 // @Controller('admin')
 // @UseGuards(AuthGuard(), new RolesGuard('admin'))

@@ -1,0 +1,253 @@
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="801.69px" height="641.81px"
+		style="transform-origin: 0px 0px 0px;" version="1.1"
+		xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style xmlns="http://www.w3.org/2000/svg" type="text/css"><![CDATA[
+		* {
+			text-rendering: geometricprecision !important;
+		}
+		]]><![CDATA[@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Noto Sans'), local('NotoSans'), url("https://mirostatic.com/app/static/a73798e3d459e1bc.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Noto Sans Italic'), local('NotoSans-Italic'), url("https://mirostatic.com/app/static/a8edd710f88715d4.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Noto Sans Medium'), local('NotoSans-Medium'), url("https://mirostatic.com/app/static/006d7e33e60b9e12.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Noto Sans Medium Italic'), local('NotoSans-MediumItalic'), url("https://mirostatic.com/app/static/31387059566a3171.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Noto Sans SemiBold'), local('NotoSans-SemiBold'), url("https://mirostatic.com/app/static/526dd53b40975c37.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Noto Sans SemiBold Italic'), local('NotoSans-SemiBoldItalic'), url("https://mirostatic.com/app/static/e73d4fdd87d7e319.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Noto Sans Bold'), local('NotoSans-Bold'), url("https://mirostatic.com/app/static/9f11d6779c14d2bc.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Noto Sans Bold Italic'), local('NotoSans-BoldItalic'), url("https://mirostatic.com/app/static/888e13e017cedc15.woff2") format('woff2');
+}
+]]><![CDATA[@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("https://mirostatic.com/app/static/800985e1502d12bf.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://mirostatic.com/app/static/d8a7ca42a20caea5.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://mirostatic.com/app/static/3cc74c1d3919bd5c.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://mirostatic.com/app/static/f0481285dc248cf0.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://mirostatic.com/app/static/2f5e8dcf6e47bf00.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://mirostatic.com/app/static/0e625f45b71a26f1.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("https://mirostatic.com/app/static/645c27eb7d93eca8.woff2") format('woff2');
+}
+]]><![CDATA[@font-face {
+  font-family: 'Noto Sans Hebrew';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Noto Sans Hebrew Regular'), local('Noto Sans Hebrew-Regular'), url("https://mirostatic.com/app/static/7ebe1dcf0343326c.woff2") format('woff2'), url("https://mirostatic.com/app/static/6c11f037d6968262.woff") format('woff');
+}
+@font-face {
+  font-family: 'Noto Sans Hebrew';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Noto Sans Hebrew Bold'), local('Noto Sans Hebrew-Bold'), url("https://mirostatic.com/app/static/d2883e2f177d0dad.woff2") format('woff2'), url("https://mirostatic.com/app/static/8546991909eadbc9.woff") format('woff');
+}
+]]><![CDATA[@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Noto Sans Japanese Regular'), local('Noto Sans Japanese-Regular'), url("https://mirostatic.com/app/static/9320b3c07ab79383.woff2") format('woff2'), url("https://mirostatic.com/app/static/a43be2cbcfc0b250.woff") format('woff');
+}
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Noto Sans Japanese Bold'), local('Noto Sans Japanese-Bold'), url("https://mirostatic.com/app/static/7ab032c73212439f.woff2") format('woff2'), url("https://mirostatic.com/app/static/29f177f4466bd7a1.woff") format('woff');
+}
+]]><![CDATA[@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''), url("https://mirostatic.com/app/static/7a5b625774730d22.woff2") format('woff2'), url("https://mirostatic.com/app/static/2d84dc606f1fb88e.woff") format('woff');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''), url("https://mirostatic.com/app/static/fa5a3d9073cdd58f.woff2") format('woff2'), url("https://mirostatic.com/app/static/7ded243557c83342.woff") format('woff');
+}
+]]></style><path id="LineHeadERDOnlyOne2" d="M-13.454545454545455,-6.7272727272727275 L-13.454545454545455,6.7272727272727275 M-13.454545454545455,0 L0,0 M-6.7272727272727275,-6.7272727272727275 L-6.7272727272727275,6.7272727272727275"></path><path id="LineHeadERDManySmall2" d="M0,-6.2727272727272725 L-12.545454545454545,0 L0,6.2727272727272725 M-25.09090909090909,0 L0,0"></path><ellipse id="LineHeadERDZero2" cx="-18.818181818181817" cy="0" rx="6.2727272727272725" ry="6.2727272727272725"></ellipse><path id="LineHeadERDOneOrMany2" d="M-13.454545454545455,-6.7272727272727275 L-13.454545454545455,6.7272727272727275 M0,-6.7272727272727275 L-13.454545454545455,0 L0,6.7272727272727275 M-13.454545454545455,0 L0,0"></path><path id="LineHeadERDOneSmall2" d="M-6.2727272727272725,-6.2727272727272725 L-6.2727272727272725,6.2727272727272725 M-12.545454545454545,0 L0,0"></path></defs><rect id="svg-board-background-color" width="100%" height="100%" fill="#f2f2f2"></rect><g width="801.69px" height="641.81px"  transform="translate(-0.14, -0.06) scale(1) rotate(0, 400.845, 320.905)"><svg
+	width="801.6888821570523"
+	height="641.8132282440065"
+	style="width:801.6888821570523px; height: 641.8132282440065px;"
+	class="diagram-widget"
+	preserveAspectRatio="none"
+	version="1.1"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<clipPath id="393889578511">
+		<rect x="0" y="0" width="801.6888821570523" height="641.8132282440065" rx="0" ry="0"></rect>
+	</clipPath>
+	<g id="Page-1" stroke="none" stroke-width="0" fill="none" fill-rule="evenodd">
+		<rect
+			class="shape-element shape-element-rect"
+			fill="#ffffff"
+			fill-opacity="1"
+			x="0"
+			y="0"
+			width="801.6888821570523"
+			height="641.8132282440065"
+			rx="0"
+			ry="0"
+			clip-path="url(#393889578511)"
+		></rect>
+	</g>
+	<g transform="translate(0, 0)">
+		<text x="0" y="14" font-size="14"></text>
+	</g>
+</svg>
+</g><g width="160px" height="140px"  transform="translate(286.55, 39.94) scale(1) rotate(0, 80, 70)"><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: #ffffff;fill-opacity: 1"><rect x="0" y="0" width="160" height="140" rx="8" /></g></g><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"><path d="M 0 28 L 160 28"/></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g></g><g transform="translate(15, 4)"><text xml:space="preserve" x="36.51702880859375" y="16" width="56.9659423828125" textLength="56.9659423828125" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#1a1a1a" direction="ltr" >Principle</text></g><g transform="translate(15, 43)"><text xml:space="preserve" x="40.430023193359375" y="15" width="49.13995361328125" textLength="49.13995361328125" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#1a1a1a" direction="ltr" >id: uuid</text><text xml:space="preserve" x="34.50102233886719" y="35" width="60.997955322265625" textLength="60.997955322265625" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >email: str</text><text xml:space="preserve" x="9.721046447753906" y="55" width="110.55790710449219" textLength="110.55790710449219" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >displayName: str</text><text xml:space="preserve" x="21.89404296875" y="75" width="86.2119140625" textLength="86.2119140625" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >isActive: bool</text></g></g><g width="160px" height="140px"  transform="translate(51.55, 249.94) scale(1) rotate(0, 80, 70)"><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: #ffffff;fill-opacity: 1"><rect x="0" y="0" width="160" height="140" rx="8" /></g></g><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"><path d="M 0 28 L 160 28"/></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g></g><g transform="translate(15, 4)"><text xml:space="preserve" x="45.98802185058594" y="16" width="38.023956298828125" textLength="38.023956298828125" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#1a1a1a" direction="ltr" >Policy</text></g><g transform="translate(15, 43)"><text xml:space="preserve" x="40.430023193359375" y="15" width="49.13995361328125" textLength="49.13995361328125" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >id: uuid</text><text xml:space="preserve" x="0.3620758056640625" y="35" width="129.27584838867188" textLength="129.27584838867188" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >organizationResour</text><text xml:space="preserve" x="32.55503845214844" y="55" width="64.88992309570312" textLength="64.88992309570312" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >ceId: uuid</text><text xml:space="preserve" x="6.172050476074219" y="75" width="117.65589904785156" textLength="117.65589904785156" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >type: allow | deny</text></g></g><g width="160px" height="140px"  transform="translate(521.55, 249.94) scale(1) rotate(0, 80, 70)"><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: #ffffff;fill-opacity: 1"><rect x="0" y="0" width="160" height="140" rx="8" /></g></g><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"><path d="M 0 28 L 160 28"/></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g></g><g transform="translate(15, 4)"><text xml:space="preserve" x="50.657012939453125" y="16" width="28.68597412109375" textLength="28.68597412109375" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#1a1a1a" direction="ltr" >Role</text></g><g transform="translate(15, 43)"><text xml:space="preserve" x="40.430023193359375" y="35" width="49.13995361328125" textLength="49.13995361328125" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >id: uuid</text><text xml:space="preserve" x="33.787025451660156" y="55" width="62.42594909667969" textLength="62.42594909667969" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >name: str</text></g></g><g width="160px" height="140px"  transform="translate(281.55, 459.94) scale(1) rotate(0, 80, 70)"><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: #ffffff;fill-opacity: 1"><rect x="0" y="0" width="160" height="140" rx="8" /></g></g><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"><path d="M 0 28 L 160 28"/></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g></g><g transform="translate(15, 4)"><text xml:space="preserve" x="28.502029418945312" y="16" width="72.99594116210938" textLength="72.99594116210938" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#1a1a1a" direction="ltr" >Permission</text></g><g transform="translate(15, 43)"><text xml:space="preserve" x="40.430023193359375" y="35" width="49.13995361328125" textLength="49.13995361328125" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >id: uuid</text><text xml:space="preserve" x="33.787025451660156" y="55" width="62.42594909667969" textLength="62.42594909667969" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >name: str</text></g></g><g width="70px" height="0px"  transform="translate(451.55, 319.94) scale(1) rotate(0, 35, 0)"><path stroke-linecap="butt" 
+			stroke="#333333" stroke-width="2" fill="transparent"
+			d="M 70.00000000000023 0 L 0 0" /> <use xlink:href="#LineHeadERDOnlyOne2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(70.00000000000017, 0)  rotate(0) "  />  <use xlink:href="#LineHeadERDManySmall2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 0)  rotate(180) "  />  <use xlink:href="#LineHeadERDZero2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 0)  rotate(180) "  /> </g><g width="183.38px" height="140px"  transform="translate(39.86, 459.94) scale(1) rotate(0, 91.69, 70)"><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: #ffffff;fill-opacity: 1"><rect x="0" y="0" width="183.37776431410444" height="140" rx="8" /></g></g><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"><path d="M 0 28 L 183.37776431410444 28"/></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g></g><g transform="translate(15, 4)"><text xml:space="preserve" x="3.650964066231907" y="16" width="146.07583618164062" textLength="146.07583618164062" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#1a1a1a" direction="ltr" >OrganizationResource</text></g><g transform="translate(15, 43)"><text xml:space="preserve" x="52.118905350411595" y="35" width="49.13995361328125" textLength="49.13995361328125" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#1a1a1a" direction="ltr" >id: uuid</text><text xml:space="preserve" x="45.475907608712376" y="55" width="62.42594909667969" textLength="62.42594909667969" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >name: str</text></g></g><g width="0px" height="70px"  transform="translate(131.55, 389.94) scale(1) rotate(0, 0, 35)"><path stroke-linecap="butt" 
+			stroke="#333333" stroke-width="2" fill="transparent"
+			d="M 0 70 L 0 0" /> <use xlink:href="#LineHeadERDOnlyOne2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 70)  rotate(90) "  />  <use xlink:href="#LineHeadERDOnlyOne2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 0)  rotate(-90) "  /> </g><g width="170px" height="140px"  transform="translate(281.55, 249.94) scale(1) rotate(0, 85, 70)"><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: #ffffff;fill-opacity: 1"><rect x="0" y="0" width="170.00000000000003" height="140" rx="8" /></g></g><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"><path d="M 0 28 L 170.00000000000003 28"/></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g></g><g transform="translate(15, 4)"><text xml:space="preserve" x="25.564048767089858" y="16" width="88.87190246582031" textLength="88.87190246582031" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#1a1a1a" direction="ltr" >PolicyBinding</text></g><g transform="translate(15, 43)"><text xml:space="preserve" x="45.43002319335939" y="15" width="49.13995361328125" textLength="49.13995361328125" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >id: uuid</text><text xml:space="preserve" x="25.7810516357422" y="35" width="88.43789672851562" textLength="88.43789672851562" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >policyId: uuid</text><text xml:space="preserve" x="32.12303924560548" y="55" width="75.75392150878906" textLength="75.75392150878906" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >roleId: uuid</text><text xml:space="preserve" x="8.351074218750014" y="75" width="123.2978515625" textLength="123.2978515625" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >principleIds: uuid[]</text></g></g><g width="0px" height="70px"  transform="translate(366.55, 179.94) scale(1) rotate(0, 0, 35)"><path stroke-linecap="butt" 
+			stroke="#333333" stroke-width="2" fill="transparent"
+			d="M 0 0 L 0 70" /> <use xlink:href="#LineHeadERDOneOrMany2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 0)  rotate(-90) "  />  <use xlink:href="#LineHeadERDManySmall2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 70)  rotate(90) "  />  <use xlink:href="#LineHeadERDZero2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 70)  rotate(90) "  /> </g><g width="70px" height="0px"  transform="translate(211.55, 319.94) scale(1) rotate(0, 35, 0)"><path stroke-linecap="butt" 
+			stroke="#333333" stroke-width="2" fill="transparent"
+			d="M 0 0 L 70 0" /> <use xlink:href="#LineHeadERDOnlyOne2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 0)  rotate(180) "  />  <use xlink:href="#LineHeadERDManySmall2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(70.00000000000003, 0)  rotate(0) "  />  <use xlink:href="#LineHeadERDZero2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(70.00000000000003, 0)  rotate(0) "  /> </g><g width="160px" height="140px"  transform="translate(521.55, 459.94) scale(1) rotate(0, 80, 70)"><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: #ffffff;fill-opacity: 1"><rect x="0" y="0" width="160" height="140" rx="8" /></g></g><g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"><path d="M 0 28 L 160 28"/></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g><g style="stroke: #1a1a1a;stroke-width: 2;stroke-opacity: 1;stroke-dasharray: none;stroke-linecap: round;stroke-linejoin: round;fill: transparent;fill-opacity: 0"></g></g><g transform="translate(15, 4)"><text xml:space="preserve" x="10.806045532226562" y="16" width="108.38790893554688" textLength="108.38790893554688" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#1a1a1a" direction="ltr" >RolePermissions</text></g><g transform="translate(15, 43)"><text xml:space="preserve" x="27.12303924560547" y="35" width="75.75392150878906" textLength="75.75392150878906" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >roleId: uuid</text><text xml:space="preserve" x="3.2950592041015625" y="55" width="123.40988159179688" textLength="123.40988159179688" lengthAdjust="spacingAndGlyphs" letter-spacing="0" font-family='"Noto Sans", Helvetica, OpenSans, Arial, sans-serif, Noto Sans Hebrew, Noto Sans, Noto Sans JP, Noto Sans KR' font-size="14" 
+				fill="#333333" direction="ltr" >permissionId: uuid</text></g></g><g width="80px" height="0px"  transform="translate(441.55, 529.94) scale(1) rotate(0, 40, 0)"><path stroke-linecap="butt" 
+			stroke="#333333" stroke-width="2" fill="transparent"
+			d="M 0 0 L 80.00000000000023 0" /> <use xlink:href="#LineHeadERDOnlyOne2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 0)  rotate(180) "  />  <use xlink:href="#LineHeadERDManySmall2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(80.00000000000017, 0)  rotate(0) "  />  <use xlink:href="#LineHeadERDZero2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(80.00000000000017, 0)  rotate(0) "  /> </g><g width="0px" height="70px"  transform="translate(601.55, 389.94) scale(1) rotate(0, 0, 35)"><path stroke-linecap="butt" 
+			stroke="#333333" stroke-width="2" fill="transparent"
+			d="M 0 0 L 0 70" /> <use xlink:href="#LineHeadERDOnlyOne2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 0)  rotate(-90) "  />  <use xlink:href="#LineHeadERDManySmall2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 70)  rotate(90) "  />  <use xlink:href="#LineHeadERDZero2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 70)  rotate(90) "  /> </g><g width="30px" height="70.54px"  transform="translate(681.55, 291.33) scale(1) rotate(0, 15, 35.27)"><path stroke-linecap="butt" 
+			stroke="#333333" stroke-width="2" fill="transparent"
+			d="M 0 70.53549103803986 L 22 70.53549103803986 Q 30 70.53549103803986 30 62.535491038039865 L 30 8 Q 30 0 22 0 L 0 0" /> <use xlink:href="#LineHeadERDOneSmall2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 70.53549103803982)  rotate(180) "  />  <use xlink:href="#LineHeadERDZero2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, 70.53549103803982)  rotate(180) "  />  <use xlink:href="#LineHeadERDOneSmall2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, -5.684341886080802e-14)  rotate(180) "  />  <use xlink:href="#LineHeadERDZero2" stroke="#333333"
+			stroke-width="2" fill="white" stroke-linecap="round" stroke-linejoin="round"
+			 transform="translate(0, -5.684341886080802e-14)  rotate(180) "  /> </g></svg>

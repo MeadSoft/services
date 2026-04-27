@@ -4,9 +4,9 @@
 
 The auth capability is split into three packages:
 
-- `@meadsoft/auth-contracts`: shared auth types, schemas, and constants used by both backend and frontend code.
-- `@meadsoft/auth-server-nestjs`: NestJS auth module, controller, guards, strategy, and persistence/infrastructure logic.
-- `@meadsoft/auth-client-angular`: Angular client used to call auth endpoints.
+- `@meadsoft/iam-contracts`: shared auth types, schemas, and constants used by both backend and frontend code.
+- `@meadsoft/iam-server-nestjs`: NestJS auth module, controller, guards, strategy, and persistence/infrastructure logic.
+- `@meadsoft/iam-client-angular`: Angular client used to call auth endpoints.
 
 ## Package Responsibilities
 

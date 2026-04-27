@@ -1,8 +1,24 @@
-# Architecture Overview
+# Architecture Overview <!-- omit in toc -->
 
 TODO: This file is more of a brain dump than architectural documentation. I need to move the contents around into more appropriate files and locations.
 
 > The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+
+- [Tags](#tags)
+- [Global Requirements](#global-requirements)
+    - [AI Generated Code Requirements](#ai-generated-code-requirements)
+    - [App and Package Dependency Rules](#app-and-package-dependency-rules)
+- [Directory Structure](#directory-structure)
+- [Development Environment](#development-environment)
+- [Code Language Requirements](#code-language-requirements)
+    - [TypeScript / JavaScript](#typescript--javascript)
+        - [Look and Feel Requirements](#look-and-feel-requirements)
+- [DevOps](#devops)
+    - [Monorepo Management and Build Orchestration](#monorepo-management-and-build-orchestration)
+    - [CI/CD Requirements](#cicd-requirements)
+- [Glossary](#glossary)
+    - [Acronyms](#acronyms)
+    - [Terms](#terms)
 
 https://matklad.github.io//2021/02/06/ARCHITECTURE.md.html
 
@@ -30,6 +46,8 @@ Values found between curly brackets `{variable}` are to be considered as variabl
     - Owner(s): {Insert Lead Developer/Team Name}
     - Status: {Active | Maintenance | Proof of Concept | Deprecated}
     - Documentation: {Insert Link to Relevant Documentation Server} _OPTIONAL_
+- All UUIDs MUST be version 7
+    - Version 7 UUIDs are time-ordered, which can improve database performance and indexing when used as primary keys. They also provide better support for distributed systems and can help prevent collisions compared to version 4 UUIDs.
 
 ### AI Generated Code Requirements
 

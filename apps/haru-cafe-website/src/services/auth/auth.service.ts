@@ -5,41 +5,44 @@ import {
     signInWithPopup,
     UserCredential,
 } from '@angular/fire/auth';
-import { AuthClient } from '@meadsoft/auth-client-angular';
-import type { User } from '@meadsoft/auth-contracts';
+import { IamClient } from '@meadsoft/iam-client-angular';
+import type { IPrinciple } from '@meadsoft/iam-contracts';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private readonly authClient = inject(AuthClient);
+    private readonly authClient = inject(IamClient);
     /**
      * undefined = backend session check not yet complete
      * null      = no active backend session
-     * User      = authenticated application user
+     * Principle = authenticated application principle
      */
-    private readonly _apiUser = signal<User | null | undefined>(undefined);
-    readonly apiUser = computed(() => this._apiUser() ?? null);
-    readonly isAuthReady = computed(() => this._apiUser() !== undefined);
+    private readonly _apiPrinciple = signal<IPrinciple | null | undefined>(
+        undefined,
+    );
+    readonly apiPrinciple = computed(() => this._apiPrinciple() ?? null);
+    readonly isAuthReady = computed(() => this._apiPrinciple() !== undefined);
     readonly isAuthenticated = computed(
-        () => this._apiUser() !== null && this._apiUser() !== undefined,
+        () =>
+            this._apiPrinciple() !== null && this._apiPrinciple() !== undefined,
     );
 
     constructor(@Optional() private readonly firebaseAuth: Auth | null) {
-        this.fetchAndSetAuthenticatedUser();
+        this.fetchAndSetAuthenticatedPrinciple();
     }
 
-    fetchAndSetAuthenticatedUser(): void {
+    fetchAndSetAuthenticatedPrinciple(): void {
         this.authClient
             .me()
-            .then((user) => {
-                this._apiUser.set(user);
+            .then((principle) => {
+                this._apiPrinciple.set(principle);
             })
             .catch(() => {
-                this._apiUser.set(null);
+                this._apiPrinciple.set(null);
             });
     }
 
-    setLocalUser(user: User | null) {
-        this._apiUser.set(user);
+    setLocalPrinciple(principle: IPrinciple | null) {
+        this._apiPrinciple.set(principle);
     }
 
     async signInWithGoogle(): Promise<UserCredential> {

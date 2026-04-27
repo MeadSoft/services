@@ -26,6 +26,7 @@
         "name": "common-server"
     },
     "dependencies": {
+        "@meadsoft/common": "workspace:*",
         "@types/uuid": "^11.0.0",
         "dotenv": "^17.2.3",
         "ts-results": "^3.3.0",
