@@ -18,10 +18,11 @@ export const RoleSchema = z
 export type IRole = z.infer<typeof RoleSchema>;
 
 // role with relations
-export const RoleWithPermissionsSchema = RoleSchema.extend({
+export const RoleWithRelationsSchema = RoleSchema.extend({
     permissions: z.array(PermissionSchema),
+    parentRoles: z.array(RoleSchema).nullable(),
 });
-export type IRoleWithPermissions = z.infer<typeof RoleWithPermissionsSchema>;
+export type IRoleWithRelations = z.infer<typeof RoleWithRelationsSchema>;
 
 export class Role implements IRole {
     id: string;
