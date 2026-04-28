@@ -1,0 +1,44 @@
+{
+    "name": "@meadsoft/common-infrastructure",
+    "version": "0.0.0",
+    "tags": [
+        "util",
+        "model",
+        "query",
+        "command"
+    ],
+    "private": true,
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "../../../scripts/build-and-bundle.sh"
+    },
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@meadsoft/monorepo": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs",
+            "default": "./dist/index.js"
+        }
+    },
+    "nx": {
+        "name": "common-infrastructure"
+    },
+    "dependencies": {
+        "@meadsoft/common-server": "workspace:*",
+        "@meadsoft/common": "workspace:*",
+        "@nestjs/common": "^11.0.1",
+        "@nestjs/testing": "^11.0.1",
+        "@types/pg": "^8.15.6",
+        "drizzle-orm": "^0.44.7",
+        "pg": "^8.16.3",
+        "tslib": "^2.3.0",
+        "ts-results": "^3.3.0",
+        "tsup": "^8.5.1",
+        "zod": "^4.1.12",
+        "nestjs-zod": "^5.0.1"
+    }
+}

@@ -152,10 +152,10 @@ importers:
         version: 20.3.12(3e7e5aedb15a28a4a6ae75915ab29926)
       '@meadsoft/common':
         specifier: workspace:*
-        version: link:../../packages/common
+        version: link:../../packages/common/common
       '@meadsoft/common-http-client-angular':
         specifier: workspace:*
-        version: link:../../packages/common-http-client-angular
+        version: link:../../packages/common/http-client-angular
       '@meadsoft/iam-client-angular':
         specifier: workspace:*
         version: link:../../packages/iam/client-angular
@@ -240,13 +240,13 @@ importers:
         version: 0.39.0(encoding@0.1.13)
       '@meadsoft/common-infrastructure':
         specifier: workspace:*
-        version: link:../../packages/common-infrastructure
+        version: link:../../packages/common/infrastructure
       '@meadsoft/common-nestjs':
         specifier: workspace:*
-        version: link:../../packages/common-nestjs
+        version: link:../../packages/common/nestjs
       '@meadsoft/common-server':
         specifier: workspace:*
-        version: link:../../packages/common-server
+        version: link:../../packages/common/server
       '@meadsoft/iam-server-nestjs':
         specifier: workspace:*
         version: link:../../packages/iam/server-nestjs
@@ -303,35 +303,17 @@ importers:
         specifier: ^4.21.0
         version: 4.21.0
 
-  packages/common:
-    dependencies:
-      '@types/uuid':
-        specifier: ^11.0.0
-        version: 11.0.0
-      ts-results:
-        specifier: ^3.3.0
-        version: 3.3.0
-      tslib:
-        specifier: ^2.3.0
-        version: 2.8.1
-      uuid:
-        specifier: ^13.0.0
-        version: 13.0.0
-      zod:
-        specifier: ^4.1.12
-        version: 4.1.13
-
-  packages/common-application:
+  packages/common/application:
     dependencies:
       '@meadsoft/common-infrastructure':
         specifier: workspace:*
-        version: link:../common-infrastructure
+        version: link:../infrastructure
       '@meadsoft/common-nestjs':
         specifier: workspace:*
-        version: link:../common-nestjs
+        version: link:../nestjs
       '@meadsoft/common-server':
         specifier: workspace:*
-        version: link:../common-server
+        version: link:../server
       '@types/uuid':
         specifier: ^11.0.0
         version: 11.0.0
@@ -348,7 +330,25 @@ importers:
         specifier: ^4.1.12
         version: 4.1.13
 
-  packages/common-http-client-angular:
+  packages/common/common:
+    dependencies:
+      '@types/uuid':
+        specifier: ^11.0.0
+        version: 11.0.0
+      ts-results:
+        specifier: ^3.3.0
+        version: 3.3.0
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+      uuid:
+        specifier: ^13.0.0
+        version: 13.0.0
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.13
+
+  packages/common/http-client-angular:
     dependencies:
       '@angular/common':
         specifier: ^20.3.10
@@ -369,17 +369,17 @@ importers:
         specifier: ^4.1.12
         version: 4.1.13
 
-  packages/common-http-server-nestjs:
+  packages/common/http-server-nestjs:
     dependencies:
       '@meadsoft/common-infrastructure':
         specifier: workspace:*
-        version: link:../common-infrastructure
+        version: link:../infrastructure
       '@meadsoft/common-nestjs':
         specifier: workspace:*
-        version: link:../common-nestjs
+        version: link:../nestjs
       '@meadsoft/common-server':
         specifier: workspace:*
-        version: link:../common-server
+        version: link:../server
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.9(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -402,14 +402,14 @@ importers:
         specifier: ^4.1.12
         version: 4.1.13
 
-  packages/common-infrastructure:
+  packages/common/infrastructure:
     dependencies:
       '@meadsoft/common':
         specifier: workspace:*
         version: link:../common
       '@meadsoft/common-server':
         specifier: workspace:*
-        version: link:../common-server
+        version: link:../server
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.9(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -441,11 +441,11 @@ importers:
         specifier: ^4.1.12
         version: 4.1.13
 
-  packages/common-nestjs:
+  packages/common/nestjs:
     dependencies:
       '@meadsoft/common-server':
         specifier: workspace:*
-        version: link:../common-server
+        version: link:../server
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.9(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -463,7 +463,7 @@ importers:
         specifier: ^5.0.6
         version: 5.0.6
 
-  packages/common-server:
+  packages/common/server:
     dependencies:
       '@meadsoft/common':
         specifier: workspace:*
@@ -539,7 +539,7 @@ importers:
     dependencies:
       '@meadsoft/common-server':
         specifier: workspace:*
-        version: link:../common-server
+        version: link:../common/server
       '@nestjs/common':
         specifier: ^11.0.1
         version: 11.1.9(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -570,7 +570,7 @@ importers:
         version: 20.3.14(@angular/compiler@20.3.14)(rxjs@7.8.2)(zone.js@0.15.1)
       '@meadsoft/common-http-client-angular':
         specifier: workspace:*
-        version: link:../../common-http-client-angular
+        version: link:../../common/http-client-angular
       '@meadsoft/iam-contracts':
         specifier: workspace:*
         version: link:../contracts
@@ -585,7 +585,7 @@ importers:
     dependencies:
       '@meadsoft/common':
         specifier: workspace:*
-        version: link:../../common
+        version: link:../../common/common
       tslib:
         specifier: ^2.3.0
         version: 2.8.1
@@ -597,16 +597,16 @@ importers:
     dependencies:
       '@meadsoft/common':
         specifier: workspace:*
-        version: link:../../common
+        version: link:../../common/common
       '@meadsoft/common-infrastructure':
         specifier: workspace:*
-        version: link:../../common-infrastructure
+        version: link:../../common/infrastructure
       '@meadsoft/common-nestjs':
         specifier: workspace:*
-        version: link:../../common-nestjs
+        version: link:../../common/nestjs
       '@meadsoft/common-server':
         specifier: workspace:*
-        version: link:../../common-server
+        version: link:../../common/server
       '@meadsoft/google':
         specifier: workspace:*
         version: link:../../google
@@ -664,10 +664,10 @@ importers:
         version: 20.3.14(@angular/compiler@20.3.14)(rxjs@7.8.2)(zone.js@0.15.1)
       '@meadsoft/common':
         specifier: workspace:*
-        version: link:../../common
+        version: link:../../common/common
       '@meadsoft/common-http-client-angular':
         specifier: workspace:*
-        version: link:../../common-http-client-angular
+        version: link:../../common/http-client-angular
       '@meadsoft/restaurant-catalog-contracts':
         specifier: workspace:*
         version: link:../contracts
@@ -682,7 +682,7 @@ importers:
     dependencies:
       '@meadsoft/common':
         specifier: workspace:*
-        version: link:../../common
+        version: link:../../common/common
       '@types/uuid':
         specifier: ^11.0.0
         version: 11.0.0
@@ -703,19 +703,19 @@ importers:
     dependencies:
       '@meadsoft/common-application':
         specifier: workspace:*
-        version: link:../../common-application
+        version: link:../../common/application
       '@meadsoft/common-http-server-nestjs':
         specifier: workspace:*
-        version: link:../../common-http-server-nestjs
+        version: link:../../common/http-server-nestjs
       '@meadsoft/common-infrastructure':
         specifier: workspace:*
-        version: link:../../common-infrastructure
+        version: link:../../common/infrastructure
       '@meadsoft/common-nestjs':
         specifier: workspace:*
-        version: link:../../common-nestjs
+        version: link:../../common/nestjs
       '@meadsoft/common-server':
         specifier: workspace:*
-        version: link:../../common-server
+        version: link:../../common/server
       '@meadsoft/restaurant-catalog-contracts':
         specifier: workspace:*
         version: link:../contracts
