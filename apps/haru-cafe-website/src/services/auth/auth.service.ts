@@ -5,7 +5,7 @@ import {
     signInWithPopup,
     UserCredential,
 } from '@angular/fire/auth';
-import { IamClient } from '@meadsoft/iam-client-angular';
+import { IamClient } from '@meadsoft/iam-http-client-angular';
 import type { IPrinciple } from '@meadsoft/iam-contracts';
 
 @Injectable({ providedIn: 'root' })

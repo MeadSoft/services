@@ -1,8 +1,9 @@
 {
-    "name": "@meadsoft/iam-client-angular",
+    "name": "@meadsoft/iam-http-client-angular",
     "version": "0.0.0",
     "tags": [
         "iam",
+        "http",
         "client",
         "angular"
     ],
@@ -24,7 +25,7 @@
         }
     },
     "nx": {
-        "name": "iam-client-angular"
+        "name": "iam-http-client-angular"
     },
     "dependencies": {
         "@meadsoft/iam-contracts": "workspace:*",

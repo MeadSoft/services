@@ -1,5 +1,5 @@
 {
-    "name": "@meadsoft/restaurant-catalog-server-nestjs",
+    "name": "@meadsoft/restaurant-catalog-http-server-nestjs",
     "version": "0.0.0",
     "tags": [
         "query",
@@ -25,7 +25,7 @@
         }
     },
     "nx": {
-        "name": "restaurant-catalog-server-nestjs"
+        "name": "restaurant-catalog-http-server-nestjs"
     },
     "dependencies": {
         "@meadsoft/restaurant-catalog-contracts": "workspace:*",

@@ -156,12 +156,12 @@ importers:
       '@meadsoft/common-http-client-angular':
         specifier: workspace:*
         version: link:../../packages/common/http-client-angular
-      '@meadsoft/iam-client-angular':
-        specifier: workspace:*
-        version: link:../../packages/iam/client-angular
       '@meadsoft/iam-contracts':
         specifier: workspace:*
         version: link:../../packages/iam/contracts
+      '@meadsoft/iam-http-client-angular':
+        specifier: workspace:*
+        version: link:../../packages/iam/client-angular
       '@meadsoft/restaurant-catalog-client-angular':
         specifier: workspace:*
         version: link:../../packages/restaurant-catalog/client-angular

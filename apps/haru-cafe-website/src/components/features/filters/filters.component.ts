@@ -8,7 +8,7 @@ import { FIRST_INDEX } from '@meadsoft/common';
 import { FilterService } from 'src/services/filter.service';
 import { ITagNode } from 'src/data/tag-nodes';
 import { TagGraphService } from 'src/services/tag-graph.service';
-import { TagsStore } from '@meadsoft/restaurant-catalog-client-angular';
+import { TagsStore } from '../../../../../../packages/restaurant-catalog/http-client-angular/src';
 
 @Component({
     selector: 'haru-filters',

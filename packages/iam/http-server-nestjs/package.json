@@ -1,8 +1,9 @@
 {
-    "name": "@meadsoft/iam-server-nestjs",
+    "name": "@meadsoft/iam-http-server-nestjs",
     "version": "0.0.0",
     "tags": [
         "iam",
+        "http",
         "server",
         "nestjs"
     ],
@@ -24,7 +25,7 @@
         }
     },
     "nx": {
-        "name": "iam-server-nestjs"
+        "name": "iam-http-server-nestjs"
     },
     "dependencies": {
         "@meadsoft/iam-contracts": "workspace:*",

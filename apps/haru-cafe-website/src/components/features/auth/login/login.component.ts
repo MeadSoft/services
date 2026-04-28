@@ -2,7 +2,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/auth/auth.service';
-import { IamClient } from '@meadsoft/iam-client-angular';
+import { IamClient } from '@meadsoft/iam-http-client-angular';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';

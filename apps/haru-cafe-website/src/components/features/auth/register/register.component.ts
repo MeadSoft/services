@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from 'src/services/auth/auth.service';
-import { IamClient } from '@meadsoft/iam-client-angular';
+import { IamClient } from '@meadsoft/iam-http-client-angular';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 

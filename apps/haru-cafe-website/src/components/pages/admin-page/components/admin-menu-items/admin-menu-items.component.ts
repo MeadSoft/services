@@ -6,7 +6,7 @@ import {
     RestaurantCatalogClients,
     SizesStore,
     TagsStore,
-} from '@meadsoft/restaurant-catalog-client-angular';
+} from '../../../../../../../../packages/restaurant-catalog/http-client-angular/src';
 import type {
     IMenuItemWithRelations,
     INewMenuItem,
@@ -62,7 +62,10 @@ export class AdminMenuItemsComponent {
     readonly formSizeIds = signal<string[]>([]);
 
     readonly tagOptions = computed<SelectOption[]>(() =>
-        (this.allTags.value() ?? []).map((t) => ({ label: t.name, value: t.id })),
+        (this.allTags.value() ?? []).map((t) => ({
+            label: t.name,
+            value: t.id,
+        })),
     );
     readonly sizeOptions = computed<SelectOption[]>(() =>
         (this.allSizes.value() ?? []).map((s) => ({

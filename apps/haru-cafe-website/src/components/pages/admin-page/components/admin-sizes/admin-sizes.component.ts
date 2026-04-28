@@ -3,7 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import {
     RestaurantCatalogClients,
     SizesStore,
-} from '@meadsoft/restaurant-catalog-client-angular';
+} from '../../../../../../../../packages/restaurant-catalog/http-client-angular/src';
 import type { ISize } from '@meadsoft/restaurant-catalog-contracts';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -12,7 +12,13 @@ import { TableModule } from 'primeng/table';
 
 @Component({
     selector: 'haru-admin-sizes',
-    imports: [CommonModule, ButtonModule, DialogModule, InputTextModule, TableModule],
+    imports: [
+        CommonModule,
+        ButtonModule,
+        DialogModule,
+        InputTextModule,
+        TableModule,
+    ],
     templateUrl: './admin-sizes.component.html',
 })
 export class AdminSizesComponent {
@@ -61,7 +67,9 @@ export class AdminSizesComponent {
                     name: this.formName().trim(),
                 });
             } else {
-                await this.clients.sizes.createOne({ name: this.formName().trim() });
+                await this.clients.sizes.createOne({
+                    name: this.formName().trim(),
+                });
             }
             this.sizesStore.resource.reload();
             this.closeDialog();

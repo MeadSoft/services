@@ -10,19 +10,19 @@
             "path": "./apps/restaurant-catalog-api"
         },
         {
-            "path": "./packages/common"
+            "path": "./packages/common/common"
         },
         {
-            "path": "./packages/common-application"
+            "path": "./packages/common/application"
         },
         {
-            "path": "./packages/common-http-server-nestjs"
+            "path": "./packages/common/http-server-nestjs"
         },
         {
-            "path": "./packages/common-http-client-angular"
+            "path": "./packages/common/http-client-angular"
         },
         {
-            "path": "./packages/common-infrastructure"
+            "path": "./packages/common/infrastructure"
         },
         {
             "path": "./packages/debug"
@@ -34,28 +34,28 @@
             "path": "./packages/google"
         },
         {
-            "path": "./packages/restaurant-catalog-contracts"
+            "path": "./packages/restaurant-catalog/contracts"
         },
         {
-            "path": "./packages/restaurant-catalog-server-nestjs"
+            "path": "./packages/restaurant-catalog/http-server-nestjs"
         },
         {
-            "path": "./packages/restaurant-catalog-client-angular"
+            "path": "./packages/restaurant-catalog/http-client-angular"
         },
         {
-            "path": "./packages/iam/client-angular"
+            "path": "./packages/iam/http-client-angular"
         },
         {
-            "path": "./packages/iam/server-nestjs"
+            "path": "./packages/iam/http-server-nestjs"
         },
         {
             "path": "./packages/iam/contracts"
         },
         {
-            "path": "./packages/common-nestjs"
+            "path": "./packages/common/nestjs"
         },
         {
-            "path": "./packages/common-server"
+            "path": "./packages/common/server"
         }
     ]
 }

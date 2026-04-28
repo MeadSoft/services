@@ -10,7 +10,7 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 module.exports = {
-    displayName: "iam-client-angular",
+    displayName: "iam-http-client-angular",
     preset: "../../../jest.preset.js",
     testEnvironment: "node",
     transform: {

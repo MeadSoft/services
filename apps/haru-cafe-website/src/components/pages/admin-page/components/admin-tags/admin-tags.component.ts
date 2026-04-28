@@ -3,7 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import {
     RestaurantCatalogClients,
     TagsStore,
-} from '@meadsoft/restaurant-catalog-client-angular';
+} from '../../../../../../../../packages/restaurant-catalog/http-client-angular/src';
 import type { ITag } from '@meadsoft/restaurant-catalog-contracts';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -12,7 +12,13 @@ import { TableModule } from 'primeng/table';
 
 @Component({
     selector: 'haru-admin-tags',
-    imports: [CommonModule, ButtonModule, DialogModule, InputTextModule, TableModule],
+    imports: [
+        CommonModule,
+        ButtonModule,
+        DialogModule,
+        InputTextModule,
+        TableModule,
+    ],
     templateUrl: './admin-tags.component.html',
 })
 export class AdminTagsComponent {
@@ -61,7 +67,9 @@ export class AdminTagsComponent {
                     name: this.formName().trim(),
                 });
             } else {
-                await this.clients.tags.createOne({ name: this.formName().trim() });
+                await this.clients.tags.createOne({
+                    name: this.formName().trim(),
+                });
             }
             this.tagsStore.resource.reload();
             this.closeDialog();

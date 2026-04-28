@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EMPTY_LENGTH } from '@meadsoft/common';
-import { MenuItemsWithRelationsStore } from '@meadsoft/restaurant-catalog-client-angular';
+import { MenuItemsWithRelationsStore } from '../../../../../../../../packages/restaurant-catalog/http-client-angular/src';
 import { IMenuItemWithRelations } from '@meadsoft/restaurant-catalog-contracts';
 import { CarouselModule } from 'primeng/carousel';
 import { SkeletonModule } from 'primeng/skeleton';

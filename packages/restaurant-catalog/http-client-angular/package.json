@@ -1,5 +1,5 @@
 {
-    "name": "@meadsoft/restaurant-catalog-client-angular",
+    "name": "@meadsoft/restaurant-catalog-http-client-angular",
     "version": "0.0.0",
     "tags": [
         "query",
@@ -25,7 +25,7 @@
         }
     },
     "nx": {
-        "name": "restaurant-catalog-client-angular"
+        "name": "restaurant-catalog-http-client-angular"
     },
     "dependencies": {
         "@meadsoft/restaurant-catalog-contracts": "workspace:*",

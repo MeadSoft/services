@@ -6,22 +6,30 @@
         "outDir": "./out-tsc/app",
         "baseUrl": ".",
         "rootDir": "src",
-        "types": ["node"],
-        "lib": ["ES2022", "dom", "dom.iterable"]
+        "types": [
+            "node"
+        ],
+        "lib": [
+            "ES2022",
+            "dom",
+            "dom.iterable"
+        ]
     },
-    "include": ["src/**/*.ts"],
+    "include": [
+        "src/**/*.ts"
+    ],
     "references": [
         {
-            "path": "../../packages/restaurant-catalog-client-angular/tsconfig.lib.json"
+            "path": "../../packages/restaurant-catalog/client-angular/tsconfig.lib.json"
         },
         {
-            "path": "../../packages/common-http-client-angular/tsconfig.lib.json"
+            "path": "../../packages/common/http-client-angular/tsconfig.lib.json"
         },
         {
-            "path": "../../packages/restaurant-catalog-contracts/tsconfig.lib.json"
+            "path": "../../packages/restaurant-catalog/contracts/tsconfig.lib.json"
         },
         {
-            "path": "../../packages/common/tsconfig.lib.json"
+            "path": "../../packages/common/common/tsconfig.lib.json"
         }
     ]
 }
