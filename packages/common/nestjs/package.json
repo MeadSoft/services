@@ -27,7 +27,7 @@
         "name": "common-nestjs"
     },
     "dependencies": {
-        "@meadsoft/common-server": "workspace:*",
+        "@meadsoft/common": "workspace:*",
         "@nestjs/common": "^11.0.1",
         "tslib": "^2.3.0",
         "uuid": "^13.0.0",

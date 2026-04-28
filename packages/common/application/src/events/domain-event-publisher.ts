@@ -1,4 +1,4 @@
-import { NotImplementedException } from '../../../http-server/src';
+import { NotImplementedException } from '@meadsoft/common';
 import { DomainEvent } from './domain-event';
 
 export interface IDomainEventPublisher {

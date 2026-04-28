@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { v7 as uuidv7 } from 'uuid';
-import { IEntity } from '../../../http-server/src';
+import { IEntity } from '@meadsoft/common';
 import { ChangeHistoryService } from './change-history.service';
 
 @Injectable()

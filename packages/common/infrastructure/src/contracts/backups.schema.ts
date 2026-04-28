@@ -1,4 +1,4 @@
-import { Environment } from '../../../http-server/src';
+import { Environment } from '@meadsoft/common';
 import { z } from 'zod';
 
 export const TableBackupSchema = z.object({

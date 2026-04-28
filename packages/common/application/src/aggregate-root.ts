@@ -1,4 +1,4 @@
-import { Entity } from '../../http-server/src';
+import { Entity } from '@meadsoft/common';
 import { DomainEvent } from './events/domain-event';
 
 export abstract class AggregateRoot extends Entity {

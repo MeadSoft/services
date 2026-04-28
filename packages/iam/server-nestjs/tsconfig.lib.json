@@ -16,20 +16,17 @@
     ],
     "references": [
         {
-            "path": "../iam-contracts/tsconfig.lib.json"
+            "path": "../contracts/tsconfig.lib.json"
         },
         {
-            "path": "../../common-infrastructure/tsconfig.lib.json"
+            "path": "../../common/infrastructure/tsconfig.lib.json"
         },
         {
-            "path": "../../common-server/tsconfig.lib.json"
+            "path": "../../common/server/tsconfig.lib.json"
         },
         {
-            "path": "../../common/tsconfig.lib.json"
+            "path": "../../common/common/tsconfig.lib.json"
         },
-        {
-            "path": "../../google/tsconfig.lib.json"
-        }
     ],
     "exclude": [
         "jest.config.ts",

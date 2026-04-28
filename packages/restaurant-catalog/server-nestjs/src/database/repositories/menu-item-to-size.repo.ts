@@ -4,7 +4,7 @@ import {
     DrizzlePgFilterTranslationService,
     PostgresUnitOfWork,
 } from '@meadsoft/common-infrastructure';
-import { ZodSchema } from '@meadsoft/common-server';
+import { ZodSchema } from '@meadsoft/common';
 import { eq } from 'drizzle-orm';
 import {
     IMenuItemToSize,

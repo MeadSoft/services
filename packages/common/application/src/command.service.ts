@@ -4,7 +4,7 @@ import {
     IFilter,
     IUpdateHistory,
     NotImplementedException,
-} from '../../http-server/src';
+} from '@meadsoft/common';
 import { ChangeHistoryService, EntityService } from '@meadsoft/common-nestjs';
 import {
     ICrudRepository,

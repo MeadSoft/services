@@ -10,7 +10,7 @@ import {
     MenuItemWithRelationsSchema,
 } from '@meadsoft/restaurant-catalog-contracts';
 import { menuItemsTable } from '../tables/menu-items.table';
-import { FIRST_INDEX, IFilter, ZodSchema } from '@meadsoft/common-server';
+import { FIRST_INDEX, IFilter, ZodSchema } from '@meadsoft/common';
 import { eq } from 'drizzle-orm';
 import { RestaurantCatalogUnitOfWork } from './restaurant-catalog-database.service';
 import type { RestaurantCatalogDrizzleSchema } from '../tables/drizzle-schema';

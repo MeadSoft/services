@@ -23,7 +23,6 @@
         "scratch": "tsx src/scratch.ts"
     },
     "dependencies": {
-        "@anthropic-ai/sdk": "^0.39.0",
         "@meadsoft/iam-server-nestjs": "workspace:*",
         "@meadsoft/common-server": "workspace:*",
         "@meadsoft/common-nestjs": "workspace:*",

@@ -15,19 +15,19 @@
     ],
     "references": [
         {
-            "path": "../../common-application/tsconfig.lib.json"
+            "path": "../../common/application/tsconfig.lib.json"
         },
         {
-            "path": "../../common-http-server-nestjs/tsconfig.lib.json"
+            "path": "../../common/http-server-nestjs/tsconfig.lib.json"
         },
         {
-            "path": "../../common-infrastructure/tsconfig.lib.json"
+            "path": "../../common/infrastructure/tsconfig.lib.json"
         },
         {
-            "path": "../../common-nestjs/tsconfig.lib.json"
+            "path": "../../common/nestjs/tsconfig.lib.json"
         },
         {
-            "path": "../../common-server/tsconfig.lib.json"
+            "path": "../../common/server/tsconfig.lib.json"
         },
         {
             "path": "../contracts/tsconfig.lib.json"

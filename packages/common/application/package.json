@@ -26,7 +26,7 @@
         "name": "common-application"
     },
     "dependencies": {
-        "@meadsoft/common-server": "workspace:*",
+        "@meadsoft/common": "workspace:*",
         "@meadsoft/common-nestjs": "workspace:*",
         "@meadsoft/common-infrastructure": "workspace:*",
         "@types/uuid": "^11.0.0",

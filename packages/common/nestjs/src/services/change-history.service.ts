@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IChangeHistory, IUpdateHistory } from '../../../http-server/src';
+import { IChangeHistory, IUpdateHistory } from '@meadsoft/common';
 
 @Injectable()
 export class ChangeHistoryService {

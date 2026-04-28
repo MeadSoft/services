@@ -1,5 +1,5 @@
 import { Err, Ok, Result } from 'ts-results';
-import { EMPTY_LENGTH, Entity } from '@meadsoft/common-server';
+import { EMPTY_LENGTH, Entity } from '@meadsoft/common';
 import { EntityService } from '@meadsoft/common-nestjs';
 import {
     IMenuItem,
@@ -14,7 +14,7 @@ export class TagEntity extends Entity implements ITag {
         userId: string,
         newTag: INewTag,
         entityService: EntityService,
-    ): Result<TagEntity, Error> {
+    ): Result<ITag, Error> {
         const tag = new TagEntity();
         if (!newTag.name || newTag.name.trim().length === EMPTY_LENGTH) {
             return Err(new Error('Tag name cannot be empty'));
@@ -22,7 +22,7 @@ export class TagEntity extends Entity implements ITag {
 
         entityService.initialize(userId, tag);
         tag.name = newTag.name;
-        return Ok(tag);
+        return Ok(tag.toDTO());
     }
 
     // Factory method for reconstituting from database

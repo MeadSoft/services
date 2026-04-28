@@ -28,7 +28,6 @@
     },
     "dependencies": {
         "@meadsoft/iam-contracts": "workspace:*",
-        "@meadsoft/google": "workspace:*",
         "@meadsoft/common": "workspace:*",
         "@meadsoft/common-nestjs": "workspace:*",
         "@meadsoft/common-server": "workspace:*",

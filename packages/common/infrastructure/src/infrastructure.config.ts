@@ -1,5 +1,5 @@
 import { EnvironmentConfigSchema, ZodSchema } from '@meadsoft/common';
-import { EnvConfigLoader } from '../../http-server/src';
+import { EnvConfigLoader } from '@meadsoft/common-server';
 import { Provider } from '@nestjs/common';
 import { createZodDto } from 'nestjs-zod';
 import zod from 'zod';

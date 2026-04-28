@@ -1,11 +1,6 @@
 import { SQL } from 'drizzle-orm';
 import { PgTable } from 'drizzle-orm/pg-core';
-import {
-    EMPTY_LENGTH,
-    FIRST_INDEX,
-    IFilter,
-    ISchema,
-} from '../../../../http-server/src';
+import { EMPTY_LENGTH, FIRST_INDEX, IFilter, ISchema } from '@meadsoft/common';
 import {
     IQueryRepository,
     ICrudRepository,

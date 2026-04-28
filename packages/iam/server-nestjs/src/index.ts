@@ -1,7 +1,6 @@
 export { AuthGuard } from './guards/auth.guard';
 export { RolesGuard } from './guards/roles.guard';
-export { AuthModule } from './iam.module';
-export { IamRbacModule } from './iam-rbac.module';
+export { IamModule } from './iam.module';
 export {
     IAM_CONFIG_KEY as AUTH_CONFIG_KEY,
     IamConfig as AuthConfig,

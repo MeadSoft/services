@@ -1,11 +1,7 @@
 import { Err, Ok, Result } from 'ts-results';
-import { EMPTY_LENGTH, Entity } from '@meadsoft/common-server';
+import { EMPTY_LENGTH, Entity } from '@meadsoft/common';
 import { EntityService } from '@meadsoft/common-nestjs';
-import {
-    IMenuItem,
-    INewSize,
-    ISize,
-} from '@meadsoft/restaurant-catalog-contracts';
+import { INewSize, ISize } from '@meadsoft/restaurant-catalog-contracts';
 
 export class SizeEntity extends Entity implements ISize {
     public name!: string;
@@ -26,10 +22,10 @@ export class SizeEntity extends Entity implements ISize {
     }
 
     // Factory method for reconstituting from database
-    public static reconstitute(data: IMenuItem): Result<SizeEntity, Error> {
-        const menuItem = new SizeEntity();
-        Object.assign(menuItem, data);
-        return Ok(menuItem);
+    public static reconstitute(data: ISize): Result<SizeEntity, Error> {
+        const size = new SizeEntity();
+        Object.assign(size, data);
+        return Ok(size);
     }
 
     toDTO(): ISize {

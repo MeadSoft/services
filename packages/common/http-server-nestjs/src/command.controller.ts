@@ -7,7 +7,7 @@ import {
     Entity,
     SYSTEM_UUID,
     ICommandService,
-} from '@meadsoft/common-server';
+} from '@meadsoft/common';
 import { InvalidIDException } from '@meadsoft/common-nestjs';
 
 export function createCommandController<TNewModel, TModel extends Entity>(

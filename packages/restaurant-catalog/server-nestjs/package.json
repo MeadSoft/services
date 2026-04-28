@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@meadsoft/restaurant-catalog-contracts": "workspace:*",
-        "@meadsoft/common-server": "workspace:*",
+        "@meadsoft/common": "workspace:*",
         "@meadsoft/common-nestjs": "workspace:*",
         "@meadsoft/common-infrastructure": "workspace:*",
         "@meadsoft/common-http-server-nestjs": "workspace:*",
