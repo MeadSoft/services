@@ -1,5 +1,5 @@
 import { Ok, Result } from 'ts-results';
-import { Entity } from '@meadsoft/common-server';
+import { Entity } from '@meadsoft/common';
 import { EntityService } from '@meadsoft/common-nestjs';
 import { INewPolicy, IPolicy, PolicyTypeEnum } from '@meadsoft/iam-contracts';
 

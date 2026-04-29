@@ -2,6 +2,14 @@
     "http": {
         "port": 3000
     },
+    "auth": {
+        "cookie": {
+            "domain": null,
+            "sameSite": "lax",
+            "secure": true,
+            "maxAgeSeconds": 604800000
+        }
+    },
     "logging": {
         "levels": [
             "error",
@@ -12,9 +20,6 @@
     },
     "gcp": {
         "project_id": "smart-quasar-297403"
-    },
-    "files": {
-        "url": "gs://smart-quasar-297403-restaurant-catalog-dev-files"
     },
     "firebase": {
         "type": "service_account",

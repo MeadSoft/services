@@ -1,5 +1,5 @@
 import { Err, Ok, Result } from 'ts-results';
-import { EMPTY_LENGTH, Entity } from '@meadsoft/common-server';
+import { EMPTY_LENGTH, Entity } from '@meadsoft/common';
 import { EntityService } from '@meadsoft/common-nestjs';
 import { INewPermission, IPermission } from '@meadsoft/iam-contracts';
 

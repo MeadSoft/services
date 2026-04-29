@@ -20,14 +20,14 @@ on:
         branches:
             - main
         paths:
-            - "apps/restaurant-catalog-api/**"
+            - "apps/**"
             - "packages/**"
             - "pnpm-lock.yaml"
             - "package.json"
             - ".github/workflows/push-container-image.yaml"
     pull_request:
         paths:
-            - "apps/restaurant-catalog-api/**"
+            - "apps/**"
             - "packages/**"
 
 permissions:
@@ -57,7 +57,7 @@ jobs:
               id: meta
               uses: docker/metadata-action@v5
               with:
-                  images: ghcr.io/${{ github.repository_owner }}/${{ inputs.image-name || 'restaurant-catalog-api' }}
+                  images: ghcr.io/${{ github.repository_owner }}/${{ inputs.image-name }}
                   tags: |
                       type=sha,prefix=,format=long
                       type=ref,event=branch

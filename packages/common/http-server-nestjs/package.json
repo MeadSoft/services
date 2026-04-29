@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-server": "workspace:*",
         "@meadsoft/common-nestjs": "workspace:*",
         "@meadsoft/common-infrastructure": "workspace:*",
         "@nestjs/common": "^11.0.1",

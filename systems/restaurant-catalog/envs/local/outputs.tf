@@ -1,11 +1,11 @@
 output "api_container_id" {
-  description = "Container ID for the restaurant-catalog-api service."
-  value       = docker_container.restaurant_catalog_api.id
+  description = "Container ID for the restaurant-catalog-http-api service."
+  value       = docker_container.restaurant_catalog_http_api.id
 }
 
 output "api_container_name" {
-  description = "Container name for the restaurant-catalog-api service."
-  value       = docker_container.restaurant_catalog_api.name
+  description = "Container name for the restaurant-catalog-http-api service."
+  value       = docker_container.restaurant_catalog_http_api.name
 }
 
 output "postgres_container_id" {

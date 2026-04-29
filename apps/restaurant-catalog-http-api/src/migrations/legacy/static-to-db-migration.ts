@@ -6,13 +6,13 @@ import {
     RestaurantCatalogModule,
     SizesRepository,
     TagsRepository,
-} from '@meadsoft/restaurant-catalog-server-nestjs';
+} from '@meadsoft/restaurant-catalog-http-server-nestjs';
 import {
     ICrudRepository,
     InfrastructureConfigLoader,
 } from '@meadsoft/common-infrastructure';
 import { MENU_ITEMS as legacyMenuItems } from './menu-items';
-import { EMPTY_LENGTH, SYSTEM_UUID } from '@meadsoft/common-server';
+import { EMPTY_LENGTH, SYSTEM_UUID } from '@meadsoft/common';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(

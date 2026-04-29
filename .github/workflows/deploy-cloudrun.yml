@@ -6,10 +6,7 @@ on:
             app-name:
                 description: "Name of the application to deploy"
                 required: true
-                type: choice
-                options:
-                    - haru-cafe-website
-                    - restaurant-catalog-api
+                type: string
             version:
                 description: "Version of the application"
                 required: true

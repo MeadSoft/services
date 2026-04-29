@@ -8,7 +8,7 @@ export const NewPrincipleLoginMethodSchema = z.object({
     principleId: z.uuid(),
     provider: z.enum(['google', 'local'] as LoginProviderEnum[]),
     providerPrincipleId: z.string().nullable(),
-    providerEmail: z.string().nullable(),
+    providerEmail: z.email().nullable(),
     passwordHash: z.string().nullable(), // for local provider only
 });
 export type INewPrincipleLoginMethod = z.infer<

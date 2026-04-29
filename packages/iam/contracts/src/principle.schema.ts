@@ -4,7 +4,7 @@ import { PrincipleLoginMethodSchema } from './principle-login-method.schema';
 
 // new principle
 export const NewPrincipleSchema = z.object({
-    email: z.string().nullable(),
+    email: z.email(),
     displayName: z.string().nullable(),
 });
 export type INewPrinciple = z.infer<typeof NewPrincipleSchema>;
@@ -18,10 +18,10 @@ export const PrincipleSchema = z
     .extend(EntitySchema.shape);
 export type IPrinciple = z.infer<typeof PrincipleSchema>;
 
-// principle with login methods
-export const PrincipleWithLoginMethodsSchema = PrincipleSchema.extend({
+// principle with relations
+export const PrincipleWithRelationsSchema = PrincipleSchema.extend({
     loginMethods: z.array(z.object(PrincipleLoginMethodSchema.shape)),
 });
-export type IPrincipleWithLoginMethods = z.infer<
-    typeof PrincipleWithLoginMethodsSchema
+export type IPrincipleWithRelations = z.infer<
+    typeof PrincipleWithRelationsSchema
 >;

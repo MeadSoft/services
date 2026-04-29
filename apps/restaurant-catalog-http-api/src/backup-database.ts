@@ -16,10 +16,10 @@ import {
     SIZE_TABLE_NAME,
     MENU_ITEMS_TABLE_NAME,
     MENU_ITEMS_TO_TAGS_TABLE_NAME,
-} from '@meadsoft/restaurant-catalog-server-nestjs';
+} from '@meadsoft/restaurant-catalog-http-server-nestjs';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
-import { Environment } from '@meadsoft/common-server';
+import { Environment } from '@meadsoft/common';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(

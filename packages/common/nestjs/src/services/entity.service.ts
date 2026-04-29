@@ -11,8 +11,8 @@ export class EntityService {
         return uuidv7();
     }
 
-    initialize(userId: string, entity: IEntity): void {
+    initialize(principleId: string, entity: IEntity): void {
         entity.id = this.createId();
-        this.changeHistoryService.initialize(userId, entity);
+        this.changeHistoryService.initialize(principleId, entity);
     }
 }

@@ -4,7 +4,7 @@
 2. finish setting up the login page for the haru cafe website
     1. add unit tests for the client iam services
     2. add end to end testing using playwright
-3. create a GCP terraform dev setup for the restaurant-catalog-api system. the terraform setup should be placed in systems/restaurant-catalog-api/dev
+3. create a GCP terraform dev setup for the restaurant-catalog system. the terraform setup should be placed in systems/restaurant-catalog/dev
     1. GCP cloud sql postgres server
         1. secret manager secrets for
     2. cloud storage bucket for file storage services

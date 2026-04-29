@@ -19,7 +19,7 @@ provider "google" {
 
 locals {
   storage_bucket_name  = "${module.gcp_metadata.project_id}-${module.common_metadata.app_uri}-files"
-  container_image_name = "restaurant-catalog-api"
+  container_image_name = "restaurant-catalog-http-api"
   ci_service_account   = "meadsoft-dev-sa@smart-quasar-297403.iam.gserviceaccount.com"
 }
 

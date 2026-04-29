@@ -3,6 +3,7 @@ FROM node:24-slim AS base
 ENV APP_ENV="local"
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+ARG APP_NAME="restaurant-catalog-http-api"
 
 RUN corepack enable
 COPY . /workspace
@@ -24,11 +25,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && rm -f /etc/nginx/sites-enabled/default
 
-COPY systems/restaurant-catalog/envs/dev/nginx/restaurant-catalog-api.conf /etc/nginx/templates/restaurant-catalog-api.conf
+COPY systems/restaurant-catalog/envs/dev/nginx/${APP_NAME}.conf /etc/nginx/templates/${APP_NAME}.conf
 COPY --from=build /app /app
 
 WORKDIR /app
 
 EXPOSE 80
 
-CMD ["bash", "-lc", "set -euo pipefail; sed \"s/API_DOMAIN/${API_DOMAIN}/g\" /etc/nginx/templates/restaurant-catalog-api.conf > /etc/nginx/conf.d/default.conf; node /app/dist/main.js & app_pid=$!; nginx -g 'daemon off;' & nginx_pid=$!; trap 'kill \"$app_pid\" \"$nginx_pid\" 2>/dev/null || true' TERM INT; wait -n \"$app_pid\" \"$nginx_pid\"; status=$?; kill \"$app_pid\" \"$nginx_pid\" 2>/dev/null || true; wait \"$app_pid\" \"$nginx_pid\" 2>/dev/null || true; exit \"$status\""]
+CMD ["bash", "-lc", "set -euo pipefail; sed \"s/API_DOMAIN/${API_DOMAIN}/g\" /etc/nginx/templates/${APP_NAME}.conf > /etc/nginx/conf.d/default.conf; node /app/dist/main.js & app_pid=$!; nginx -g 'daemon off;' & nginx_pid=$!; trap 'kill \"$app_pid\" \"$nginx_pid\" 2>/dev/null || true' TERM INT; wait -n \"$app_pid\" \"$nginx_pid\"; status=$?; kill \"$app_pid\" \"$nginx_pid\" 2>/dev/null || true; wait \"$app_pid\" \"$nginx_pid\" 2>/dev/null || true; exit \"$status\""]

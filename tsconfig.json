@@ -7,7 +7,7 @@
             "path": "./apps/haru-cafe-website"
         },
         {
-            "path": "./apps/restaurant-catalog-api"
+            "path": "./apps/restaurant-catalog-http-api"
         },
         {
             "path": "./packages/common/common"

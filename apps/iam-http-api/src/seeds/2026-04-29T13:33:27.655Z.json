@@ -1,0 +1,39 @@
+{
+    "timestamp": "2026-04-29T13:33:27.655Z",
+    "appEnv": "local",
+    "totalRecords": 0,
+    "tables": [
+        {
+            "tableName": "principles",
+            "data": []
+        },
+        {
+            "tableName": "roles",
+            "data": []
+        },
+        {
+            "tableName": "permissions",
+            "data": []
+        },
+        {
+            "tableName": "role_permissions",
+            "data": []
+        },
+        {
+            "tableName": "organizational_resources",
+            "data": []
+        },
+        {
+            "tableName": "policies",
+            "data": []
+        },
+        {
+            "tableName": "policy_bindings",
+            "data": []
+        },
+        {
+            "tableName": "principle_login_methods",
+            "data": []
+        }
+    ]
+}

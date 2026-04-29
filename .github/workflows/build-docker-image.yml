@@ -6,10 +6,7 @@ on:
             app-name:
                 description: "Name of the application to build"
                 required: true
-                type: choice
-                options:
-                    - frontend
-                    - restaurant-catalog-api
+                type: string
             load:
                 description: "Load image to Docker daemon (for local testing)"
                 required: false

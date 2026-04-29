@@ -5,6 +5,7 @@ import {
     UnitOfWorkService,
 } from '@meadsoft/common-infrastructure';
 import { CommonModule } from '@meadsoft/common-nestjs';
+import { SaltingService } from '@meadsoft/common-server';
 import { IamDbService, IamUnitOfWork } from './database/iam-database.service';
 import { OrganizationalResourcesRepository } from './database/repositories/organizational-resources.repo';
 import { RolesRepository } from './database/repositories/roles.repo';
@@ -65,6 +66,8 @@ import {
         PolicyBindingsCommandController,
     ],
     providers: [
+        // encryption
+        { provide: SaltingService, useClass: SaltingService },
         // database
         IamDbService,
         IamUnitOfWork,

@@ -18,10 +18,8 @@ export {
     IamDbService as AuthDbService,
     IamUnitOfWork as AuthUnitOfWork,
 } from './database/iam-database.service';
-export {
-    PrincipleRepository,
-    PrincipleLoginMethodRepository,
-} from './database/repositories/principle.repo';
+export { PrincipleRepository } from './database/repositories/principle.repo';
+export { PrincipleLoginMethodRepository } from './database/repositories/principle-login-method.repo';
 export { OrganizationalResourcesRepository } from './database/repositories/organizational-resources.repo';
 export { RolesRepository } from './database/repositories/roles.repo';
 export { PermissionsRepository } from './database/repositories/permissions.repo';

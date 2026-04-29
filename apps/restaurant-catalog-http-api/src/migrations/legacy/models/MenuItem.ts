@@ -1,4 +1,4 @@
-import { EMPTY_LENGTH } from '@meadsoft/common-server';
+import { EMPTY_LENGTH } from '@meadsoft/common';
 import { Category } from './Categories';
 import { IMenuItem } from './interfaces/IMenuItem';
 import { Size } from './Size';

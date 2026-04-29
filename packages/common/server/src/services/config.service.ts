@@ -32,7 +32,7 @@ class PassthroughSchema<TConfig extends object> implements ISchema<TConfig> {
 
 export const DEFAULT_CONFIG_SCHEMA = zod.object().extend(APP_ENV_SCHEMA.shape);
 
-export function getConfigPath(
+function getConfigPath(
     configDirectory: string,
     configFilenameScheme: string,
     appEnv: string,
@@ -41,7 +41,7 @@ export function getConfigPath(
     return join(configDirectory, configFile);
 }
 
-export function getJsonConfigFromFile(
+function getJsonConfigFromFile(
     fileContents: string,
     key: string | null,
 ): object {

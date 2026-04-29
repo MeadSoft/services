@@ -16,8 +16,8 @@ import {
     TAGS_TABLE_NAME,
     TagsCommandService,
     TagsQueryService,
-} from '@meadsoft/restaurant-catalog-server-nestjs';
-import { RestaurantCatalogModule } from '@meadsoft/restaurant-catalog-server-nestjs';
+    RestaurantCatalogModule,
+} from '@meadsoft/restaurant-catalog-http-server-nestjs';
 import {
     MenuItemSchema,
     MenuItemToSizeSchema,
@@ -27,7 +27,7 @@ import {
 } from '@meadsoft/restaurant-catalog-contracts';
 import * as fs from 'fs';
 import * as path from 'path';
-import { EMPTY_LENGTH, ICommandService, IQueryService } from '@meadsoft/common-server';
+import { EMPTY_LENGTH, ICommandService, IQueryService } from '@meadsoft/common';
 import {
     BackupSchema,
     IBackup,

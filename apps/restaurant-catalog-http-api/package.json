@@ -1,0 +1,51 @@
+{
+    "name": "@meadsoft/restaurant-catalog-http-api",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "nest build",
+        "metadata": "pnpx ts-node src/generate-metadata.ts",
+        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+        "start": "nest start",
+        "start:dev": "APP_ENV=local nest start --watch",
+        "start:debug": "APP_ENV=local nest start --debug --watch",
+        "start:prod": "node dist/main",
+        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:cov": "jest --coverage",
+        "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+        "test:e2e": "jest --config ./test/jest-e2e.json",
+        "db-seed-backup": "tsx src/seed-backup.ts",
+        "db-backup": "tsx src/backup-database.ts",
+        "db-generate": "drizzle-kit generate --config ./src/drizzle.config.ts",
+        "db-migrate": "drizzle-kit migrate --config ./src/drizzle.config.ts",
+        "scratch": "tsx src/scratch.ts"
+    },
+    "dependencies": {
+        "@meadsoft/common": "workspace:*",
+        "@meadsoft/common-server": "workspace:*",
+        "@meadsoft/common-http-server-nestjs": "workspace:*",
+        "@meadsoft/common-nestjs": "workspace:*",
+        "@meadsoft/common-infrastructure": "workspace:*",
+        "@meadsoft/restaurant-catalog-http-server-nestjs": "workspace:*",
+        "@meadsoft/restaurant-catalog-contracts": "workspace:*",
+        "@nestjs/cli": "^11.0.1",
+        "@nestjs/common": "^11.0.1",
+        "@nestjs/core": "^11.0.1",
+        "@nestjs/devtools-integration": "^0.2.1",
+        "@nestjs/passport": "^11.0.5",
+        "@nestjs/swagger": "^11.2.3",
+        "@nestjs/testing": "^11.1.9",
+        "@types/cookie-parser": "^1.4.10",
+        "@types/express": "^5.0.0",
+        "cookie-parser": "^1.4.7",
+        "drizzle-kit": "^0.31.7",
+        "nestjs-zod": "^5.0.1",
+        "tslib": "^2.3.0",
+        "zod": "^4.1.12"
+    },
+    "devDependencies": {
+        "tsx": "^4.21.0"
+    }
+}

@@ -1,13 +1,13 @@
 services:
-    restaurant-catalog-api:
+    restaurant-catalog-http-api:
         build:
             context: ../../../..
-            dockerfile: apps/restaurant-catalog-api/Containerfile
+            dockerfile: apps/restaurant-catalog-http-api/Containerfile
         restart: always
         ports:
             - 3000:3000
         env_file:
-            - ../../../../apps/restaurant-catalog-api/.env.local
+            - ../../../../apps/restaurant-catalog-http-api/.env.local
         depends_on:
             - postgres-db
 
@@ -18,4 +18,4 @@ services:
         ports:
             - 5432:5432
         env_file:
-            - ../../../../apps/restaurant-catalog-api/.env.local
+            - ../../../../apps/restaurant-catalog-http-api/.env.local

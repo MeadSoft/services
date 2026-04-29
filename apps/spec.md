@@ -2,7 +2,7 @@
 
 > The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
 
-**Application**: A single deployable unit that provides specific functionality or services
+**Application**: An application in the context of this codebase is executable, deployable code that is intended to represent at least one deployed instance of service(s)
 
 Each application has its own dedicated folder within the `apps/` directory (i.e., `/apps/{app-name}/`).
 

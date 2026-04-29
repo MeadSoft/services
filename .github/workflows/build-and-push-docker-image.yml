@@ -6,22 +6,19 @@ on:
             app-name:
                 description: "Name of the application to build"
                 required: true
-                type: choice
-                options:
-                    - frontend
-                    - restaurant-catalog-api
+                type: string
             version:
                 description: "Version of the application"
                 required: true
                 type: string
             environment:
-                description: "Target environment (production, development, etc.)"
+                description: "Target environment (prod, dev, etc.)"
                 required: false
                 type: choice
                 options:
-                    - production
-                    - development
-                default: "production"
+                    - prod
+                    - dev
+                default: "prod"
     workflow_call:
         inputs:
             app-name:
@@ -33,10 +30,10 @@ on:
                 required: true
                 type: string
             environment:
-                description: "Target environment (production, development, etc.)"
+                description: "Target environment (prod, dev, etc.)"
                 required: false
                 type: string
-                default: "production"
+                default: "prod"
 
 jobs:
     build:

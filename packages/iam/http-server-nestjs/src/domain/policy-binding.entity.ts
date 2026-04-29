@@ -1,10 +1,7 @@
 import { Ok, Result } from 'ts-results';
-import { Entity } from '@meadsoft/common-server';
+import { Entity } from '@meadsoft/common';
 import { EntityService } from '@meadsoft/common-nestjs';
-import {
-    INewPolicyBinding,
-    IPolicyBinding,
-} from '@meadsoft/iam-contracts';
+import { INewPolicyBinding, IPolicyBinding } from '@meadsoft/iam-contracts';
 
 export class PolicyBindingEntity extends Entity implements IPolicyBinding {
     public policyId!: string;

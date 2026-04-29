@@ -12,7 +12,8 @@
         ]
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*.ts",
+        "../../common/server/src/services/salting.service.ts"
     ],
     "references": [
         {

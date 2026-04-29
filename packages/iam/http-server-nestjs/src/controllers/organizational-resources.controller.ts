@@ -23,7 +23,11 @@ const organizationalResourceQueryController =
 const organizationalResourceCommandController = createCommandController<
     INewOrganizationalResource,
     OrganizationalResource
->(OrganizationalResource, NewOrganizationalResourceSchema, OrganizationalResourceSchema);
+>(
+    OrganizationalResource,
+    NewOrganizationalResourceSchema,
+    OrganizationalResourceSchema,
+);
 
 @ApiTags(IAM_TAG)
 @Controller(ORGANIZATIONAL_RESOURCE_RESOURCE_NAME)

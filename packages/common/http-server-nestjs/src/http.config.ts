@@ -1,8 +1,7 @@
+import { FIRST_INDEX, ZodSchema } from '@meadsoft/common';
 import {
     CONFIG_PATH_TOKEN,
-    FIRST_INDEX,
     JsonConfigLoader,
-    ZodSchema,
     createConfigProvider,
 } from '@meadsoft/common-server';
 import { Inject, Provider } from '@nestjs/common';

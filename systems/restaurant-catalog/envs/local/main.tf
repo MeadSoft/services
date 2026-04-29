@@ -10,8 +10,8 @@ terraform {
 provider "docker" {}
 
 locals {
-  default_env_file_path     = "${path.module}/../../../../apps/restaurant-catalog-api/.env.${var.app_env}"
-  default_api_build_context = "${path.module}/../../../../apps/restaurant-catalog-api"
+  default_env_file_path     = "${path.module}/../../../../apps/restaurant-catalog-http-api/.env.${var.app_env}"
+  default_api_build_context = "${path.module}/../../../../apps/restaurant-catalog-http-api"
   env_file_path             = var.env_file_path != null ? var.env_file_path : local.default_env_file_path
   api_build_context         = var.api_build_context != null ? var.api_build_context : local.default_api_build_context
   env_file_contents         = fileexists(local.env_file_path) ? file(local.env_file_path) : ""
@@ -21,7 +21,7 @@ locals {
   ]
 }
 
-resource "docker_image" "restaurant_catalog_api" {
+resource "docker_image" "restaurant_catalog_http_api" {
   name = var.api_image_name
 
   build {
@@ -48,9 +48,9 @@ resource "docker_container" "postgres_db" {
   }
 }
 
-resource "docker_container" "restaurant_catalog_api" {
+resource "docker_container" "restaurant_catalog_http_api" {
   name     = var.api_container_name
-  image    = docker_image.restaurant_catalog_api.image_id
+  image    = docker_image.restaurant_catalog_http_api.image_id
   restart  = "always"
   must_run = true
   env      = local.env_vars

@@ -7,7 +7,7 @@ import {
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-    constructor(private requiredRole: string) {}
+    constructor(private readonly requiredRole: string) {}
 
     canActivate(context: ExecutionContext): boolean {
         const request = context.switchToHttp().getRequest();

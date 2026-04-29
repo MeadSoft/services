@@ -30,7 +30,7 @@
             "runtimeExecutable": "nx",
             "runtimeArgs": [
                 "run",
-                "restaurant-catalog-api:start:debug"
+                "restaurant-catalog-http-api:start:debug"
             ],
             "console": "integratedTerminal",
             "sourceMaps": true,
@@ -38,7 +38,7 @@
                 "<node_internals>/**"
             ],
             "outFiles": [
-                "${workspaceFolder}/apps/restaurant-catalog-api/dist/**/*.js",
+                "${workspaceFolder}/apps/restaurant-catalog-http-api/dist/**/*.js",
                 "${workspaceFolder}/packages/*/dist/**/*.js",
                 "${workspaceFolder}/packages/*/dist/**/*.map"
             ],
@@ -57,7 +57,7 @@
             "runtimeExecutable": "nx",
             "runtimeArgs": [
                 "run",
-                "restaurant-catalog-api:db-seed-backup"
+                "restaurant-catalog-http-api:db-seed-backup"
             ],
             "port": 9229,
             "console": "integratedTerminal",
@@ -66,7 +66,7 @@
                 "<node_internals>/**"
             ],
             "outFiles": [
-                "${workspaceFolder}/apps/restaurant-catalog-api/dist/**/*.js",
+                "${workspaceFolder}/apps/restaurant-catalog-http-api/dist/**/*.js",
                 "${workspaceFolder}/packages/*/dist/**/*.js",
                 "${workspaceFolder}/packages/*/dist/**/*.map"
             ],

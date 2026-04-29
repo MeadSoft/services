@@ -1,0 +1,45 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "customConditions": null,
+        "baseUrl": ".",
+        "outDir": "dist",
+        "rootDir": "src",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "emitDeclarationOnly": false,
+        "sourceMap": true,
+        "declaration": true
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/drizzle.config.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "test",
+        "dist",
+        "**/*spec.ts"
+    ],
+    "references": [
+        {
+            "path": "../../packages/restaurant-catalog/contracts/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/restaurant-catalog/http-server-nestjs/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/common/infrastructure/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/common/nestjs/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/common/server/tsconfig.lib.json"
+        }
+    ]
+}

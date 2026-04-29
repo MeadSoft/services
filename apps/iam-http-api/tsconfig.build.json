@@ -17,7 +17,6 @@
     },
     "include": [
         "src/**/*.ts",
-        "src/drizzle.config.ts"
     ],
     "exclude": [
         "node_modules",
@@ -27,10 +26,7 @@
     ],
     "references": [
         {
-            "path": "../../packages/restaurant-catalog/contracts/tsconfig.lib.json"
-        },
-        {
-            "path": "../../packages/restaurant-catalog/http-server-nestjs/tsconfig.lib.json"
+            "path": "../../packages/iam/http-server-nestjs/tsconfig.lib.json"
         },
         {
             "path": "../../packages/common/infrastructure/tsconfig.lib.json"

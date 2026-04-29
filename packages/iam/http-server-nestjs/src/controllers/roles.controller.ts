@@ -11,10 +11,7 @@ import {
     createQueryController,
 } from '@meadsoft/common-http-server-nestjs';
 import { ApiTags } from '@nestjs/swagger';
-import {
-    RoleCommandService,
-    RoleQueryService,
-} from '../services/role.service';
+import { RoleCommandService, RoleQueryService } from '../services/role.service';
 import { IAM_TAG } from './api-tags';
 
 const rolesQueryController = createQueryController<Role>(Role);

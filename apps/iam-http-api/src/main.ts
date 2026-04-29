@@ -1,13 +1,16 @@
 import cookieParser from 'cookie-parser';
 import { NestFactory, PartialGraphHost } from '@nestjs/core';
-import { HttpConfig } from './http.config';
+import { HttpConfig } from '../../../packages/common/http-server-nestjs/src/http.config';
 import { AppModule } from './app.module';
 import fs from 'fs';
 import { setupSwagger } from './swagger';
 // import { DebugService } from '@meadsoft/debug';
 
 const DEFAULT_PORT = 3000;
-const DEFAULT_ALLOWED_ORIGINS = ['http://localhost:4200', 'http://localhost:4201'];
+const DEFAULT_ALLOWED_ORIGINS = [
+    'http://localhost:4200',
+    'http://localhost:4201',
+];
 
 function getAllowedOrigins(): string[] {
     const raw = process.env.CORS_ALLOWED_ORIGINS?.trim();
