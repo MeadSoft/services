@@ -11,8 +11,7 @@ if (config.err) {
 export default defineConfig({
     out: `src/migrations/${config.val.APP_ENV}`,
     schema: [
-        'node_modules/@meadsoft/restaurant-catalog-server-nestjs/src/database/tables',
-        'node_modules/@meadsoft/iam-server-nestjs/src/database/tables',
+        'node_modules/@meadsoft/restaurant-catalog-http-server-nestjs/src/database/tables',
     ],
     dialect: 'postgresql',
     dbCredentials: {

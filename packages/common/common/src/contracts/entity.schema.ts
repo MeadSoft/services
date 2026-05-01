@@ -2,7 +2,7 @@ import { ChangeHistorySchema, IChangeHistory } from './change-history.schema';
 import { z } from 'zod';
 
 export const EntitySchema = ChangeHistorySchema.extend({
-    id: z.uuidv7(),
+    id: z.uuid(),
 });
 
 export interface IEntity<Tid = string> extends IChangeHistory {

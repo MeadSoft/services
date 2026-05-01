@@ -11,13 +11,21 @@ import {
     IUnitOfWorkService,
 } from '@meadsoft/common-infrastructure';
 import { Err, Ok, Result } from 'ts-results';
+import { QueryService } from './query.service';
 
+/**
+ * Base command service providing common create, update, and delete operations for entities.
+ * Services for specific entities can extend this base class and provide entity-specific logic as needed.
+ */
 export class CommandService<
     TNewModel extends object,
     TModel extends IEntity & TNewModel,
-> implements ICommandService<TNewModel, TModel> {
+>
+    extends QueryService<TModel>
+    implements ICommandService<TNewModel, TModel>
+{
     constructor(
-        public readonly repository: ICrudRepository<TModel>,
+        repository: ICrudRepository<TModel>,
         public readonly unitOfWork: IUnitOfWorkService,
         public readonly entityService: EntityService,
         public readonly changeHistoryService: ChangeHistoryService,
@@ -25,7 +33,9 @@ export class CommandService<
             userId: string,
             newModel: TNewModel,
         ) => Result<TModel, Error>,
-    ) {}
+    ) {
+        super(repository);
+    }
 
     async createOne(
         userId: string,
@@ -146,5 +156,32 @@ export class CommandService<
             await this.updateMany(userId, updatedChangeHistory);
             return Ok(await Promise.reject(new NotImplementedException()));
         });
+    }
+}
+
+/**
+ * An alias for {@link CommandService}
+ */
+export class CrudService<
+    TNewModel extends object,
+    TModel extends IEntity & TNewModel,
+> extends CommandService<TNewModel, TModel> {
+    constructor(
+        repository: ICrudRepository<TModel>,
+        unitOfWork: IUnitOfWorkService,
+        entityService: EntityService,
+        changeHistoryService: ChangeHistoryService,
+        createFromNew: (
+            userId: string,
+            newModel: TNewModel,
+        ) => Result<TModel, Error>,
+    ) {
+        super(
+            repository,
+            unitOfWork,
+            entityService,
+            changeHistoryService,
+            createFromNew,
+        );
     }
 }

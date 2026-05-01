@@ -27,6 +27,7 @@
         "@meadsoft/common-server": "workspace:*",
         "@meadsoft/common-nestjs": "workspace:*",
         "@meadsoft/common-infrastructure": "workspace:*",
+        "@meadsoft/common": "workspace:*",
         "@nestjs/cli": "^11.0.1",
         "@nestjs/common": "^11.0.1",
         "@nestjs/core": "^11.0.1",

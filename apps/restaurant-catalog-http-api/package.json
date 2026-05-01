@@ -16,8 +16,8 @@
         "test:cov": "jest --coverage",
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./test/jest-e2e.json",
-        "db-seed-backup": "tsx src/seed-backup.ts",
-        "db-backup": "tsx src/backup-database.ts",
+        "db-seed": "tsx src/scripts/seed.ts",
+        "db-backup": "tsx src/scripts/backup.ts",
         "db-generate": "drizzle-kit generate --config ./src/drizzle.config.ts",
         "db-migrate": "drizzle-kit migrate --config ./src/drizzle.config.ts",
         "scratch": "tsx src/scratch.ts"

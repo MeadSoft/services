@@ -12,13 +12,13 @@ variable "app_env" {
 }
 
 variable "api_image_name" {
-  description = "Tag/name for the restaurant-catalog-api image."
+  description = "Tag/name for the iam-http-api image."
   type        = string
-  default     = "restaurant-catalog-api:latest"
+  default     = "iam-http-api:latest"
 }
 
 variable "api_build_context" {
-  description = "Docker build context for the restaurant-catalog-api image."
+  description = "Docker build context for the iam-http-api image."
   type        = string
   default     = null
   nullable    = true
@@ -31,21 +31,21 @@ variable "api_dockerfile" {
 }
 
 variable "api_container_name" {
-  description = "Container name for the API service."
+  description = "Container name for the IAM API service."
   type        = string
-  default     = "restaurant-catalog-api"
+  default     = "iam-http-api"
 }
 
 variable "api_internal_port" {
-  description = "Internal container port for the API service."
+  description = "Internal container port for the IAM API service."
   type        = number
   default     = 3000
 }
 
 variable "api_external_port" {
-  description = "Host port mapped to the API service."
+  description = "Host port mapped to the IAM API service."
   type        = number
-  default     = 3000
+  default     = 3001
 }
 
 variable "postgres_image_name" {
@@ -55,9 +55,9 @@ variable "postgres_image_name" {
 }
 
 variable "postgres_container_name" {
-  description = "Container name for the Postgres service."
+  description = "Container name for the IAM Postgres service."
   type        = string
-  default     = "postgres-db"
+  default     = "iam-postgres-db"
 }
 
 variable "postgres_internal_port" {
@@ -67,9 +67,9 @@ variable "postgres_internal_port" {
 }
 
 variable "postgres_external_port" {
-  description = "Host port mapped to Postgres."
+  description = "Host port mapped to IAM Postgres."
   type        = number
-  default     = 5432
+  default     = 5433
 }
 
 variable "postgres_shm_size_bytes" {
@@ -81,5 +81,5 @@ variable "postgres_shm_size_bytes" {
 variable "postgres_db_name" {
   description = "Name of the database to create in the Postgres container."
   type        = string
-  default     = "restaurant-catalog"
+  default     = "iam"
 }

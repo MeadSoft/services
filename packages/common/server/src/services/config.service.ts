@@ -189,20 +189,22 @@ export class EnvConfigLoader<
 > implements IConfigLoader<TEnvConfig> {
     constructor(public readonly envSchema: ISchema<TEnvConfig>) {}
 
-    async load(): Promise<Result<TEnvConfig, Error>> {
-        return await Promise.resolve(this.loadSync());
+    async load(envFilepath?: string): Promise<Result<TEnvConfig, Error>> {
+        return await Promise.resolve(this.loadSync(envFilepath));
     }
 
-    loadSync(): Result<TEnvConfig, Error> {
+    loadSync(envFilepath?: string): Result<TEnvConfig, Error> {
         const appEnv = getAppEnv();
         if (appEnv.err) {
             return Err(appEnv.val);
         }
         console.log(`APP_ENV = ${appEnv.val}`);
         const envFile = `.env.${appEnv.val}`;
-        const directoryPath = path.resolve(process.cwd());
-        const envFilePath = path.resolve(directoryPath, envFile);
-        dotenv.config({ path: envFilePath, override: true });
+        if (envFilepath === undefined) {
+            const directoryPath = path.resolve(process.cwd());
+            envFilepath = path.resolve(directoryPath, envFile);
+        }
+        dotenv.config({ path: envFilepath, override: true });
         const env = this.envSchema.parse(process.env);
         return env;
     }

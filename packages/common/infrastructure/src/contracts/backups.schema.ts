@@ -1,17 +1,17 @@
 import { Environment } from '@meadsoft/common';
-import { z } from 'zod';
+import z from 'zod';
 
-export const TableBackupSchema = z.object({
+export const SeedDataSchema = z.object({
     tableName: z.string().nonempty().nonoptional(),
     data: z.array(z.unknown()),
     jsonSchema: z.string().optional(),
 });
-export type ITableBackup = z.infer<typeof TableBackupSchema>;
+export type ISeedData = z.infer<typeof SeedDataSchema>;
 
-export const BackupSchema = z.object({
+export const SeedSchema = z.object({
     timestamp: z.iso.datetime(),
     appEnv: z.enum(Object.values(Environment)),
     totalRecords: z.int(),
-    tables: z.array(TableBackupSchema),
+    tables: z.array(SeedDataSchema),
 });
-export type IBackup = z.infer<typeof BackupSchema>;
+export type ISeed = z.infer<typeof SeedSchema>;
