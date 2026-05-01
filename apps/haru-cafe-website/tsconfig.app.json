@@ -4,7 +4,6 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "./out-tsc/app",
-        "baseUrl": ".",
         "rootDir": "src",
         "types": [
             "node"
@@ -20,7 +19,7 @@
     ],
     "references": [
         {
-            "path": "../../packages/restaurant-catalog/client-angular/tsconfig.lib.json"
+            "path": "../../packages/restaurant-catalog/http-client-angular/tsconfig.lib.json"
         },
         {
             "path": "../../packages/common/http-client-angular/tsconfig.lib.json"
