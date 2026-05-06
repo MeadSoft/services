@@ -4,7 +4,8 @@ import {
     NewPolicyBindingSchema,
     PolicyBinding,
     PolicyBindingSchema,
-    POLICY_BINDING_RESOURCE_NAME,
+    POLICY_BINDINGS_RESOURCE_NAME,
+    SERVICE_NAME,
 } from '@meadsoft/iam-contracts';
 import {
     createCommandController,
@@ -17,8 +18,11 @@ import {
 } from '../services/policy-binding.service';
 import { IAM_TAG } from './api-tags';
 
-const policyBindingsQueryController =
-    createQueryController<PolicyBinding>(PolicyBinding);
+const policyBindingsQueryController = createQueryController<PolicyBinding>(
+    PolicyBinding,
+    SERVICE_NAME,
+    POLICY_BINDINGS_RESOURCE_NAME,
+);
 
 const policyBindingsCommandController = createCommandController<
     INewPolicyBinding,
@@ -26,7 +30,7 @@ const policyBindingsCommandController = createCommandController<
 >(PolicyBinding, NewPolicyBindingSchema, PolicyBindingSchema);
 
 @ApiTags(IAM_TAG)
-@Controller(POLICY_BINDING_RESOURCE_NAME)
+@Controller(POLICY_BINDINGS_RESOURCE_NAME)
 export class PolicyBindingsQueryController extends policyBindingsQueryController {
     constructor(service: PolicyBindingQueryService) {
         super(service);
@@ -34,7 +38,7 @@ export class PolicyBindingsQueryController extends policyBindingsQueryController
 }
 
 @ApiTags(IAM_TAG)
-@Controller(POLICY_BINDING_RESOURCE_NAME)
+@Controller(POLICY_BINDINGS_RESOURCE_NAME)
 export class PolicyBindingsCommandController extends policyBindingsCommandController {
     constructor(service: PolicyBindingCommandService) {
         super(service);

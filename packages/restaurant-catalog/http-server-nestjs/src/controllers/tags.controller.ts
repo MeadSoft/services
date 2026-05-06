@@ -5,6 +5,7 @@ import {
     Tag,
     TagSchema,
     TAG_RESOURCE_NAME,
+    SERVICE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import {
     createCommandController,
@@ -14,7 +15,11 @@ import { ApiTags } from '@nestjs/swagger';
 import { TagsCommandService, TagsQueryService } from '../services/tags.service';
 import { RESTAURANT_CATALOG_TAG } from './api-tags';
 
-const tagsQueryController = createQueryController<Tag>(Tag);
+const tagsQueryController = createQueryController<Tag>(
+    Tag,
+    SERVICE_NAME,
+    TAG_RESOURCE_NAME,
+);
 
 const tagsCommandController = createCommandController<INewTag, Tag>(
     Tag,

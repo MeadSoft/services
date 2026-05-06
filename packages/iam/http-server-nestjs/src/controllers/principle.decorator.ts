@@ -9,7 +9,7 @@ export const CurrentPrinciple = createParamDecorator(
     (ctx: ExecutionContext): IPrinciple | undefined => {
         const request = ctx.switchToHttp().getRequest();
         const principle = request.user;
-        if (!principle) {
+        if (principle === undefined) {
             return undefined;
         }
         const result = PrincipleSchema.safeParse(principle);

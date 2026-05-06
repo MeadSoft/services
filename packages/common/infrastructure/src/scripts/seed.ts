@@ -23,7 +23,7 @@ async function seed(
         console.error('seed data is undefined. Aborting');
         return;
     }
-    const numberOfExistingItems = await crudService.countRows();
+    const numberOfExistingItems = await crudService.countRows(null);
     if (numberOfExistingItems > EMPTY_LENGTH) {
         console.log(
             'Seeding skipped: items already exist in the database table',

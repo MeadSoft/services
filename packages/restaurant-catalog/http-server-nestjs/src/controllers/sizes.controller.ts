@@ -5,6 +5,7 @@ import {
     Size,
     SizeSchema,
     SIZE_RESOURCE_NAME,
+    SERVICE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import {
     createCommandController,
@@ -17,7 +18,11 @@ import {
 } from '../services/sizes.service';
 import { RESTAURANT_CATALOG_TAG } from './api-tags';
 
-const sizesQueryController = createQueryController<Size>(Size);
+const sizesQueryController = createQueryController<Size>(
+    Size,
+    SERVICE_NAME,
+    SIZE_RESOURCE_NAME,
+);
 
 const sizesCommandController = createCommandController<INewSize, Size>(
     Size,

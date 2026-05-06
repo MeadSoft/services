@@ -5,9 +5,9 @@ import {
     SelectButtonModule,
 } from 'primeng/selectbutton';
 import { FIRST_INDEX } from '@meadsoft/common';
-import { FilterService } from 'src/services/filter.service';
-import { ITagNode } from 'src/data/tag-nodes';
-import { TagGraphService } from 'src/services/tag-graph.service';
+import { FilterService } from '@haru-cafe/services/filter.service';
+import { ITagNode } from '@haru-cafe/data/tag-nodes';
+import { TagGraphService } from '@haru-cafe/services/tag-graph.service';
 import { TagsStore } from '../../../../../../packages/restaurant-catalog/http-client-angular/src';
 
 @Component({

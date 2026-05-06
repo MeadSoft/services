@@ -4,6 +4,7 @@ import {
     MenuItemToSize,
     MenuItemToSizeSchema,
     MENU_ITEM_TO_SIZE_RESOURCE_NAME,
+    SERVICE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import {
     createCommandController,
@@ -16,8 +17,11 @@ import {
 } from '../services/menu-item-to-size.service';
 import { RESTAURANT_CATALOG_TAG } from './api-tags';
 
-const menuItemToSizeQueryController =
-    createQueryController<IMenuItemToSize>(MenuItemToSize);
+const menuItemToSizeQueryController = createQueryController<IMenuItemToSize>(
+    MenuItemToSize,
+    SERVICE_NAME,
+    MENU_ITEM_TO_SIZE_RESOURCE_NAME,
+);
 
 const menuItemToSizeCommandController = createCommandController<
     IMenuItemToSize,

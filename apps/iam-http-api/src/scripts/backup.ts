@@ -5,7 +5,6 @@ import {
     backupRepositories,
     InfrastructureConfig,
 } from '@meadsoft/common-infrastructure';
-
 import { ERROR_EXIT_CODE, SUCCESS_EXIT_CODE } from '@meadsoft/common';
 import { IamModule } from '@meadsoft/iam-http-server-nestjs';
 

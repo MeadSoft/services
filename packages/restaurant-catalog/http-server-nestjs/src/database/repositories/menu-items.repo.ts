@@ -43,7 +43,7 @@ export class MenuItemRepository extends DrizzlePgCommandRepository<
         id: string,
     ): Promise<IMenuItemWithRelations | null> {
         const filter: IFilter = {
-            table: 'menuItems',
+            resource: 'menuItems',
             field: 'id',
             operator: 'eq',
             value: id,

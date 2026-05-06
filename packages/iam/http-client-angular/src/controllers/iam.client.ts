@@ -6,6 +6,7 @@ import {
     type ILocalLoginRequest,
     type ILocalRegisterRequest,
     SERVICE_NAME,
+    IPrincipleWithRelations,
 } from '@meadsoft/iam-contracts';
 import { firstValueFrom } from 'rxjs';
 
@@ -67,11 +68,14 @@ export class IamClient {
         );
     }
 
-    async me(): Promise<IPrinciple> {
+    async me(): Promise<IPrincipleWithRelations> {
         return await firstValueFrom(
-            this.http.get<IPrinciple>(`${this.apiBaseUrl}/${SERVICE_NAME}/me`, {
-                withCredentials: true,
-            }),
+            this.http.get<IPrincipleWithRelations>(
+                `${this.apiBaseUrl}/${SERVICE_NAME}/me`,
+                {
+                    withCredentials: true,
+                },
+            ),
         );
     }
 }

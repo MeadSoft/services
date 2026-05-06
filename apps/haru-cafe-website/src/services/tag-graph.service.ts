@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { TAG_GRAPH, ITagNode } from 'src/data/tag-nodes';
+import { TAG_GRAPH, ITagNode } from '@haru-cafe/data/tag-nodes';
 import { FilterService } from './filter.service';
 
 export const NOT_FOUND_INDEX = -1;

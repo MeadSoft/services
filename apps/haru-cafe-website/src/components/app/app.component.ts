@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
-import { ColorSchemeService } from 'src/services/styles/color-scheme.service';
+import { ColorSchemeService } from '../../services/styles/color-scheme.service';
 import { NavComponent } from '../features/nav/nav.component';
 
 @Component({
@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
         this.router.events
             .pipe(filter((e) => e instanceof NavigationEnd))
             .subscribe(() => {
-                const { prefersDarkMode } = this.colorSchemeService.colorScheme();
+                const { prefersDarkMode } =
+                    this.colorSchemeService.colorScheme();
                 this.colorSchemeService.applyColorScheme(prefersDarkMode);
             });
     }

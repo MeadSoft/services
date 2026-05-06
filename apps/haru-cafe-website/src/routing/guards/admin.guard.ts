@@ -9,14 +9,14 @@ import {
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Observable, of } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
-import { AuthService } from 'src/services/auth/auth.service';
+import { IamService } from '@haru-cafe/services/auth/iam.service';
 import { ONE_ITEM } from '@meadsoft/common';
 
 export const ADMIN_ROLE = 'haru-cafe.admin';
 
 @Injectable({ providedIn: 'root' })
 export class AdminGuard implements CanActivate {
-    private readonly authService = inject(AuthService);
+    private readonly authService = inject(IamService);
     private readonly router = inject(Router);
     private readonly injector = inject(Injector);
 
@@ -44,7 +44,8 @@ export class AdminGuard implements CanActivate {
             });
         }
         const principle = this.authService.apiPrinciple();
-        if (!principle?.roles?.includes(ADMIN_ROLE)) {
+        const roles = principle?.roles ?? [];
+        if (!roles.some((role) => role.name === ADMIN_ROLE)) {
             return this.router.createUrlTree(['/']);
         }
         return true;

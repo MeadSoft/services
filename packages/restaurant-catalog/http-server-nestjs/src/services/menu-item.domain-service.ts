@@ -47,7 +47,7 @@ export class MenuItemDomainService {
         menuItemUpdates: IMenuItem,
         userId: string,
     ): Promise<Result<IMenuItem, Error>> {
-        const existingData = await this.menuItemQueryService.findOne(id);
+        const existingData = await this.menuItemQueryService.findFirst(id);
         if (!existingData) {
             return Err(new Error('Menu item not found'));
         }

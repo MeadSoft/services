@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { EntitySchema } from '@meadsoft/common';
 
-export const PERMISSION_RESOURCE_NAME = 'permission';
+export const PERMISSIONS_RESOURCE_NAME = 'Permissions';
 
 // new permission
 export const NewPermissionSchema = z.object({

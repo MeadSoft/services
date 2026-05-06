@@ -1,7 +1,7 @@
 // auth/login.component.ts
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from 'src/services/auth/auth.service';
+import { IamService } from '@haru-cafe/services/auth/iam.service';
 import { IamClient } from '@meadsoft/iam-http-client-angular';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -22,7 +22,7 @@ export class LoginComponent {
 
     constructor(
         private readonly fb: FormBuilder,
-        private readonly auth: AuthService,
+        private readonly auth: IamService,
         private readonly router: Router,
     ) {
         this.loginForm = this.fb.group({

@@ -1,6 +1,13 @@
 import { SQL } from 'drizzle-orm';
 import { PgTable } from 'drizzle-orm/pg-core';
-import { EMPTY_LENGTH, FIRST_INDEX, IFilter, ISchema } from '@meadsoft/common';
+import {
+    EMPTY_LENGTH,
+    FIRST_INDEX,
+    IFilter,
+    ISchema,
+    parseResult,
+    parseResults,
+} from '@meadsoft/common';
 import {
     IQueryRepository,
     ICrudRepository,
@@ -21,8 +28,10 @@ export abstract class DrizzlePgQueryRepository<
         protected filterTranslationService: IFilterTranslationService<SQL>,
     ) {}
 
-    async countRows(...filters: IFilter[]): Promise<number> {
-        const sqlFilters = this.filterTranslationService.translate(...filters);
+    async countRows(filters: IFilter[] | null): Promise<number> {
+        const sqlFiltersResult =
+            this.filterTranslationService.translate(filters);
+        const sqlFilters = sqlFiltersResult.unwrap();
         return await this.unitOfWork
             .getDatabase()
             .select()
@@ -33,19 +42,7 @@ export abstract class DrizzlePgQueryRepository<
 
     abstract equals(id: TId): SQL | undefined;
 
-    protected parseResult(item: unknown): TModel {
-        const result = this.schema.parse(item);
-        if (result.err) {
-            throw result.val;
-        }
-        return result.val;
-    }
-
-    protected parseResults(...items: unknown[]): TModel[] {
-        return items.map((item) => this.parseResult(item));
-    }
-
-    async findOne(id: TId): Promise<TModel | null> {
+    async findById(id: TId): Promise<TModel | null> {
         const items = await this.unitOfWork
             .getDatabase()
             .select()
@@ -54,11 +51,28 @@ export abstract class DrizzlePgQueryRepository<
         if (items.length === EMPTY_LENGTH) {
             return null;
         }
-        return this.parseResult(items[FIRST_INDEX]);
+        return parseResult(items[FIRST_INDEX], this.schema);
     }
 
-    async findMany(...filters: IFilter[]): Promise<TModel[]> {
-        const sqlFilters = this.filterTranslationService.translate(...filters);
+    async findFirst(filters: IFilter[] | null): Promise<TModel | null> {
+        const sqlFiltersResult =
+            this.filterTranslationService.translate(filters);
+        const sqlFilters = sqlFiltersResult.unwrap();
+        const items = await this.unitOfWork
+            .getDatabase()
+            .select()
+            .from(this.table)
+            .where(sqlFilters);
+        if (items.length === EMPTY_LENGTH) {
+            return null;
+        }
+        return parseResult(items[FIRST_INDEX], this.schema);
+    }
+
+    async findMany(filters: IFilter[] | null): Promise<TModel[]> {
+        const sqlFiltersResult =
+            this.filterTranslationService.translate(filters);
+        const sqlFilters = sqlFiltersResult.unwrap();
         const items = await this.unitOfWork
             .getDatabase()
             .select()
@@ -75,19 +89,22 @@ export abstract class DrizzlePgQueryRepository<
         return results;
     }
 
-    async exists(id: TId): Promise<boolean> {
+    async exists(filters: IFilter[] | null): Promise<boolean> {
+        const sqlFiltersResult =
+            this.filterTranslationService.translate(filters);
+        const sqlFilters = sqlFiltersResult.unwrap();
         const items = await this.unitOfWork
             .getDatabase()
             .select()
             .from(this.table)
-            .where(this.equals(id));
+            .where(sqlFilters);
         return items.length > EMPTY_LENGTH;
     }
 }
 
 export abstract class DrizzlePgCommandRepository<
     TModel extends object,
-    TId = string,
+    TId extends string = string,
     TSchema extends Record<string, unknown> = Record<string, never>,
 >
     extends DrizzlePgQueryRepository<TModel, TId, TSchema>
@@ -99,16 +116,16 @@ export abstract class DrizzlePgCommandRepository<
             .insert(this.table)
             .values(item)
             .returning();
-        return this.parseResult(created[FIRST_INDEX]);
+        return parseResult(created[FIRST_INDEX], this.schema);
     }
 
-    async createMany(...items: TModel[]): Promise<TModel[]> {
+    async createMany(items: TModel[]): Promise<TModel[]> {
         const created = await this.unitOfWork
             .getDatabase()
             .insert(this.table)
             .values(items)
             .returning();
-        return this.parseResults(...created);
+        return parseResults(created, this.schema);
     }
 
     async updateOne(id: TId, updates: Partial<TModel>): Promise<TModel> {
@@ -118,14 +135,16 @@ export abstract class DrizzlePgCommandRepository<
             .set(updates)
             .where(this.equals(id))
             .returning();
-        return this.parseResult(updated[FIRST_INDEX]);
+        return parseResult(updated[FIRST_INDEX], this.schema);
     }
 
     async updateMany(
         updates: Partial<TModel>,
-        ...filters: IFilter[]
+        filters: IFilter[] | null,
     ): Promise<number> {
-        const sqlFilters = this.filterTranslationService.translate(...filters);
+        const sqlFiltersResult =
+            this.filterTranslationService.translate(filters);
+        const sqlFilters = sqlFiltersResult.unwrap();
         // TODO: figure out how to type PgTransaction properly in UnitOfWorkService so this statements type is known
         // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
         const updated = (await this.unitOfWork
@@ -148,8 +167,10 @@ export abstract class DrizzlePgCommandRepository<
             : result.rowCount > EMPTY_LENGTH;
     }
 
-    async deleteMany(...filters: IFilter[]): Promise<number> {
-        const sqlFilters = this.filterTranslationService.translate(...filters);
+    async deleteMany(filters: IFilter[] | null): Promise<number> {
+        const sqlFiltersResult =
+            this.filterTranslationService.translate(filters);
+        const sqlFilters = sqlFiltersResult.unwrap();
         // TODO: figure out how to type PgTransaction properly in UnitOfWorkService so this statements type is known
         // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
         const result = (await this.unitOfWork

@@ -28,7 +28,7 @@ export async function backupRepositories(
     // Backup each table using repository's findMany()
     for (const { tableName, repository } of configs) {
         console.log(`Backing up ${tableName}...`);
-        const data = await repository.findMany();
+        const data = await repository.findMany(null);
         backups.push({ tableName, data });
         console.log(`✓ ${tableName}: ${data.length.toString()} records`);
         totalRecords += data.length;

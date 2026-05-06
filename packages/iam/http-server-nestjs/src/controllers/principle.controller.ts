@@ -1,4 +1,4 @@
-import type { Request, Response } from 'express';
+import type { Response } from 'express';
 import {
     BadRequestException,
     Body,
@@ -6,7 +6,6 @@ import {
     Get,
     InternalServerErrorException,
     Post,
-    Req,
     Res,
     UnauthorizedException,
 } from '@nestjs/common';
@@ -15,14 +14,19 @@ import {
     IAM_COOKIE_NAME,
     LocalLoginRequestSchema,
     LocalRegisterRequestSchema,
+    type IPrincipleWithRelations,
     type ILocalLoginRequest,
     type ILocalRegisterRequest,
     type IPrinciple,
+    SERVICE_NAME,
+    PRINCIPLES_RESOURCE_NAME,
 } from '@meadsoft/iam-contracts';
-import { SYSTEM_UUID } from '@meadsoft/common';
+import { IFilter, SYSTEM_UUID } from '@meadsoft/common';
 import { SaltingService } from '@meadsoft/common-server';
 import { IamConfig } from '../iam.config';
 import { PrincipleService } from '../services/principle.service';
+import { CurrentPrinciple } from './principle.decorator';
+import { PrincipleRepository } from '../database/repositories';
 
 @Controller('principle')
 export class PrincipleController {
@@ -30,6 +34,7 @@ export class PrincipleController {
         private readonly jwtService: JwtService,
         private readonly authConfig: IamConfig,
         private readonly principleService: PrincipleService,
+        private readonly principleRepository: PrincipleRepository,
         private readonly saltingService: SaltingService,
     ) {}
 
@@ -66,12 +71,27 @@ export class PrincipleController {
         }
 
         const { email, password } = parsed.data;
-        const principle = await this.principleService.findByEmail(email);
-        if (!principle) {
+        const emailFilter: IFilter = {
+            service: SERVICE_NAME,
+            resource: PRINCIPLES_RESOURCE_NAME,
+            field: 'email',
+            operator: 'eq',
+            value: email,
+        };
+        const principleResult =
+            await this.principleRepository.findFirstWithRelations([
+                emailFilter,
+            ]);
+        if (principleResult.err) {
+            throw new InternalServerErrorException(principleResult.val.message);
+        }
+        const principle = principleResult.val;
+        if (principle === null) {
             throw new UnauthorizedException('Invalid credentials');
         }
-        const localLoginMethod = principle.loginMethods.find(
-            (m) => m.provider === 'local',
+        const localLoginMethod = principle.loginMethods?.find(
+            (method) =>
+                method.provider === 'local' && method.providerEmail === email,
         );
         if (localLoginMethod === undefined) {
             throw new UnauthorizedException('Invalid credentials');
@@ -99,20 +119,10 @@ export class PrincipleController {
     }
 
     @Get('me')
-    async getCurrentPrinciple(@Req() req: Request): Promise<IPrinciple> {
-        const jwt = req.cookies?.[IAM_COOKIE_NAME];
-        if (!jwt) {
-            throw new UnauthorizedException('Not authenticated');
-        }
-
-        let payload: IPrinciple;
-        try {
-            payload = this.jwtService.verify(jwt);
-        } catch {
-            throw new UnauthorizedException('Invalid token');
-        }
-
-        return Promise.resolve(payload);
+    async getCurrentPrinciple(
+        @CurrentPrinciple() principle: IPrincipleWithRelations,
+    ): Promise<IPrinciple> {
+        return Promise.resolve(principle);
     }
 
     private setIamCookie(res: Response, principle: IPrinciple): void {

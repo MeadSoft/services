@@ -17,10 +17,10 @@ import { IMenuItemWithRelations } from '@meadsoft/restaurant-catalog-contracts';
 import { CarouselModule } from 'primeng/carousel';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TooltipModule } from 'primeng/tooltip';
-import { FiltersComponent } from 'src/components/features/filters/filters.component';
-import { FooterComponent } from 'src/components/features/footer/footer.component';
-import { MenuItemComponent } from 'src/components/features/menu-item/menu-item.component';
-import { FilterService } from 'src/services/filter.service';
+import { FiltersComponent } from '@haru-cafe/components/features/filters/filters.component';
+import { FooterComponent } from '@haru-cafe/components/features/footer/footer.component';
+import { MenuItemComponent } from '@haru-cafe/components/features/menu-item/menu-item.component';
+import { FilterService } from '@haru-cafe/services/filter.service';
 
 const SMALL_ITEMS_PER_PAGE = 10;
 const MEDIUM_ITEMS_PER_PAGE = 12;

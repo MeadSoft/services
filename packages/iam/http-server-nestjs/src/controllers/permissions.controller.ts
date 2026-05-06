@@ -4,7 +4,8 @@ import {
     NewPermissionSchema,
     Permission,
     PermissionSchema,
-    PERMISSION_RESOURCE_NAME,
+    PERMISSIONS_RESOURCE_NAME,
+    SERVICE_NAME,
 } from '@meadsoft/iam-contracts';
 import {
     createCommandController,
@@ -17,8 +18,11 @@ import {
 } from '../services/permission.service';
 import { IAM_TAG } from './api-tags';
 
-const permissionsQueryController =
-    createQueryController<Permission>(Permission);
+const permissionsQueryController = createQueryController<Permission>(
+    Permission,
+    SERVICE_NAME,
+    PERMISSIONS_RESOURCE_NAME,
+);
 
 const permissionsCommandController = createCommandController<
     INewPermission,
@@ -26,7 +30,7 @@ const permissionsCommandController = createCommandController<
 >(Permission, NewPermissionSchema, PermissionSchema);
 
 @ApiTags(IAM_TAG)
-@Controller(PERMISSION_RESOURCE_NAME)
+@Controller(PERMISSIONS_RESOURCE_NAME)
 export class PermissionsQueryController extends permissionsQueryController {
     constructor(service: PermissionQueryService) {
         super(service);
@@ -34,7 +38,7 @@ export class PermissionsQueryController extends permissionsQueryController {
 }
 
 @ApiTags(IAM_TAG)
-@Controller(PERMISSION_RESOURCE_NAME)
+@Controller(PERMISSIONS_RESOURCE_NAME)
 export class PermissionsCommandController extends permissionsCommandController {
     constructor(service: PermissionCommandService) {
         super(service);

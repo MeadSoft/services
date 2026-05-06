@@ -1,3 +1,4 @@
+export * from './constants';
 export * from './menu-item.schema';
 export * from './sizes.schema';
 export * from './tags.schema';

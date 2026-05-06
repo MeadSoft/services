@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Optional } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { AuthProviderService } from 'src/services/auth/auth-provider.service';
+import { AuthProviderService } from '../../../../services/auth/auth-provider.service';
 
 @Component({
     standalone: true,

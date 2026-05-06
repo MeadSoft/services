@@ -6,19 +6,19 @@ import {
     UserCredential,
 } from '@angular/fire/auth';
 import { IamClient } from '@meadsoft/iam-http-client-angular';
-import type { IPrinciple } from '@meadsoft/iam-contracts';
+import type { IPrincipleWithRelations } from '@meadsoft/iam-contracts';
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
-    private readonly authClient = inject(IamClient);
+export class IamService {
+    private readonly iamClient = inject(IamClient);
     /**
      * undefined = backend session check not yet complete
      * null      = no active backend session
      * Principle = authenticated application principle
      */
-    private readonly _apiPrinciple = signal<IPrinciple | null | undefined>(
-        undefined,
-    );
+    private readonly _apiPrinciple = signal<
+        IPrincipleWithRelations | null | undefined
+    >(undefined);
     readonly apiPrinciple = computed(() => this._apiPrinciple() ?? null);
     readonly isAuthReady = computed(() => this._apiPrinciple() !== undefined);
     readonly isAuthenticated = computed(
@@ -31,7 +31,7 @@ export class AuthService {
     }
 
     fetchAndSetAuthenticatedPrinciple(): void {
-        this.authClient
+        this.iamClient
             .me()
             .then((principle) => {
                 this._apiPrinciple.set(principle);
@@ -41,7 +41,7 @@ export class AuthService {
             });
     }
 
-    setLocalPrinciple(principle: IPrinciple | null) {
+    setLocalPrinciple(principle: IPrincipleWithRelations | null) {
         this._apiPrinciple.set(principle);
     }
 

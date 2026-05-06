@@ -8,6 +8,7 @@ import {
     MENU_ITEM_RESOURCE_NAME,
     IMenuItemWithRelations,
     MenuItemWithRelations,
+    SERVICE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import {
     createCommandController,
@@ -20,7 +21,11 @@ import {
 } from '../services/menu-item.service';
 import { RESTAURANT_CATALOG_TAG } from './api-tags';
 
-const menuItemQueryController = createQueryController<IMenuItem>(MenuItem);
+const menuItemQueryController = createQueryController<IMenuItem>(
+    MenuItem,
+    SERVICE_NAME,
+    MENU_ITEM_RESOURCE_NAME,
+);
 
 const menuItemCommandController = createCommandController<
     INewMenuItem,

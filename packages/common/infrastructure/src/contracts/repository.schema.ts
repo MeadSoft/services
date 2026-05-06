@@ -1,25 +1,26 @@
 import { IFilter, NotImplementedException } from '@meadsoft/common';
 
 export interface IQueryRepository<TModel = unknown, TId = string> {
-    countRows(...filters: IFilter[]): Promise<number>;
-    findOne(id: TId): Promise<TModel | null>;
-    findMany(...filters: IFilter[]): Promise<TModel[]>;
+    countRows(filters: IFilter[] | null): Promise<number>;
+    findById(id: TId): Promise<TModel | null>;
+    findFirst(filters: IFilter[] | null): Promise<TModel | null>;
+    findMany(filters: IFilter[] | null): Promise<TModel[]>;
 }
 
 export interface ICommandRepository<TModel = unknown, TId = string> {
     createOne(item: TModel): Promise<TModel>;
-    createMany(...items: TModel[]): Promise<TModel[]>;
+    createMany(items: TModel[]): Promise<TModel[]>;
     updateOne(id: TId, updates: Partial<TModel>): Promise<TModel>;
     updateMany(
         updates: Partial<TModel>,
-        ...filters: IFilter[]
+        filters: IFilter[] | null,
     ): Promise<number>;
     deleteOne(id: TId): Promise<boolean>;
-    deleteMany(...filters: IFilter[]): Promise<number>;
+    deleteMany(filters: IFilter[] | null): Promise<number>;
 }
 
 export interface ICrudRepository<TModel = unknown, TId = string>
-    extends IQueryRepository<TModel, TId>, ICommandRepository<TModel, TId> {}
+    extends IQueryRepository<TModel>, ICommandRepository<TModel, TId> {}
 
 /**
  * A class to quickly create dummy classes by extending this class, with the
@@ -28,15 +29,19 @@ export interface ICrudRepository<TModel = unknown, TId = string>
  */
 export class DummyQueryRepository implements IQueryRepository {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async countRows(..._filters: IFilter[]): Promise<number> {
+    async countRows(_filters: IFilter[] | null): Promise<number> {
         return Promise.reject(new NotImplementedException());
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async findOne(_id: string): Promise<unknown> {
+    async findById(_id: string): Promise<unknown> {
         return Promise.reject(new NotImplementedException());
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async findMany(..._filters: IFilter[]): Promise<unknown[]> {
+    async findFirst(_filters: IFilter[] | null): Promise<unknown> {
+        return Promise.reject(new NotImplementedException());
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async findMany(_filters: IFilter[] | null): Promise<unknown[]> {
         return Promise.reject(new NotImplementedException());
     }
 }
@@ -55,7 +60,7 @@ export class DummyCrudRepository
         return Promise.reject(new NotImplementedException());
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async createMany(..._items: unknown[]): Promise<unknown[]> {
+    async createMany(_items: unknown[]): Promise<unknown[]> {
         return Promise.reject(new NotImplementedException());
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -66,7 +71,7 @@ export class DummyCrudRepository
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         _updates: Partial<unknown>,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ..._filters: IFilter[]
+        _filters: IFilter[] | null,
     ): Promise<number> {
         return Promise.reject(new NotImplementedException());
     }
@@ -75,7 +80,7 @@ export class DummyCrudRepository
         return Promise.reject(new NotImplementedException());
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async deleteMany(..._filters: IFilter[]): Promise<number> {
+    async deleteMany(_filters: IFilter[] | null): Promise<number> {
         return Promise.reject(new NotImplementedException());
     }
 }

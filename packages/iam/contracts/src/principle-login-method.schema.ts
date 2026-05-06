@@ -1,7 +1,10 @@
 import { EntitySchema } from '@meadsoft/common';
 import { z } from 'zod';
+import { PrincipleWithRelationsSchema } from './principle.schema';
 
 export type LoginProviderEnum = 'google' | 'local';
+
+export const PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME = 'PrincipleLoginMethods';
 
 // new login method
 export const NewPrincipleLoginMethodSchema = z.object({
@@ -24,3 +27,12 @@ export const PrincipleLoginMethodSchema = z
     .extend(NewPrincipleLoginMethodSchema.shape)
     .extend(EntitySchema.shape);
 export type IPrincipleLoginMethod = z.infer<typeof PrincipleLoginMethodSchema>;
+
+// login method with relations
+export const PrincipleLoginMethodWithRelationsSchema =
+    PrincipleLoginMethodSchema.extend({
+        principle: z.object(PrincipleWithRelationsSchema.shape).nullable(),
+    });
+export type IPrincipleLoginMethodWithRelations = z.infer<
+    typeof PrincipleLoginMethodWithRelationsSchema
+>;

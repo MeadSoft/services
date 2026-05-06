@@ -1,65 +1,54 @@
 import { NestFactory } from '@nestjs/core';
-import {
-    MENU_ITEMS_TABLE_NAME,
-    MENU_ITEMS_TO_SIZES_TABLE_NAME,
-    MENU_ITEMS_TO_TAGS_TABLE_NAME,
-    SIZE_TABLE_NAME,
-    TAGS_TABLE_NAME,
-    MenuItemCommandService,
-    MenuItemToSizeCommandService,
-    MenuItemToTagCommandService,
-    SizeCommandService,
-    TagsCommandService,
-    RestaurantCatalogModule,
-} from '@meadsoft/restaurant-catalog-http-server-nestjs';
-import {
-    MenuItemSchema,
-    MenuItemToSizeSchema,
-    MenuItemToTagSchema,
-    SizeSchema,
-    TagSchema,
-} from '@meadsoft/restaurant-catalog-contracts';
 import { ISeedConfig, seedFromFile } from '@meadsoft/common-infrastructure';
 import { ERROR_EXIT_CODE } from '@meadsoft/common';
+import {
+    IamModule,
+    PrincipleService,
+    // ORGANIZATIONAL_RESOURCES_TABLE_NAME,
+    // PERMISSIONS_TABLE_NAME,
+    // POLICIES_TABLE_NAME,
+    // POLICY_BINDINGS_TABLE_NAME,
+    // ROLE_PERMISSIONS_TABLE_NAME,
+    // ROLES_TABLE_NAME,
+} from '@meadsoft/iam-http-server-nestjs';
+import {
+    PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,
+    PRINCIPLES_RESOURCE_NAME,
+    PrincipleLoginMethodSchema,
+    PrincipleSchema,
+} from '@meadsoft/iam-contracts';
+import { PrincipleLoginMethodService } from '@meadsoft/iam-http-server-nestjs';
 
 const seedFileName = `seeds/backup-2026-01-17T14.36.29.427Z.json`;
 
 async function main() {
-    const app = await NestFactory.createApplicationContext(
-        RestaurantCatalogModule,
-    );
+    const app = await NestFactory.createApplicationContext(IamModule);
 
-    const menuItemSeedConfig: ISeedConfig = {
-        tableName: MENU_ITEMS_TABLE_NAME,
-        crudService: app.get(MenuItemCommandService),
-        schema: MenuItemSchema,
-    };
-    const tagsSeedConfig: ISeedConfig = {
-        tableName: TAGS_TABLE_NAME,
-        crudService: app.get(TagsCommandService),
-        schema: TagSchema,
-    };
-    const sizesSeedConfig: ISeedConfig = {
-        tableName: SIZE_TABLE_NAME,
-        crudService: app.get(SizeCommandService),
-        schema: SizeSchema,
-    };
-    const menuItemsToTagsSeedConfig: ISeedConfig = {
-        tableName: MENU_ITEMS_TO_TAGS_TABLE_NAME,
-        crudService: app.get(MenuItemToTagCommandService),
-        schema: MenuItemToTagSchema,
-    };
-    const menuItemsToSizesSeedConfig: ISeedConfig = {
-        tableName: MENU_ITEMS_TO_SIZES_TABLE_NAME,
-        crudService: app.get(MenuItemToSizeCommandService),
-        schema: MenuItemToSizeSchema,
-    };
+    const seedConfigs: ISeedConfig[] = [
+        {
+            tableName: PRINCIPLES_RESOURCE_NAME,
+            crudService: app.get(PrincipleService),
+            schema: PrincipleSchema,
+        },
+        {
+            tableName: PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,
+            crudService: app.get(PrincipleLoginMethodService),
+            schema: PrincipleLoginMethodSchema,
+        },
+        // {
+        //     tableName: ROLES_TABLE_NAME,
+        //     crudService: null,
+        //     schema: null,
+        // },
+        // { tableName: ORGANIZATIONAL_RESOURCES_TABLE_NAME, crudService: null, schema: null }
+        // { tableName: ROLES_TABLE_NAME, crudService: null, schema: null }
+        // { tableName: PERMISSIONS_TABLE_NAME, crudService: null, schema: null }
+        // { tableName: POLICIES_TABLE_NAME, crudService: null, schema: null }
+        // { tableName: POLICY_BINDINGS_TABLE_NAME, crudService: null, schema: null }
+        // { tableName: ROLE_PERMISSIONS_TABLE_NAME, crudService: null, schema: null }
+    ];
 
-    await seedFromFile([menuItemSeedConfig], seedFileName);
-    await seedFromFile([tagsSeedConfig], seedFileName);
-    await seedFromFile([sizesSeedConfig], seedFileName);
-    await seedFromFile([menuItemsToTagsSeedConfig], seedFileName);
-    await seedFromFile([menuItemsToSizesSeedConfig], seedFileName);
+    await seedFromFile(seedConfigs, seedFileName);
     await app.close();
 }
 

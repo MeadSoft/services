@@ -4,7 +4,8 @@ import {
     NewOrganizationalResourceSchema,
     OrganizationalResource,
     OrganizationalResourceSchema,
-    ORGANIZATIONAL_RESOURCE_RESOURCE_NAME,
+    ORGANIZATIONAL_RESOURCES_RESOURCE_NAME,
+    SERVICE_NAME,
 } from '@meadsoft/iam-contracts';
 import {
     createCommandController,
@@ -18,7 +19,11 @@ import {
 import { IAM_TAG } from './api-tags';
 
 const organizationalResourceQueryController =
-    createQueryController<OrganizationalResource>(OrganizationalResource);
+    createQueryController<OrganizationalResource>(
+        OrganizationalResource,
+        SERVICE_NAME,
+        ORGANIZATIONAL_RESOURCES_RESOURCE_NAME,
+    );
 
 const organizationalResourceCommandController = createCommandController<
     INewOrganizationalResource,
@@ -30,7 +35,7 @@ const organizationalResourceCommandController = createCommandController<
 );
 
 @ApiTags(IAM_TAG)
-@Controller(ORGANIZATIONAL_RESOURCE_RESOURCE_NAME)
+@Controller(ORGANIZATIONAL_RESOURCES_RESOURCE_NAME)
 export class OrganizationalResourcesQueryController extends organizationalResourceQueryController {
     constructor(service: OrganizationalResourceQueryService) {
         super(service);
@@ -38,7 +43,7 @@ export class OrganizationalResourcesQueryController extends organizationalResour
 }
 
 @ApiTags(IAM_TAG)
-@Controller(ORGANIZATIONAL_RESOURCE_RESOURCE_NAME)
+@Controller(ORGANIZATIONAL_RESOURCES_RESOURCE_NAME)
 export class OrganizationalResourcesCommandController extends organizationalResourceCommandController {
     constructor(service: OrganizationalResourceCommandService) {
         super(service);

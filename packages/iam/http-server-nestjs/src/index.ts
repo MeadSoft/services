@@ -31,6 +31,7 @@ export type { IamDrizzlePgSchema as AuthDrizzleSchema } from './database/tables/
 
 // services
 export { PrincipleService } from './services/principle.service';
+export { PrincipleLoginMethodService } from './services/principle-login-method.service';
 export {
     OrganizationalResourceQueryService,
     OrganizationalResourceCommandService,

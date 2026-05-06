@@ -23,9 +23,11 @@
         "scratch": "tsx src/scratch.ts"
     },
     "dependencies": {
+        "@meadsoft/iam-contracts": "workspace:*",
         "@meadsoft/iam-http-server-nestjs": "workspace:*",
         "@meadsoft/common-server": "workspace:*",
         "@meadsoft/common-nestjs": "workspace:*",
+        "@meadsoft/common-http-server-nestjs": "workspace:*",
         "@meadsoft/common-infrastructure": "workspace:*",
         "@meadsoft/common": "workspace:*",
         "@nestjs/cli": "^11.0.1",

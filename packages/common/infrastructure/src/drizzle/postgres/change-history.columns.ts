@@ -9,8 +9,8 @@ export const updatedDate = isoTimestamp('updatedDate', {
     mode: 'string',
     withTimezone: true,
 });
-export const createdById = uuid();
-export const updatedById = uuid();
+export const createdById = uuid('createdById');
+export const updatedById = uuid('updatedById');
 
 export const changeHistoryColumns = {
     createdDate,

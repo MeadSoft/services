@@ -13,8 +13,7 @@
         ]
     },
     "include": [
-        "src/**/*.ts",
-        "../../tags.client.ts"
+        "src/**/*.ts"
     ],
     "references": [
         {

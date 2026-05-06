@@ -3,10 +3,12 @@ import {
     Injectable,
     NotFoundException,
 } from '@nestjs/common';
-import type {
-    INewPrincipleLoginMethod,
-    IPrinciple,
-    IPrincipleWithRelations,
+import {
+    PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,
+    PRINCIPLES_RESOURCE_NAME,
+    SERVICE_NAME,
+    type INewPrincipleLoginMethod,
+    type IPrinciple,
 } from '@meadsoft/iam-contracts';
 import { PrincipleLoginMethodService } from './principle-login-method.service';
 import { EntityService } from '@meadsoft/common-nestjs';
@@ -14,6 +16,7 @@ import { SaltingService } from '@meadsoft/common-server';
 import { PrincipleRepository } from '../database/repositories/principle.repo';
 import { QueryService } from '@meadsoft/common-application';
 import { PrincipleEntity } from '../domain/principle.entity';
+import { IFilter } from '@meadsoft/common';
 
 @Injectable()
 export class PrincipleService extends QueryService<IPrinciple> {
@@ -24,23 +27,6 @@ export class PrincipleService extends QueryService<IPrinciple> {
         private readonly principleRepo: PrincipleRepository,
     ) {
         super(principleRepo);
-    }
-
-    async findByEmail(email: string): Promise<IPrincipleWithRelations | null> {
-        const principle = await this.principleRepo.findByEmail(email);
-        if (principle == null) {
-            return null;
-        }
-        const loginMethods =
-            await this.principleLoginMethodService.findByEmail(email);
-        const principleEntity = PrincipleEntity.reconstitute({
-            ...principle,
-            loginMethods: loginMethods ? [loginMethods] : [],
-        });
-        if (principleEntity.err) {
-            throw new Error('Failed to reconstitute principle entity');
-        }
-        return principleEntity.val.toDTO();
     }
 
     /**
@@ -56,9 +42,16 @@ export class PrincipleService extends QueryService<IPrinciple> {
         password: string,
         displayName: string | null,
     ): Promise<IPrinciple> {
+        const emailFilter: IFilter = {
+            service: SERVICE_NAME,
+            resource: PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,
+            field: 'providerEmail',
+            operator: 'eq',
+            value: email,
+        };
         const existingLocalLoginMethod =
-            await this.principleLoginMethodService.findByEmail(email);
-        if (existingLocalLoginMethod) {
+            await this.principleLoginMethodService.findFirst([emailFilter]);
+        if (existingLocalLoginMethod != null) {
             throw new ConflictException('Email already registered');
         }
 
@@ -89,29 +82,48 @@ export class PrincipleService extends QueryService<IPrinciple> {
         principleId: string,
         loginMethod: INewPrincipleLoginMethod,
     ): Promise<void> {
-        const existingPrinciple = await this.principleRepo.findOne(principleId);
-        if (existingPrinciple == null) {
+        const idFilter: IFilter = {
+            service: SERVICE_NAME,
+            resource: PRINCIPLES_RESOURCE_NAME,
+            field: 'id',
+            operator: 'eq',
+            value: principleId,
+        };
+        const existingPrinciple =
+            await this.principleRepo.findFirstWithRelations([idFilter]);
+        if (existingPrinciple.err) {
+            throw existingPrinciple.val;
+        }
+        if (existingPrinciple.val == null) {
             throw new NotFoundException('Principle not found');
         }
-        const existingLoginMethods =
-            await this.principleLoginMethodService.findByPrincipleId(
-                principleId,
+        const principleLocalLoginMethodFilters: IFilter[] = [
+            {
+                service: SERVICE_NAME,
+                resource: PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,
+                field: 'principleId',
+                operator: 'eq',
+                value: principleId,
+            },
+            {
+                service: SERVICE_NAME,
+                resource: PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,
+                field: 'provider',
+                operator: 'eq',
+                value: loginMethod.provider,
+            },
+        ];
+        const existingLoginMethod =
+            await this.principleLoginMethodService.findFirst(
+                principleLocalLoginMethodFilters,
             );
-        if (
-            existingLoginMethods.some(
-                (m) => m.provider === loginMethod.provider,
-            )
-        ) {
+        if (existingLoginMethod != null) {
             throw new ConflictException(
                 `Login method for provider ${loginMethod.provider} already exists`,
             );
         }
-        const principleWithRelations: IPrincipleWithRelations = {
-            ...existingPrinciple,
-            loginMethods: existingLoginMethods,
-        };
         const principleEntity = PrincipleEntity.reconstitute(
-            principleWithRelations,
+            existingPrinciple.val,
         );
         if (principleEntity.err) {
             throw new Error('Failed to reconstitute principle entity');

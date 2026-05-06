@@ -1,7 +1,13 @@
 import { z } from 'zod';
 import { EntitySchema } from '@meadsoft/common';
+import { IRoleWithRelations, RoleWithRelationsSchema } from './role.schema';
+import { IPrinciple, PrincipleSchema } from './principle.schema';
+import {
+    IPolicyWithRelations,
+    PolicyWithRelationsSchema,
+} from './policy.schema';
 
-export const POLICY_BINDING_RESOURCE_NAME = 'policy-binding';
+export const POLICY_BINDINGS_RESOURCE_NAME = 'PolicyBindings';
 
 // new policy binding
 export const NewPolicyBindingSchema = z.object({
@@ -36,5 +42,35 @@ export class PolicyBinding implements IPolicyBinding {
         this.updatedDate = data.updatedDate;
         this.createdById = data.createdById;
         this.updatedById = data.updatedById;
+    }
+}
+
+// policy binding with relations
+export type IPolicyBindingWithRelations = IPolicyBinding & {
+    role: IRoleWithRelations | null;
+    principles: IPrinciple[] | null;
+    policy: IPolicyWithRelations | null;
+};
+export const PolicyBindingWithRelationsSchema: z.ZodType<IPolicyBindingWithRelations> =
+    z.lazy(() =>
+        PolicyBindingSchema.extend({
+            role: RoleWithRelationsSchema.nullable(),
+            principles: z.array(PrincipleSchema).nullable(),
+            policy: PolicyWithRelationsSchema.nullable(),
+        }),
+    );
+export class PolicyBindingWithRelations
+    extends PolicyBinding
+    implements IPolicyBindingWithRelations
+{
+    role: IRoleWithRelations | null;
+    principles: IPrinciple[] | null;
+    policy: IPolicyWithRelations | null;
+
+    constructor(data: IPolicyBindingWithRelations) {
+        super(data);
+        this.role = data.role;
+        this.principles = data.principles;
+        this.policy = data.policy;
     }
 }

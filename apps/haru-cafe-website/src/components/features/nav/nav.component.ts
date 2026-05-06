@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { ColorSchemeService } from 'src/services/styles/color-scheme.service';
+import { ColorSchemeService } from '@haru-cafe/services/styles/color-scheme.service';
 
 @Component({
     selector: 'haru-nav',

@@ -4,7 +4,8 @@ import {
     NewRoleSchema,
     Role,
     RoleSchema,
-    ROLE_RESOURCE_NAME,
+    ROLES_RESOURCE_NAME,
+    SERVICE_NAME,
 } from '@meadsoft/iam-contracts';
 import {
     createCommandController,
@@ -14,7 +15,11 @@ import { ApiTags } from '@nestjs/swagger';
 import { RoleCommandService, RoleQueryService } from '../services/role.service';
 import { IAM_TAG } from './api-tags';
 
-const rolesQueryController = createQueryController<Role>(Role);
+const rolesQueryController = createQueryController<Role>(
+    Role,
+    SERVICE_NAME,
+    ROLES_RESOURCE_NAME,
+);
 
 const rolesCommandController = createCommandController<INewRole, Role>(
     Role,
@@ -23,7 +28,7 @@ const rolesCommandController = createCommandController<INewRole, Role>(
 );
 
 @ApiTags(IAM_TAG)
-@Controller(ROLE_RESOURCE_NAME)
+@Controller(ROLES_RESOURCE_NAME)
 export class RolesQueryController extends rolesQueryController {
     constructor(service: RoleQueryService) {
         super(service);
@@ -31,7 +36,7 @@ export class RolesQueryController extends rolesQueryController {
 }
 
 @ApiTags(IAM_TAG)
-@Controller(ROLE_RESOURCE_NAME)
+@Controller(ROLES_RESOURCE_NAME)
 export class RolesCommandController extends rolesCommandController {
     constructor(service: RoleCommandService) {
         super(service);

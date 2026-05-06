@@ -2,8 +2,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { User } from 'src/models/User';
-import { Config } from 'src/configs/config.schema';
+import { User } from '@haru-cafe/models/User';
+import { Config } from '@haru-cafe/configs/config.schema';
 
 @Injectable({ providedIn: 'root' })
 export class ApiAuthService {

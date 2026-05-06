@@ -1,15 +1,15 @@
 import { boolean, uuid, varchar } from 'drizzle-orm/pg-core';
 import { entityColumns, isoTimestamp } from '@meadsoft/common-infrastructure';
-import { iamSchema } from '../iam.db-schema';
+import { iamSchema } from './iam.db-schema';
 import { principlesTable } from './principles.table';
-
-export const PRINCIPLE_LOGIN_METHODS_TABLE_NAME = 'principle_login_methods';
+import { relations } from 'drizzle-orm';
+import { PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME } from '@meadsoft/iam-contracts';
 
 /**
  * Each row represents one registered login method for a principle (user/service account).
  */
 export const principleLoginMethodsTable = iamSchema.table(
-    PRINCIPLE_LOGIN_METHODS_TABLE_NAME,
+    PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,
     {
         principleId: uuid()
             .notNull()
@@ -22,4 +22,14 @@ export const principleLoginMethodsTable = iamSchema.table(
         linkedAt: isoTimestamp('linkedAt').notNull(),
         ...entityColumns,
     },
+);
+
+export const principleLoginMethodsRelations = relations(
+    principleLoginMethodsTable,
+    ({ one }) => ({
+        principle: one(principlesTable, {
+            fields: [principleLoginMethodsTable.principleId],
+            references: [principlesTable.id],
+        }),
+    }),
 );

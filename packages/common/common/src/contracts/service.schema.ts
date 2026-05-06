@@ -1,10 +1,10 @@
 import { IFilter } from './filters.schema';
 import { Result } from 'ts-results';
 
-export interface IQueryService<TModel = unknown, TId = string> {
-    countRows(...filters: IFilter[]): Promise<number>;
-    findOne(id: TId): Promise<TModel | null>;
-    findMany(...filters: IFilter[]): Promise<TModel[]>;
+export interface IQueryService<TModel = unknown> {
+    countRows(filters: IFilter[] | null): Promise<number>;
+    findFirst(filters: IFilter[] | null): Promise<TModel | null>;
+    findMany(filters: IFilter[] | null): Promise<TModel[]>;
 }
 
 export interface ICommandService<
@@ -27,16 +27,14 @@ export interface ICommandService<
     updateMany(
         userId: string,
         updates: Partial<TModel>,
-        ...filters: IFilter[]
+        filters: IFilter[] | null,
     ): Promise<Result<number, Error>>;
     deleteOne(userId: string, id: TId): Promise<Result<boolean, Error>>;
     deleteMany(
         userId: string,
-        ...filters: IFilter[]
+        filters: IFilter[] | null,
     ): Promise<Result<number, Error>>;
 }
 
 export interface ICrudService<TNewModel, TModel, TId = string>
-    extends
-        IQueryService<TModel, TId>,
-        ICommandService<TNewModel, TModel, TId> {}
+    extends IQueryService<TModel>, ICommandService<TNewModel, TModel, TId> {}

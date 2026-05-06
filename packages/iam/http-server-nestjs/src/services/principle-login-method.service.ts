@@ -15,7 +15,7 @@ export class PrincipleLoginMethodService extends CommandService<
     IPrincipleLoginMethod
 > {
     constructor(
-        private readonly loginMethodRepo: PrincipleLoginMethodRepository,
+        loginMethodRepo: PrincipleLoginMethodRepository,
         entityService: EntityService,
         changeHistoryService: ChangeHistoryService,
         unitOfWork: IamUnitOfWork,
@@ -32,15 +32,5 @@ export class PrincipleLoginMethodService extends CommandService<
                     entityService,
                 ),
         );
-    }
-
-    async findByPrincipleId(
-        principleId: string,
-    ): Promise<IPrincipleLoginMethod[]> {
-        return await this.loginMethodRepo.findByPrincipleId(principleId);
-    }
-
-    async findByEmail(email: string): Promise<IPrincipleLoginMethod | null> {
-        return await this.loginMethodRepo.findByEmail(email);
     }
 }

@@ -62,9 +62,7 @@ export class CommandService<
         const okItems = items.map((res) => res.unwrap());
         return this.unitOfWork.startTransaction(async () => {
             return Ok(
-                await this.repository.createMany.bind(this.repository)(
-                    ...okItems,
-                ),
+                await this.repository.createMany.bind(this.repository)(okItems),
             );
         });
     }
@@ -86,9 +84,7 @@ export class CommandService<
     async seedMany(...items: TModel[]): Promise<Result<TModel[], Error>> {
         return this.unitOfWork.startTransaction(async () => {
             return Ok(
-                await this.repository.createMany.bind(this.repository)(
-                    ...items,
-                ),
+                await this.repository.createMany.bind(this.repository)(items),
             );
         });
     }
@@ -108,7 +104,7 @@ export class CommandService<
     async updateMany(
         userId: string,
         updates: Partial<TModel>,
-        ...filters: IFilter[]
+        filters: IFilter[] | null,
     ): Promise<Result<number, Error>> {
         console.log(userId, updates, filters);
         return Ok(await Promise.reject(new NotImplementedException()));
@@ -118,7 +114,7 @@ export class CommandService<
         userId: string,
         id: string,
     ): Promise<Result<boolean, Error>> {
-        const existingItem = await this.repository.findOne(id);
+        const existingItem = await this.repository.findById(id);
         if (!existingItem) {
             return Ok(false);
         }
@@ -153,7 +149,7 @@ export class CommandService<
             updates,
         );
         return await this.unitOfWork.startTransaction(async () => {
-            await this.updateMany(userId, updatedChangeHistory);
+            await this.updateMany(userId, updatedChangeHistory, null);
             return Ok(await Promise.reject(new NotImplementedException()));
         });
     }

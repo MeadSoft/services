@@ -1,12 +1,12 @@
 import { primaryKey, uuid } from 'drizzle-orm/pg-core';
-import { iamSchema } from '../iam.db-schema';
+import { iamSchema } from './iam.db-schema';
 import { rolesTable } from './roles.table';
 import { permissionsTable } from './permissions.table';
-
-export const ROLE_PERMISSIONS_TABLE_NAME = 'role_permissions';
+import { relations } from 'drizzle-orm';
+import { ROLES_PERMISSIONS_RESOURCE_NAME } from '@meadsoft/iam-contracts';
 
 export const rolePermissionsTable = iamSchema.table(
-    ROLE_PERMISSIONS_TABLE_NAME,
+    ROLES_PERMISSIONS_RESOURCE_NAME,
     {
         roleId: uuid()
             .notNull()
@@ -16,4 +16,18 @@ export const rolePermissionsTable = iamSchema.table(
             .references(() => permissionsTable.id, { onDelete: 'cascade' }),
     },
     (table) => [primaryKey({ columns: [table.roleId, table.permissionId] })],
+);
+
+export const rolePermissionsRelations = relations(
+    rolePermissionsTable,
+    ({ one }) => ({
+        role: one(rolesTable, {
+            fields: [rolePermissionsTable.roleId],
+            references: [rolesTable.id],
+        }),
+        permission: one(permissionsTable, {
+            fields: [rolePermissionsTable.permissionId],
+            references: [permissionsTable.id],
+        }),
+    }),
 );

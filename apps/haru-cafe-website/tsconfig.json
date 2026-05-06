@@ -4,6 +4,11 @@
     "include": [],
     "compileOnSave": false,
     "compilerOptions": {
+        "paths": {
+            "@haru-cafe/*": [
+                "./src/*"
+            ]
+        },
         "emitDeclarationOnly": false,
         "emitDecoratorMetadata": false,
         "sourceMap": true,

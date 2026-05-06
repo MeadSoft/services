@@ -17,10 +17,10 @@
     ],
     "references": [
         {
-            "path": "../iam-contracts/tsconfig.lib.json"
+            "path": "../contracts/tsconfig.lib.json"
         },
         {
-            "path": "../../common-http-client-angular/tsconfig.lib.json"
+            "path": "../../common/http-client-angular/tsconfig.lib.json"
         }
     ],
     "exclude": [

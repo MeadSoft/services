@@ -1,10 +1,10 @@
+import fs from 'fs';
 import cookieParser from 'cookie-parser';
 import { NestFactory, PartialGraphHost } from '@nestjs/core';
-import { HttpConfig } from '../../../packages/common/http-server-nestjs/src/http.config';
+import { HttpConfig } from '@meadsoft/common-http-server-nestjs';
 import { AppModule } from './app.module';
-import fs from 'fs';
 import { setupSwagger } from './swagger';
-// import { DebugService } from '@meadsoft/debug';
+import { EMPTY_LENGTH, ERROR_EXIT_CODE } from '@meadsoft/common';
 
 const DEFAULT_PORT = 3000;
 const DEFAULT_ALLOWED_ORIGINS = [
@@ -14,12 +14,12 @@ const DEFAULT_ALLOWED_ORIGINS = [
 
 function getAllowedOrigins(): string[] {
     const raw = process.env.CORS_ALLOWED_ORIGINS?.trim();
-    if (!raw) return DEFAULT_ALLOWED_ORIGINS;
+    if (raw == null) return DEFAULT_ALLOWED_ORIGINS;
 
     return raw
         .split(',')
         .map((entry) => entry.trim())
-        .filter((entry) => entry.length > 0);
+        .filter((entry) => entry.length > EMPTY_LENGTH);
 }
 
 function originMatches(allowedOriginPattern: string, origin: string): boolean {
@@ -53,7 +53,7 @@ async function bootstrap() {
             callback: (err: Error | null, allow?: boolean) => void,
         ) => {
             // Non-browser clients or same-origin requests may omit the Origin header.
-            if (!origin) {
+            if (origin == null) {
                 callback(null, true);
                 return;
             }
@@ -80,9 +80,11 @@ async function bootstrap() {
 
     setupSwagger(app, 'swagger');
     const httpConfig = app.get(HttpConfig);
+    console.log('http config port', httpConfig.port);
     await app.listen(httpConfig.port || DEFAULT_PORT);
 }
+
 bootstrap().catch(() => {
-    fs.writeFileSync('graph.json', PartialGraphHost.toString() ?? '');
-    process.exit(1);
+    fs.writeFileSync('graph.json', PartialGraphHost.toString());
+    process.exit(ERROR_EXIT_CODE);
 });

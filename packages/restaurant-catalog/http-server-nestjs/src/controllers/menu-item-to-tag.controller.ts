@@ -4,6 +4,7 @@ import {
     MenuItemToTag,
     MenuItemToTagSchema,
     MENU_ITEM_TO_TAG_RESOURCE_NAME,
+    SERVICE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import {
     createCommandController,
@@ -16,8 +17,11 @@ import {
 } from '../services/menu-item-to-tag.service';
 import { RESTAURANT_CATALOG_TAG } from './api-tags';
 
-const menuItemToTagQueryController =
-    createQueryController<IMenuItemToTag>(MenuItemToTag);
+const menuItemToTagQueryController = createQueryController<IMenuItemToTag>(
+    MenuItemToTag,
+    SERVICE_NAME,
+    MENU_ITEM_TO_TAG_RESOURCE_NAME,
+);
 
 const menuItemToTagCommandController = createCommandController<
     IMenuItemToTag,

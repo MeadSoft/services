@@ -1,7 +1,15 @@
 import { z } from 'zod';
 import { EntitySchema } from '@meadsoft/common';
+import {
+    IPolicyBindingWithRelations,
+    PolicyBindingWithRelationsSchema,
+} from './policy-binding.schema';
+import {
+    IOrganizationalResource,
+    OrganizationalResourceSchema,
+} from './organizational-resource.schema';
 
-export const POLICY_RESOURCE_NAME = 'policy';
+export const POLICIES_RESOURCE_NAME = 'Policies';
 
 export type PolicyTypeEnum = 'allow' | 'deny';
 
@@ -35,5 +43,31 @@ export class Policy implements IPolicy {
         this.updatedDate = data.updatedDate;
         this.createdById = data.createdById;
         this.updatedById = data.updatedById;
+    }
+}
+
+// policy with relations
+export type IPolicyWithRelations = IPolicy & {
+    policyBindings: IPolicyBindingWithRelations[] | null;
+    organizationalResource: IOrganizationalResource | null;
+};
+export const PolicyWithRelationsSchema = z.lazy(() =>
+    PolicySchema.extend({
+        policyBindings: z.array(PolicyBindingWithRelationsSchema).nullable(),
+        organizationalResource: OrganizationalResourceSchema.nullable(),
+    }),
+);
+
+export class PolicyWithRelations
+    extends Policy
+    implements IPolicyWithRelations
+{
+    policyBindings: IPolicyBindingWithRelations[] | null;
+    organizationalResource: IOrganizationalResource | null;
+
+    constructor(data: IPolicyWithRelations) {
+        super(data);
+        this.policyBindings = data.policyBindings;
+        this.organizationalResource = data.organizationalResource;
     }
 }

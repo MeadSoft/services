@@ -8,7 +8,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from 'src/services/auth/auth.service';
+import { IamService } from '@haru-cafe/services/auth/iam.service';
 import { IamClient } from '@meadsoft/iam-http-client-angular';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -35,7 +35,7 @@ export class RegisterComponent {
 
     constructor(
         private readonly fb: FormBuilder,
-        private readonly auth: AuthService,
+        private readonly auth: IamService,
         private readonly router: Router,
     ) {
         this.registerForm = this.fb.group(

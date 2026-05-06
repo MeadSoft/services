@@ -5,7 +5,13 @@
     "tables": [
         {
             "tableName": "principles",
-            "data": []
+            "data": [
+                {
+                    "id": "019de4d5-5e54-77be-8930-ce9db4197b77",
+                    "email": "kennethmead784@gmail.com",
+                    "displayName": "Kenneth Mead"
+                }
+            ]
         },
         {
             "tableName": "roles",

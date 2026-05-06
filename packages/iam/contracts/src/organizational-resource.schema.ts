@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { EntitySchema } from '@meadsoft/common';
 
-export const ORGANIZATIONAL_RESOURCE_RESOURCE_NAME = 'organizational-resource';
+export const ORGANIZATIONAL_RESOURCES_RESOURCE_NAME = 'OrganizationalResources';
 
 // new organizational resource
 export const NewOrganizationalResourceSchema = z.object({

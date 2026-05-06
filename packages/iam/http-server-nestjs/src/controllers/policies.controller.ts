@@ -4,7 +4,8 @@ import {
     NewPolicySchema,
     Policy,
     PolicySchema,
-    POLICY_RESOURCE_NAME,
+    POLICIES_RESOURCE_NAME,
+    SERVICE_NAME,
 } from '@meadsoft/iam-contracts';
 import {
     createCommandController,
@@ -17,7 +18,11 @@ import {
 } from '../services/policy.service';
 import { IAM_TAG } from './api-tags';
 
-const policiesQueryController = createQueryController<Policy>(Policy);
+const policiesQueryController = createQueryController<Policy>(
+    Policy,
+    SERVICE_NAME,
+    POLICIES_RESOURCE_NAME,
+);
 
 const policiesCommandController = createCommandController<INewPolicy, Policy>(
     Policy,
@@ -26,7 +31,7 @@ const policiesCommandController = createCommandController<INewPolicy, Policy>(
 );
 
 @ApiTags(IAM_TAG)
-@Controller(POLICY_RESOURCE_NAME)
+@Controller(POLICIES_RESOURCE_NAME)
 export class PoliciesQueryController extends policiesQueryController {
     constructor(service: PolicyQueryService) {
         super(service);
@@ -34,7 +39,7 @@ export class PoliciesQueryController extends policiesQueryController {
 }
 
 @ApiTags(IAM_TAG)
-@Controller(POLICY_RESOURCE_NAME)
+@Controller(POLICIES_RESOURCE_NAME)
 export class PoliciesCommandController extends policiesCommandController {
     constructor(service: PolicyCommandService) {
         super(service);

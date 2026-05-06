@@ -1,4 +1,4 @@
-import { IColumn } from './column.schema';
+import { IFieldMetadata } from './field-metadata.schema';
 
 export type FilterOperator =
     // eslint-disable-next-line @typescript-eslint/sort-type-constituents
@@ -24,12 +24,12 @@ export type FilterOperator =
 /**
  * Represents a filter condition for querying data.
  *
- * The `value` can either be a direct value or an `IColumn` reference,
- * allowing for comparisons between columns.
+ * The `value` can either be a direct value or an `IFieldMetadata` reference,
+ * allowing for comparisons between fields.
  */
 export interface IFilter<
-    TValue extends IColumn | string = string,
-> extends IColumn {
+    TValue extends IFieldMetadata | string = string,
+> extends IFieldMetadata {
     operator: FilterOperator;
     value: TValue;
 }

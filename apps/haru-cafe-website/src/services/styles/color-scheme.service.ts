@@ -6,8 +6,8 @@ import {
     PLATFORM_ID,
     signal,
 } from '@angular/core';
-import { IColorScheme } from 'src/models/interfaces/IPrefersDarkMode';
-import { DARK_MODE_CLASS } from 'src/theme.config';
+import { IColorScheme } from '@haru-cafe/models/interfaces/IPrefersDarkMode';
+import { DARK_MODE_CLASS } from '@haru-cafe/theme.config';
 
 export const DEFAULT_COLOR_SCHEME: IColorScheme = {
     prefersDarkMode: false,

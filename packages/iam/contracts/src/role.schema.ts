@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { EntitySchema } from '@meadsoft/common';
-import { PermissionSchema } from './permission.schema';
+import { Permission, PermissionSchema } from './permission.schema';
 
-export const ROLE_RESOURCE_NAME = 'role';
+export const ROLES_RESOURCE_NAME = 'Roles';
 
 // new role
 export const NewRoleSchema = z.object({
@@ -18,11 +18,19 @@ export const RoleSchema = z
 export type IRole = z.infer<typeof RoleSchema>;
 
 // role with relations
-export const RoleWithRelationsSchema = RoleSchema.extend({
-    permissions: z.array(PermissionSchema),
-    parentRoles: z.array(RoleSchema).nullable(),
-});
-export type IRoleWithRelations = z.infer<typeof RoleWithRelationsSchema>;
+export type IRoleWithRelations = IRole & {
+    permissions: Permission[];
+    parentRoles: IRoleWithRelations[] | null;
+};
+export const RoleWithRelationsSchema: z.ZodType<IRoleWithRelations> = z.lazy(
+    () =>
+        RoleSchema.extend({
+            permissions: z.array(PermissionSchema),
+            parentRoles: z
+                .array(z.lazy(() => RoleWithRelationsSchema))
+                .nullable(),
+        }),
+);
 
 export class Role implements IRole {
     id: string;

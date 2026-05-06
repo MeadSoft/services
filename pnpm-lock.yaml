@@ -238,6 +238,9 @@ importers:
       '@meadsoft/common':
         specifier: workspace:*
         version: link:../../packages/common/common
+      '@meadsoft/common-http-server-nestjs':
+        specifier: workspace:*
+        version: link:../../packages/common/http-server-nestjs
       '@meadsoft/common-infrastructure':
         specifier: workspace:*
         version: link:../../packages/common/infrastructure
@@ -247,6 +250,9 @@ importers:
       '@meadsoft/common-server':
         specifier: workspace:*
         version: link:../../packages/common/server
+      '@meadsoft/iam-contracts':
+        specifier: workspace:*
+        version: link:../../packages/iam/contracts
       '@meadsoft/iam-http-server-nestjs':
         specifier: workspace:*
         version: link:../../packages/iam/http-server-nestjs

@@ -4,17 +4,19 @@ import { EntityService } from '@meadsoft/common-nestjs';
 import {
     INewPrinciple,
     INewPrincipleLoginMethod,
+    IPolicyBindingWithRelations,
     IPrincipleWithRelations,
 } from '@meadsoft/iam-contracts';
 import { PrincipleLoginMethodEntity } from './principle-login-method.entity';
 
 export class PrincipleEntity extends Entity implements IPrincipleWithRelations {
     public isActive!: boolean;
-    public email!: string;
+    public email!: string | null;
     public displayName!: string | null;
     public name!: string;
     public description!: string;
     public loginMethods!: PrincipleLoginMethodEntity[];
+    public policyBindings: IPolicyBindingWithRelations[] = [];
 
     public static create(
         id: string | null,
@@ -33,16 +35,18 @@ export class PrincipleEntity extends Entity implements IPrincipleWithRelations {
         }
 
         // ensure email is valid if provided
-        const email = newPrinciple.email.trim();
-        if (email.length === EMPTY_LENGTH) {
-            return Err(
-                new Error('Principle email cannot be empty if provided'),
-            );
-        }
-        if (!REGEX.EMAIL.test(email)) {
-            return Err(
-                new Error('Principle email must be a valid email address'),
-            );
+        const email = newPrinciple.email?.trim();
+        if (email != null) {
+            if (email.length === EMPTY_LENGTH) {
+                return Err(
+                    new Error('Principle email cannot be empty if provided'),
+                );
+            }
+            if (!REGEX.EMAIL.test(email)) {
+                return Err(
+                    new Error('Principle email must be a valid email address'),
+                );
+            }
         }
         // ensure at least one login method is provided
         if (loginMethods.length === EMPTY_LENGTH) {
@@ -117,6 +121,7 @@ export class PrincipleEntity extends Entity implements IPrincipleWithRelations {
             displayName: this.displayName,
             isActive: this.isActive,
             loginMethods: this.loginMethods.map((lm) => lm.toDTO()),
+            policyBindings: this.policyBindings,
             createdDate: this.createdDate,
             updatedDate: this.updatedDate,
             createdById: this.createdById,

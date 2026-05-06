@@ -1,6 +1,6 @@
 export * from './change-history.schema';
 export * from './client.schema';
-export * from './column.schema';
+export * from './field-metadata.schema';
 export * from './config.schema';
 export * from './dto.schema';
 export * from './entity.schema';
