@@ -12,9 +12,7 @@ export const NewRoleSchema = z.object({
 export type INewRole = z.infer<typeof NewRoleSchema>;
 
 // role
-export const RoleSchema = z
-    .object(NewRoleSchema.shape)
-    .extend(EntitySchema.shape);
+export const RoleSchema = NewRoleSchema.extend(EntitySchema.shape);
 export type IRole = z.infer<typeof RoleSchema>;
 
 // role with relations

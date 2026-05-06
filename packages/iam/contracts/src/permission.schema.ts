@@ -11,9 +11,7 @@ export const NewPermissionSchema = z.object({
 export type INewPermission = z.infer<typeof NewPermissionSchema>;
 
 // permission
-export const PermissionSchema = z
-    .object(NewPermissionSchema.shape)
-    .extend(EntitySchema.shape);
+export const PermissionSchema = NewPermissionSchema.extend(EntitySchema.shape);
 export type IPermission = z.infer<typeof PermissionSchema>;
 
 export class Permission implements IPermission {

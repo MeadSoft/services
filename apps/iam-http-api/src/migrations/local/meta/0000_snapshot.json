@@ -1,11 +1,11 @@
 {
-  "id": "1cbef294-3935-45d6-a49a-ac2192c5867e",
+  "id": "4b496f8b-401e-481e-83a2-38a79d9f25ba",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "iam.organizational_resources": {
-      "name": "organizational_resources",
+    "iam.OrganizationalResources": {
+      "name": "OrganizationalResources",
       "schema": "iam",
       "columns": {
         "name": {
@@ -55,8 +55,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "organizational_resources_name_unique": {
-          "name": "organizational_resources_name_unique",
+        "OrganizationalResources_name_unique": {
+          "name": "OrganizationalResources_name_unique",
           "nullsNotDistinct": false,
           "columns": [
             "name"
@@ -67,8 +67,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "iam.permissions": {
-      "name": "permissions",
+    "iam.Permissions": {
+      "name": "Permissions",
       "schema": "iam",
       "columns": {
         "name": {
@@ -118,8 +118,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "permissions_name_unique": {
-          "name": "permissions_name_unique",
+        "Permissions_name_unique": {
+          "name": "Permissions_name_unique",
           "nullsNotDistinct": false,
           "columns": [
             "name"
@@ -130,8 +130,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "iam.policies": {
-      "name": "policies",
+    "iam.Policies": {
+      "name": "Policies",
       "schema": "iam",
       "columns": {
         "type": {
@@ -179,10 +179,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "policies_organizationalResourceId_organizational_resources_id_fk": {
-          "name": "policies_organizationalResourceId_organizational_resources_id_fk",
-          "tableFrom": "policies",
-          "tableTo": "organizational_resources",
+        "Policies_organizationalResourceId_OrganizationalResources_id_fk": {
+          "name": "Policies_organizationalResourceId_OrganizationalResources_id_fk",
+          "tableFrom": "Policies",
+          "tableTo": "OrganizationalResources",
           "schemaTo": "iam",
           "columnsFrom": [
             "organizationalResourceId"
@@ -200,8 +200,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "iam.policy_bindings": {
-      "name": "policy_bindings",
+    "iam.PolicyBindings": {
+      "name": "PolicyBindings",
       "schema": "iam",
       "columns": {
         "policyId": {
@@ -255,10 +255,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "policy_bindings_policyId_policies_id_fk": {
-          "name": "policy_bindings_policyId_policies_id_fk",
-          "tableFrom": "policy_bindings",
-          "tableTo": "policies",
+        "PolicyBindings_policyId_Policies_id_fk": {
+          "name": "PolicyBindings_policyId_Policies_id_fk",
+          "tableFrom": "PolicyBindings",
+          "tableTo": "Policies",
           "schemaTo": "iam",
           "columnsFrom": [
             "policyId"
@@ -269,10 +269,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "policy_bindings_roleId_roles_id_fk": {
-          "name": "policy_bindings_roleId_roles_id_fk",
-          "tableFrom": "policy_bindings",
-          "tableTo": "roles",
+        "PolicyBindings_roleId_Roles_id_fk": {
+          "name": "PolicyBindings_roleId_Roles_id_fk",
+          "tableFrom": "PolicyBindings",
+          "tableTo": "Roles",
           "schemaTo": "iam",
           "columnsFrom": [
             "roleId"
@@ -290,8 +290,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "iam.principle_login_methods": {
-      "name": "principle_login_methods",
+    "iam.PrincipleLoginMethods": {
+      "name": "PrincipleLoginMethods",
       "schema": "iam",
       "columns": {
         "principleId": {
@@ -370,10 +370,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "principle_login_methods_principleId_principles_id_fk": {
-          "name": "principle_login_methods_principleId_principles_id_fk",
-          "tableFrom": "principle_login_methods",
-          "tableTo": "principles",
+        "PrincipleLoginMethods_principleId_Principles_id_fk": {
+          "name": "PrincipleLoginMethods_principleId_Principles_id_fk",
+          "tableFrom": "PrincipleLoginMethods",
+          "tableTo": "Principles",
           "schemaTo": "iam",
           "columnsFrom": [
             "principleId"
@@ -391,8 +391,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "iam.principles": {
-      "name": "principles",
+    "iam.Principles": {
+      "name": "Principles",
       "schema": "iam",
       "columns": {
         "email": {
@@ -449,8 +449,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "principles_email_unique": {
-          "name": "principles_email_unique",
+        "Principles_email_unique": {
+          "name": "Principles_email_unique",
           "nullsNotDistinct": false,
           "columns": [
             "email"
@@ -461,8 +461,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "iam.roles_hierarchy": {
-      "name": "roles_hierarchy",
+    "iam.RolesHierarchy": {
+      "name": "RolesHierarchy",
       "schema": "iam",
       "columns": {
         "parentRoleId": {
@@ -480,10 +480,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "roles_hierarchy_parentRoleId_roles_id_fk": {
-          "name": "roles_hierarchy_parentRoleId_roles_id_fk",
-          "tableFrom": "roles_hierarchy",
-          "tableTo": "roles",
+        "RolesHierarchy_parentRoleId_Roles_id_fk": {
+          "name": "RolesHierarchy_parentRoleId_Roles_id_fk",
+          "tableFrom": "RolesHierarchy",
+          "tableTo": "Roles",
           "schemaTo": "iam",
           "columnsFrom": [
             "parentRoleId"
@@ -494,10 +494,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "roles_hierarchy_childRoleId_roles_id_fk": {
-          "name": "roles_hierarchy_childRoleId_roles_id_fk",
-          "tableFrom": "roles_hierarchy",
-          "tableTo": "roles",
+        "RolesHierarchy_childRoleId_Roles_id_fk": {
+          "name": "RolesHierarchy_childRoleId_Roles_id_fk",
+          "tableFrom": "RolesHierarchy",
+          "tableTo": "Roles",
           "schemaTo": "iam",
           "columnsFrom": [
             "childRoleId"
@@ -510,8 +510,8 @@
         }
       },
       "compositePrimaryKeys": {
-        "roles_hierarchy_parentRoleId_childRoleId_pk": {
-          "name": "roles_hierarchy_parentRoleId_childRoleId_pk",
+        "RolesHierarchy_parentRoleId_childRoleId_pk": {
+          "name": "RolesHierarchy_parentRoleId_childRoleId_pk",
           "columns": [
             "parentRoleId",
             "childRoleId"
@@ -523,8 +523,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "iam.role_permissions": {
-      "name": "role_permissions",
+    "iam.RolePermissions": {
+      "name": "RolePermissions",
       "schema": "iam",
       "columns": {
         "roleId": {
@@ -542,10 +542,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "role_permissions_roleId_roles_id_fk": {
-          "name": "role_permissions_roleId_roles_id_fk",
-          "tableFrom": "role_permissions",
-          "tableTo": "roles",
+        "RolePermissions_roleId_Roles_id_fk": {
+          "name": "RolePermissions_roleId_Roles_id_fk",
+          "tableFrom": "RolePermissions",
+          "tableTo": "Roles",
           "schemaTo": "iam",
           "columnsFrom": [
             "roleId"
@@ -556,10 +556,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "role_permissions_permissionId_permissions_id_fk": {
-          "name": "role_permissions_permissionId_permissions_id_fk",
-          "tableFrom": "role_permissions",
-          "tableTo": "permissions",
+        "RolePermissions_permissionId_Permissions_id_fk": {
+          "name": "RolePermissions_permissionId_Permissions_id_fk",
+          "tableFrom": "RolePermissions",
+          "tableTo": "Permissions",
           "schemaTo": "iam",
           "columnsFrom": [
             "permissionId"
@@ -572,8 +572,8 @@
         }
       },
       "compositePrimaryKeys": {
-        "role_permissions_roleId_permissionId_pk": {
-          "name": "role_permissions_roleId_permissionId_pk",
+        "RolePermissions_roleId_permissionId_pk": {
+          "name": "RolePermissions_roleId_permissionId_pk",
           "columns": [
             "roleId",
             "permissionId"
@@ -585,8 +585,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "iam.roles": {
-      "name": "roles",
+    "iam.Roles": {
+      "name": "Roles",
       "schema": "iam",
       "columns": {
         "name": {
@@ -636,8 +636,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "roles_name_unique": {
-          "name": "roles_name_unique",
+        "Roles_name_unique": {
+          "name": "Roles_name_unique",
           "nullsNotDistinct": false,
           "columns": [
             "name"

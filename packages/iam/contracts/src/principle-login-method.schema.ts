@@ -31,7 +31,7 @@ export type IPrincipleLoginMethod = z.infer<typeof PrincipleLoginMethodSchema>;
 // login method with relations
 export const PrincipleLoginMethodWithRelationsSchema =
     PrincipleLoginMethodSchema.extend({
-        principle: z.object(PrincipleWithRelationsSchema.shape).nullable(),
+        principle: z.nullable(PrincipleWithRelationsSchema),
     });
 export type IPrincipleLoginMethodWithRelations = z.infer<
     typeof PrincipleLoginMethodWithRelationsSchema

@@ -13,9 +13,8 @@ export type INewOrganizationalResource = z.infer<
 >;
 
 // organizational resource
-export const OrganizationalResourceSchema = z
-    .object(NewOrganizationalResourceSchema.shape)
-    .extend(EntitySchema.shape);
+export const OrganizationalResourceSchema =
+    NewOrganizationalResourceSchema.extend(EntitySchema.shape);
 export type IOrganizationalResource = z.infer<
     typeof OrganizationalResourceSchema
 >;

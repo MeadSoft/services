@@ -21,9 +21,7 @@ export const NewPolicySchema = z.object({
 export type INewPolicy = z.infer<typeof NewPolicySchema>;
 
 // policy
-export const PolicySchema = z
-    .object(NewPolicySchema.shape)
-    .extend(EntitySchema.shape);
+export const PolicySchema = NewPolicySchema.extend(EntitySchema.shape);
 export type IPolicy = z.infer<typeof PolicySchema>;
 
 export class Policy implements IPolicy {
