@@ -17,7 +17,6 @@ import {
     type IPrincipleWithRelations,
     type ILocalLoginRequest,
     type ILocalRegisterRequest,
-    type IPrinciple,
     SERVICE_NAME,
     PRINCIPLES_RESOURCE_NAME,
 } from '@meadsoft/iam-contracts';
@@ -42,7 +41,7 @@ export class PrincipleController {
     async register(
         @Body() body: ILocalRegisterRequest,
         @Res({ passthrough: true }) res: Response,
-    ): Promise<IPrinciple> {
+    ): Promise<IPrincipleWithRelations> {
         const parsed = LocalRegisterRequestSchema.safeParse(body);
         if (!parsed.success) {
             throw new BadRequestException(parsed.error.issues);
@@ -64,7 +63,7 @@ export class PrincipleController {
     async login(
         @Body() body: ILocalLoginRequest,
         @Res({ passthrough: true }) res: Response,
-    ): Promise<IPrinciple> {
+    ): Promise<IPrincipleWithRelations> {
         const parsed = LocalLoginRequestSchema.safeParse(body);
         if (!parsed.success) {
             throw new BadRequestException(parsed.error.issues);
@@ -121,11 +120,14 @@ export class PrincipleController {
     @Get('me')
     async getCurrentPrinciple(
         @CurrentPrinciple() principle: IPrincipleWithRelations,
-    ): Promise<IPrinciple> {
+    ): Promise<IPrincipleWithRelations> {
         return Promise.resolve(principle);
     }
 
-    private setIamCookie(res: Response, principle: IPrinciple): void {
+    private setIamCookie(
+        res: Response,
+        principle: IPrincipleWithRelations,
+    ): void {
         const jwt = this.jwtService.sign(principle, {
             secret: this.authConfig.env.JWT_SECRET,
         });

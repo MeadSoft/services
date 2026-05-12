@@ -4,6 +4,7 @@ import { DomainEventPublisher } from '@meadsoft/common-application';
 import {
     IMenuItem,
     INewMenuItem,
+    SERVICE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import { EntityService } from '@meadsoft/common-nestjs';
 import {
@@ -11,6 +12,7 @@ import {
     MenuItemQueryService,
 } from './menu-item.service';
 import { MenuItemEntity } from '../domain/menu-item.entity';
+import { IFilter } from '@meadsoft/common';
 
 @Injectable()
 export class MenuItemDomainService {
@@ -47,7 +49,16 @@ export class MenuItemDomainService {
         menuItemUpdates: IMenuItem,
         userId: string,
     ): Promise<Result<IMenuItem, Error>> {
-        const existingData = await this.menuItemQueryService.findFirst(id);
+        const idFilter: IFilter = {
+            service: SERVICE_NAME,
+            resource: 'menuItems',
+            field: 'id',
+            operator: 'eq',
+            value: id,
+        };
+        const existingData = await this.menuItemQueryService.findFirst([
+            idFilter,
+        ]);
         if (!existingData) {
             return Err(new Error('Menu item not found'));
         }

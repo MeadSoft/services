@@ -4,6 +4,7 @@ import {
     NotFoundException,
 } from '@nestjs/common';
 import {
+    IPrincipleWithRelations,
     PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,
     PRINCIPLES_RESOURCE_NAME,
     SERVICE_NAME,
@@ -41,7 +42,7 @@ export class PrincipleService extends QueryService<IPrinciple> {
         email: string,
         password: string,
         displayName: string | null,
-    ): Promise<IPrinciple> {
+    ): Promise<IPrincipleWithRelations> {
         const emailFilter: IFilter = {
             service: SERVICE_NAME,
             resource: PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,

@@ -32,9 +32,11 @@ export class IamClient {
         );
     }
 
-    async register(request: ILocalRegisterRequest): Promise<IPrinciple> {
+    async register(
+        request: ILocalRegisterRequest,
+    ): Promise<IPrincipleWithRelations> {
         return await firstValueFrom(
-            this.http.post<IPrinciple>(
+            this.http.post<IPrincipleWithRelations>(
                 `${this.apiBaseUrl}/${SERVICE_NAME}/register`,
                 request,
                 {
@@ -44,9 +46,9 @@ export class IamClient {
         );
     }
 
-    async login(request: ILocalLoginRequest): Promise<IPrinciple> {
+    async login(request: ILocalLoginRequest): Promise<IPrincipleWithRelations> {
         return await firstValueFrom(
-            this.http.post<IPrinciple>(
+            this.http.post<IPrincipleWithRelations>(
                 `${this.apiBaseUrl}/${SERVICE_NAME}/login`,
                 request,
                 {

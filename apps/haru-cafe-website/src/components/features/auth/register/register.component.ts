@@ -8,10 +8,11 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { IamService } from '@haru-cafe/services/auth/iam.service';
+import { IamService } from '../../../../services/auth/iam.service';
 import { IamClient } from '@meadsoft/iam-http-client-angular';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { MIN_PASSWORD_LENGTH } from '@meadsoft/iam-contracts';
 
 const passwordsMatchValidator: ValidatorFn = (
     group: AbstractControl,
@@ -41,7 +42,13 @@ export class RegisterComponent {
         this.registerForm = this.fb.group(
             {
                 email: ['', [Validators.required, Validators.email]],
-                password: ['', [Validators.required, Validators.minLength(6)]],
+                password: [
+                    '',
+                    [
+                        Validators.required,
+                        Validators.minLength(MIN_PASSWORD_LENGTH),
+                    ],
+                ],
                 confirmPassword: ['', Validators.required],
             },
             { validators: passwordsMatchValidator },
@@ -76,22 +83,22 @@ export class RegisterComponent {
         }
     }
 
-    async registerWithGoogle() {
-        try {
-            this.isLoading.set(true);
-            this.error.set(null);
-            const credential = await this.auth.signInWithGoogle();
-            const principle = await this.authClient.firebaseLogin(
-                await credential.user.getIdToken(),
-            );
-            this.auth.setLocalPrinciple(principle);
-            await this.router.navigate(['/']);
-        } catch (e: unknown) {
-            this.error.set(
-                e instanceof Error ? e.message : 'Registration failed',
-            );
-        } finally {
-            this.isLoading.set(false);
-        }
-    }
+    // async registerWithGoogle() {
+    //     try {
+    //         this.isLoading.set(true);
+    //         this.error.set(null);
+    //         const credential = await this.auth.signInWithGoogle();
+    //         const principle = await this.authClient.firebaseLogin(
+    //             await credential.user.getIdToken(),
+    //         );
+    //         this.auth.setLocalPrinciple(principle);
+    //         await this.router.navigate(['/']);
+    //     } catch (e: unknown) {
+    //         this.error.set(
+    //             e instanceof Error ? e.message : 'Registration failed',
+    //         );
+    //     } finally {
+    //         this.isLoading.set(false);
+    //     }
+    // }
 }

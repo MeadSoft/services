@@ -5,10 +5,10 @@ import {
     SelectButtonModule,
 } from 'primeng/selectbutton';
 import { FIRST_INDEX } from '@meadsoft/common';
-import { FilterService } from '@haru-cafe/services/filter.service';
-import { ITagNode } from '@haru-cafe/data/tag-nodes';
-import { TagGraphService } from '@haru-cafe/services/tag-graph.service';
-import { TagsStore } from '../../../../../../packages/restaurant-catalog/http-client-angular/src';
+import { FilterService } from '@meadsoft/haru-cafe/services/filter.service';
+import { ITagNode } from '@meadsoft/haru-cafe/data/tag-nodes';
+import { TagGraphService } from '@meadsoft/haru-cafe/services/tag-graph.service';
+import { TagsStore } from '@meadsoft/restaurant-catalog-http-client-angular';
 
 @Component({
     selector: 'haru-filters',

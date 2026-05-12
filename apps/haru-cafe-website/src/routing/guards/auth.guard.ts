@@ -9,7 +9,7 @@ import {
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Observable, of } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
-import { IamService } from '@haru-cafe/services/auth/iam.service';
+import { IamService } from '@meadsoft/haru-cafe/services/auth/iam.service';
 import { ONE_ITEM } from '@meadsoft/common';
 
 @Injectable({ providedIn: 'root' })

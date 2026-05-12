@@ -49,7 +49,7 @@
 
         <!-- Google OAuth -->
         <p-button
-            (click)="loginWithGoogle()"
+            [disabled]="true"
             label="Sign in with Google"
             severity="secondary"
             [outlined]="true"
@@ -63,7 +63,11 @@
 
         <p class="text-sm text-center text-gray-500">
             Don't have an account?
-            <a routerLink="/register" class="underline hover:text-gray-800 dark:hover:text-gray-200">Create one</a>
+            <a
+                routerLink="/register"
+                class="underline hover:text-gray-800 dark:hover:text-gray-200"
+                >Create one</a
+            >
         </p>
     </div>
 </div>

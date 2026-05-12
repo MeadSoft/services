@@ -8,6 +8,7 @@ import {
     IMenuItemWithRelations,
     MenuItemSchema,
     MenuItemWithRelationsSchema,
+    SERVICE_NAME,
 } from '@meadsoft/restaurant-catalog-contracts';
 import { menuItemsTable } from '../tables/menu-items.table';
 import { FIRST_INDEX, IFilter, ZodSchema } from '@meadsoft/common';
@@ -43,6 +44,7 @@ export class MenuItemRepository extends DrizzlePgCommandRepository<
         id: string,
     ): Promise<IMenuItemWithRelations | null> {
         const filter: IFilter = {
+            service: SERVICE_NAME,
             resource: 'menuItems',
             field: 'id',
             operator: 'eq',
@@ -55,7 +57,9 @@ export class MenuItemRepository extends DrizzlePgCommandRepository<
     async findManyWithRelations(
         ...filters: IFilter[]
     ): Promise<IMenuItemWithRelations[]> {
-        const sqlFilters = this.filterTranslationService.translate(...filters);
+        const sqlFilters = this.filterTranslationService
+            .translate(filters)
+            .unwrap();
         const database = this.unitOfWork.getDatabase();
 
         let items = await database.query.menuItemsTable.findMany({

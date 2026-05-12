@@ -6,7 +6,7 @@ import {
     HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Config } from '@haru-cafe/configs/config.schema';
+import { Config } from '@meadsoft/haru-cafe/configs/config.schema';
 
 @Injectable()
 export class HttpCookieCredentialsInterceptor implements HttpInterceptor {

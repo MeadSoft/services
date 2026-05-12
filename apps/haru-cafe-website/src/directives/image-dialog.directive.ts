@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {
     IImageDialogData,
     ImageDialogComponent,
-} from '@haru-cafe/components/features/image-dialog/image-dialog.component';
+} from '@meadsoft/haru-cafe/components/features/image-dialog/image-dialog.component';
 
 export interface IImageElementProvider extends HTMLElement {
     imageElement: HTMLImageElement | null;

@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from '@haru-cafe/components/features/auth/login/login.component';
-import { RegisterComponent } from '@haru-cafe/components/features/auth/register/register.component';
-import { NotFoundComponent } from '@haru-cafe/components/pages/not-found/not-found.component';
-import { LandingPageComponent } from '@haru-cafe/components/pages/landing-page/landing-page.component';
-import { AdminPageComponent } from '@haru-cafe/components/pages/admin-page/admin-page.component';
+import { LoginComponent } from '@meadsoft/haru-cafe/components/features/auth/login/login.component';
+import { RegisterComponent } from '@meadsoft/haru-cafe/components/features/auth/register/register.component';
+import { NotFoundComponent } from '@meadsoft/haru-cafe/components/pages/not-found/not-found.component';
+import { LandingPageComponent } from '@meadsoft/haru-cafe/components/pages/landing-page/landing-page.component';
+import { AdminPageComponent } from '@meadsoft/haru-cafe/components/pages/admin-page/admin-page.component';
 import { AdminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [

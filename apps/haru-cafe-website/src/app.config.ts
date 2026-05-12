@@ -11,7 +11,6 @@ import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 // } from '@angular/platform-browser';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { provideRestaurantCatalog } from '../../../packages/restaurant-catalog/http-client-angular/src';
 import { provideIamClient } from '@meadsoft/iam-http-client-angular';
 import { EMPTY_LENGTH } from '@meadsoft/common';
 import { routes } from './routing/app.routes';
@@ -19,6 +18,7 @@ import { HttpCookieCredentialsInterceptor } from './interceptors/http-cookie-cre
 import { primeNgThemeProvider } from './theme.config';
 import { Config } from './configs/config.schema';
 import { config } from './configs/config';
+import { provideRestaurantCatalog } from '@meadsoft/restaurant-catalog-http-client-angular';
 
 const hasFirebaseApiKey =
     (config.firebase.apiKey ?? '').trim().length > EMPTY_LENGTH;

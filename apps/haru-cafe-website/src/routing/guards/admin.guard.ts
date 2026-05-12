@@ -9,8 +9,9 @@ import {
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Observable, of } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
-import { IamService } from '@haru-cafe/services/auth/iam.service';
+import { IamService } from '@meadsoft/haru-cafe/services/auth/iam.service';
 import { ONE_ITEM } from '@meadsoft/common';
+import { IRoleWithRelations } from '@meadsoft/iam-contracts';
 
 export const ADMIN_ROLE = 'haru-cafe.admin';
 
@@ -44,8 +45,9 @@ export class AdminGuard implements CanActivate {
             });
         }
         const principle = this.authService.apiPrinciple();
-        const roles = principle?.roles ?? [];
-        if (!roles.some((role) => role.name === ADMIN_ROLE)) {
+        const roles: (IRoleWithRelations | null)[] =
+            principle?.policyBindings!.map((binding) => binding.role) ?? [];
+        if (!roles.some((role) => role?.name === ADMIN_ROLE)) {
             return this.router.createUrlTree(['/']);
         }
         return true;

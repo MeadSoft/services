@@ -3,7 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import {
     RestaurantCatalogClients,
     SizesStore,
-} from '../../../../../../../../packages/restaurant-catalog/http-client-angular/src';
+} from '@meadsoft/restaurant-catalog-http-client-angular';
 import type { ISize } from '@meadsoft/restaurant-catalog-contracts';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';

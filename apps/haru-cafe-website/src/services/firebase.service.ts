@@ -1,7 +1,7 @@
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { Analytics, getAnalytics } from 'firebase/analytics';
 import { Injectable } from '@angular/core';
-import { Config } from '@haru-cafe/configs/config.schema';
+import { Config } from '@meadsoft/haru-cafe/configs/config.schema';
 
 @Injectable()
 export class FirebaseService {

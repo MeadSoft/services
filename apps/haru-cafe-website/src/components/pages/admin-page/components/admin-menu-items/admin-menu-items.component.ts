@@ -6,7 +6,7 @@ import {
     RestaurantCatalogClients,
     SizesStore,
     TagsStore,
-} from '../../../../../../../../packages/restaurant-catalog/http-client-angular/src';
+} from '@meadsoft/restaurant-catalog-http-client-angular';
 import type {
     IMenuItemWithRelations,
     INewMenuItem,

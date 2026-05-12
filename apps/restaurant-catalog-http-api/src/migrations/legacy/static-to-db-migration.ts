@@ -56,7 +56,7 @@ async function staticToDbDataMigration() {
     // fetch existing items from the database
 
     for (const [name, { repo }] of Object.entries(repositories)) {
-        const items = await repo.findMany();
+        const items = await repo.findMany(null);
         repositories[name].dbItems = items;
         for (const item of items) {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
