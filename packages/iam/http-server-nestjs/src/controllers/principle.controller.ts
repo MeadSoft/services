@@ -19,6 +19,12 @@ import {
     type ILocalRegisterRequest,
     SERVICE_NAME,
     PRINCIPLES_RESOURCE_NAME,
+    INewPrinciple,
+    PrincipleWithRelations,
+    NewPrincipleSchema,
+    PrincipleSchema,
+    IPrinciple,
+    Principle,
 } from '@meadsoft/iam-contracts';
 import { IFilter, SYSTEM_UUID } from '@meadsoft/common';
 import { SaltingService } from '@meadsoft/common-server';
@@ -26,16 +32,51 @@ import { IamConfig } from '../iam.config';
 import { PrincipleService } from '../services/principle.service';
 import { CurrentPrinciple } from './principle.decorator';
 import { PrincipleRepository } from '../database/repositories';
+import {
+    createCommandController,
+    createQueryController,
+} from '@meadsoft/common-http-server-nestjs';
+import { IAM_TAG } from './api-tags';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('principle')
-export class PrincipleController {
+const principleQueryController = createQueryController<IPrinciple>(
+    Principle,
+    SERVICE_NAME,
+    PRINCIPLES_RESOURCE_NAME,
+);
+
+const principleCommandController = createCommandController<
+    INewPrinciple,
+    Principle
+>(PrincipleWithRelations, NewPrincipleSchema, PrincipleSchema);
+
+@ApiTags(IAM_TAG)
+@Controller(PRINCIPLES_RESOURCE_NAME)
+export class PrincipleQueryController extends principleQueryController {
+    constructor(service: PrincipleService) {
+        super(service);
+    }
+
+    @Get('me')
+    async getCurrentPrinciple(
+        @CurrentPrinciple() principle: IPrincipleWithRelations,
+    ): Promise<IPrincipleWithRelations> {
+        return Promise.resolve(principle);
+    }
+}
+
+@ApiTags(IAM_TAG)
+@Controller(PRINCIPLES_RESOURCE_NAME)
+export class PrincipleCommandController extends principleCommandController {
     constructor(
         private readonly jwtService: JwtService,
         private readonly authConfig: IamConfig,
         private readonly principleService: PrincipleService,
         private readonly principleRepository: PrincipleRepository,
         private readonly saltingService: SaltingService,
-    ) {}
+    ) {
+        super(principleService);
+    }
 
     @Post('register/local')
     async register(
@@ -115,13 +156,6 @@ export class PrincipleController {
     async logout(@Res({ passthrough: true }) res: Response): Promise<void> {
         res.clearCookie(IAM_COOKIE_NAME, this.authConfig.file.cookie);
         return Promise.resolve();
-    }
-
-    @Get('me')
-    async getCurrentPrinciple(
-        @CurrentPrinciple() principle: IPrincipleWithRelations,
-    ): Promise<IPrincipleWithRelations> {
-        return Promise.resolve(principle);
     }
 
     private setIamCookie(

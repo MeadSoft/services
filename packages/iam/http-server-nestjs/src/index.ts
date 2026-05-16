@@ -5,11 +5,11 @@ export {
     IAM_CONFIG_KEY as AUTH_CONFIG_KEY,
     IamConfig as AuthConfig,
 } from './iam.config';
+export { IamConfigProvider, IamConfigLoader } from './iam-config.provider';
 export {
-    IamConfigProvider as AuthConfigProvider,
-    IamConfigLoader as AuthConfigLoader,
-} from './iam-config.provider';
-export { PrincipleController as AuthController } from './controllers/principle.controller';
+    PrincipleQueryController,
+    PrincipleCommandController,
+} from './controllers/principle.controller';
 export { JwtCookieStrategy as JwtStrategy } from './controllers/http-only-cookie.strategy';
 export { CurrentPrinciple } from './controllers/principle.decorator';
 

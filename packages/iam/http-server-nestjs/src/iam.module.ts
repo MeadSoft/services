@@ -50,6 +50,17 @@ import {
     PolicyBindingsQueryController,
     PolicyBindingsCommandController,
 } from './controllers/policy-bindings.controller';
+import {
+    PrincipleCommandController,
+    PrincipleQueryController,
+} from './controllers/principle.controller';
+import { PrincipleService } from './services/principle.service';
+import { PrincipleLoginMethodService } from './services/principle-login-method.service';
+import {
+    PrincipleLoginMethodRepository,
+    PrincipleRepository,
+} from './database/repositories';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
     imports: [DrizzlePgModule, CommonModule],
@@ -64,6 +75,8 @@ import {
         PoliciesCommandController,
         PolicyBindingsQueryController,
         PolicyBindingsCommandController,
+        PrincipleQueryController,
+        PrincipleCommandController,
     ],
     providers: [
         // encryption
@@ -80,6 +93,8 @@ import {
         PoliciesRepository,
         PolicyBindingsRepository,
         RolePermissionsRepository,
+        PrincipleRepository,
+        PrincipleLoginMethodRepository,
         // services
         OrganizationalResourceQueryService,
         OrganizationalResourceCommandService,
@@ -91,6 +106,9 @@ import {
         PolicyCommandService,
         PolicyBindingQueryService,
         PolicyBindingCommandService,
+        PrincipleService,
+        PrincipleLoginMethodService,
+        JwtService,
     ],
     exports: [
         OrganizationalResourceQueryService,
@@ -103,6 +121,8 @@ import {
         PolicyCommandService,
         PolicyBindingQueryService,
         PolicyBindingCommandService,
+        PrincipleService,
+        PrincipleLoginMethodService,
     ],
 })
 export class IamModule {}

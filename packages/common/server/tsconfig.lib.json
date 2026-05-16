@@ -11,7 +11,8 @@
         ]
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*.ts",
+        "../nestjs/src/nest.module.ts"
     ],
     "references": [
         {

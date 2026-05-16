@@ -4,6 +4,7 @@ import {
     NotFoundException,
 } from '@nestjs/common';
 import {
+    INewPrinciple,
     IPrincipleWithRelations,
     PRINCIPLE_LOGIN_METHODS_RESOURCE_NAME,
     PRINCIPLES_RESOURCE_NAME,
@@ -12,22 +13,38 @@ import {
     type IPrinciple,
 } from '@meadsoft/iam-contracts';
 import { PrincipleLoginMethodService } from './principle-login-method.service';
-import { EntityService } from '@meadsoft/common-nestjs';
+import { ChangeHistoryService, EntityService } from '@meadsoft/common-nestjs';
 import { SaltingService } from '@meadsoft/common-server';
 import { PrincipleRepository } from '../database/repositories/principle.repo';
-import { QueryService } from '@meadsoft/common-application';
+import { CommandService } from '@meadsoft/common-application';
 import { PrincipleEntity } from '../domain/principle.entity';
 import { IFilter } from '@meadsoft/common';
+import { IamUnitOfWork } from '../database/iam-database.service';
 
 @Injectable()
-export class PrincipleService extends QueryService<IPrinciple> {
+export class PrincipleService extends CommandService<
+    INewPrinciple,
+    IPrinciple
+> {
     constructor(
         private readonly principleLoginMethodService: PrincipleLoginMethodService,
-        private readonly entityService: EntityService,
+        entityService: EntityService,
         private readonly saltingService: SaltingService,
         private readonly principleRepo: PrincipleRepository,
+        changeHistoryService: ChangeHistoryService,
+        unitOfWork: IamUnitOfWork,
     ) {
-        super(principleRepo);
+        super(
+            principleRepo,
+            unitOfWork,
+            entityService,
+            changeHistoryService,
+            () => {
+                throw new Error(
+                    'Creating a principle this way is not supported',
+                );
+            },
+        );
     }
 
     /**

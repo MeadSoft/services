@@ -29,3 +29,51 @@ export const PrincipleWithRelationsSchema = PrincipleSchema.extend({
 export type IPrincipleWithRelations = z.infer<
     typeof PrincipleWithRelationsSchema
 >;
+
+export class Principle implements IPrinciple {
+    id: string;
+    email: string | null;
+    displayName: string | null;
+    isActive: boolean;
+    createdDate: string | null;
+    updatedDate: string | null;
+    createdById: string | null;
+    updatedById: string | null;
+
+    constructor(data: IPrinciple) {
+        this.id = data.id;
+        this.email = data.email;
+        this.displayName = data.displayName;
+        this.isActive = data.isActive;
+        this.createdDate = data.createdDate;
+        this.updatedDate = data.updatedDate;
+        this.createdById = data.createdById;
+        this.updatedById = data.updatedById;
+    }
+}
+
+export class PrincipleWithRelations implements IPrincipleWithRelations {
+    id: string;
+    email: string | null;
+    displayName: string | null;
+    isActive: boolean;
+    createdDate: string | null;
+    updatedDate: string | null;
+    createdById: string | null;
+    updatedById: string | null;
+    loginMethods: z.infer<typeof PrincipleLoginMethodSchema>[] | null;
+    policyBindings: z.infer<typeof PolicyBindingWithRelationsSchema>[] | null;
+
+    constructor(data: IPrincipleWithRelations) {
+        this.id = data.id;
+        this.email = data.email;
+        this.displayName = data.displayName;
+        this.isActive = data.isActive;
+        this.createdDate = data.createdDate;
+        this.updatedDate = data.updatedDate;
+        this.createdById = data.createdById;
+        this.updatedById = data.updatedById;
+        this.loginMethods = data.loginMethods;
+        this.policyBindings = data.policyBindings;
+    }
+}

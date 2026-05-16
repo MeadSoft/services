@@ -1,11 +1,11 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { IamModule } from '@meadsoft/iam-http-server-nestjs';
+import { IamConfigProvider, IamModule } from '@meadsoft/iam-http-server-nestjs';
 import { HttpConfigProvider } from '@meadsoft/common-http-server-nestjs';
 import { RequestLoggerMiddleware } from '@meadsoft/common-nestjs';
 import { ConfigPathProvider } from './config-path.provider';
 
 @Module({
-    providers: [ConfigPathProvider, HttpConfigProvider],
+    providers: [ConfigPathProvider, HttpConfigProvider, IamConfigProvider],
     imports: [IamModule],
 })
 export class AppModule {
