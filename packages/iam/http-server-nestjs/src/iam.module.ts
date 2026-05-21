@@ -38,10 +38,7 @@ import {
     RolesQueryController,
     RolesCommandController,
 } from './controllers/roles.controller';
-import {
-    PermissionsQueryController,
-    PermissionsCommandController,
-} from './controllers/permissions.controller';
+import { PermissionsQueryController } from './controllers/permissions.controller';
 import {
     PoliciesQueryController,
     PoliciesCommandController,
@@ -61,6 +58,7 @@ import {
     PrincipleRepository,
 } from './database/repositories';
 import { JwtService } from '@nestjs/jwt';
+import { IamConfig } from './iam.config';
 
 @Module({
     imports: [DrizzlePgModule, CommonModule],
@@ -70,7 +68,6 @@ import { JwtService } from '@nestjs/jwt';
         RolesQueryController,
         RolesCommandController,
         PermissionsQueryController,
-        PermissionsCommandController,
         PoliciesQueryController,
         PoliciesCommandController,
         PolicyBindingsQueryController,
@@ -79,6 +76,7 @@ import { JwtService } from '@nestjs/jwt';
         PrincipleCommandController,
     ],
     providers: [
+        IamConfig,
         // encryption
         { provide: SaltingService, useClass: SaltingService },
         // database

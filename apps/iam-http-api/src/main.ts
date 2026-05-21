@@ -84,7 +84,11 @@ async function bootstrap() {
     await app.listen(httpConfig.port || DEFAULT_PORT);
 }
 
-bootstrap().catch(() => {
-    fs.writeFileSync('graph.json', PartialGraphHost.toString());
+bootstrap().catch((error: unknown) => {
+    console.error('Bootstrap error:', error);
+    const partialGraph = PartialGraphHost.toString();
+    if (partialGraph !== undefined) {
+        fs.writeFileSync('graph.json', partialGraph);
+    }
     process.exit(ERROR_EXIT_CODE);
 });

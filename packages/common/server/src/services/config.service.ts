@@ -44,14 +44,16 @@ function getConfigPath(
 function getJsonConfigFromFile(
     fileContents: string,
     key: string | null,
-): object {
-    let jsonConfig: object;
+): object | null | undefined {
+    let jsonConfig: object | null | undefined;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const parsedJson: Record<string, object> | undefined =
+        JSON.parse(fileContents);
     if (key === null) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         jsonConfig = JSON.parse(fileContents);
     } else {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-        jsonConfig = JSON.parse(fileContents)[key];
+        jsonConfig = parsedJson?.[key];
     }
     return jsonConfig;
 }
@@ -142,6 +144,8 @@ export class JsonAndEnvConfigLoader<
 export class JsonConfigLoader<
     TJsonConfig extends object,
 > implements IConfigLoader<TJsonConfig> {
+    private static loggedJsonConfigFile = false;
+
     constructor(
         public readonly key: string | null,
         public readonly fileSchema: ISchema<TJsonConfig>,
@@ -162,7 +166,19 @@ export class JsonConfigLoader<
         );
         await access(configPath);
         const fileContent = await readFile(configPath, 'utf-8');
+        if (!JsonConfigLoader.loggedJsonConfigFile) {
+            console.log('Loaded Config JSON File', fileContent);
+            JsonConfigLoader.loggedJsonConfigFile = true;
+        }
+        console.log(`Parsing JSON config for ${this.key ?? 'root'}`);
         const jsonConfig = getJsonConfigFromFile(fileContent, this.key);
+        if (jsonConfig === undefined) {
+            return Err(
+                new Error(
+                    `Key '${this.key ?? 'root'}' not found in JSON config file`,
+                ),
+            );
+        }
         return this.fileSchema.parse(jsonConfig);
     }
 
@@ -179,7 +195,19 @@ export class JsonConfigLoader<
         );
         accessSync(configPath);
         const fileContent = readFileSync(configPath, 'utf-8');
+        if (!JsonConfigLoader.loggedJsonConfigFile) {
+            console.log('Loaded Config JSON File', fileContent);
+            JsonConfigLoader.loggedJsonConfigFile = true;
+        }
+        console.log(`Parsing JSON config for ${this.key ?? 'root'}`);
         const jsonConfig = getJsonConfigFromFile(fileContent, this.key);
+        if (jsonConfig === undefined) {
+            return Err(
+                new Error(
+                    `Key '${this.key ?? 'root'}' not found in JSON config file`,
+                ),
+            );
+        }
         return this.fileSchema.parse(jsonConfig);
     }
 }
